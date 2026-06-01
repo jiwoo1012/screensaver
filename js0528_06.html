@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        body{
+            background-color: #333;
+        }
+        .circle{
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            border-radius: 50%;
+            
+            position: fixed;
+            left: 0px; top: 0;
+            transform: translate(-50%, -50%); /*원 한가운데가 마우스 커서가 가리킬 수 있도록 */
+
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle"></div>
+    <script>
+        let circle=document.querySelector(".circle")
+
+        window.addEventListener("mousemove", function(e){  //이때 e는 event //window 전체 범위에서! 마우스가 움직이면 너가 체크를 해. 담당 역할
+            console.log(e.clientX, e.clientY)   //가로로 움직이는 X좌표, 세로로 움직이는 Y좌표
+            circle.style.left=e.clientX+"px"
+            circle.style.top=e.clientY+"px"
+        })
+
+
+    </script>
+</body>
+</html>

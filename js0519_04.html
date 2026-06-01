@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            display: block;  /*밑으로 가라!*/
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>영화 선택</h2>
+        <label>
+            <input type="radio" name="movie" value="범죄도시"/>
+            범죄도시
+        </label>
+        <label>
+            <input type="radio" name="movie" value="왕과 사는 남자"/>
+            왕과 사는 남자
+        </label>
+        <label>
+            <input type="radio" name="movie" value="프로젝트 헤일메리"/>
+            프로젝트 헤일메리
+        </label>
+        <label>
+            <input type="radio" name="movie" value="만약에 우리"/>
+            만약에 우리
+        </label>
+        <label>
+            <input type="radio" name="movie" value="악마는 프라다를 입는다2"/>
+            악마는 프라다를 입는다2
+        </label>
+        <br>
+        <br>
+        <h2>회원 상태 선택</h2>
+        <label>
+            <input type="radio" name="state" value="청소년">
+            청소년(30% 할인)
+        </label>
+        <label>
+            <input type="radio" name="state" value="일반">
+            일반(할인 없음)
+        </label>
+        <label>
+            <input type="radio" name="state" value="노인">
+            노인(20% 할인)
+        </label>
+        <label>
+            <input type="radio" name="state" value="국가유공자">
+            국가유공자(50% 할인)
+        </label>
+        <button onclick="checking()">예매하기</button>
+        <div id="dis"></div>
+        <div id="total"></div>
+    </div>
+    <script>
+        class Movie{
+            constructor(title, state){
+                this.title=title
+                this.state=state
+                this.price=15000
+            }
+            teenDiscount(){
+                return this.price*0.7
+            }
+            heroDiscount(){
+                return this.price*0.5
+            }
+            oldDiscount(){
+                return this.price*0.8
+            }
+            nomalDiscount(){
+                return this.price
+            }
+        }
+
+        let movieCart=[]
+        function checking(){
+            let movie=document.querySelector("input[name='movie']:checked")
+            let state=document.querySelector("input[name='state']:checked")
+            let dis=document.querySelector("#dis")
+            let total=document.querySelector("#total")
+            
+            if(!movie||!state){
+                dis.innerHTML=`영화와 회원 상태 "둘 다" 선택해주세요.`
+                return
+            }
+
+            let item=new Movie(movie.value,state.value)
+            let disPrice=0
+            // if(item.state==="청소년") 이걸 사용해도 되는데
+
+            switch(item.state){
+                case "청소년":
+                    disPrice=item.teenDiscount()
+                break
+                case "노인":
+                    disPrice=item.oldDiscount()
+                break
+                case "국가유공자":
+                    disPrice=item.heroDiscount()
+                break
+                case "일반":
+                    disPrice=item.nomalDiscount()
+                break
+            }//if,else와 똑같은 역할이지만 덜 복잡한 장점이 있음.
+            movieCart.push({title: item.title, state: item.state, price: disPrice})  //,로써 한 단락을 구분하고, :앞에는 내가 정하는 이름임.
+            let html=''
+            
+            movieCart.forEach(function(mo){
+                html+=`<div>영화 제목: ${mo.title}<br> 회원 상태: ${mo.state} <br> 할인 적용 가격: ${mo.price} </div>`  //변수이기 떄문에 속도가 느려져도 상관이 없음.
+            })
+
+            dis.innerHTML=html
+            total.innerHTML="총 합계: "+sum.toLocaleString()
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input을 이용해 배열 만들기</title>
+    <style>
+        .dis1{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <input id="num"  type="number" placeholder="배열을 만들 숫자를 입력하세요.">
+        <button onclick="make()">만들기</button>
+        <div class="dis"></div>
+        <div class="dis1"></div>
+    </div>
+    <script>
+        let arr=[]
+
+        function make(){
+            if(arr.length>=5){
+            document.querySelector(".dis1").innerHTML=`배열은 5개까지 만들 수 있습니다.`
+            return
+            }
+
+            let num=Number(document.querySelector('#num').value)
+            arr.push(num)
+            document.querySelector(".dis").innerHTML=`배열=[${arr}]`
+        }
+    </script>
+</body>
+</html>

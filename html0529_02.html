@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: 90%;
+            height: calc(100vh - 90px);
+            overflow: hidden;
+        }
+
+        .wrap video{
+            width: 95%;
+            height: 95%;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid #333;
+
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all 0.8s;
+        }
+        .wrap video.on{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <video muted playsinline>
+            <source src="./mp4/v1.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline>
+            <source src="./mp4/v2.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline>
+            <source src="./mp4/v3.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline> 
+            <source src="./mp4/v4.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        let video=document.querySelectorAll("video")
+        let index=0
+
+        video[index].classList.add("on")
+        video[index].play()
+
+        setInterval(function(){
+            video[index].pause()
+            video[index].classList.remove("on")
+
+            index++
+
+            if(index>=video.length){
+                index=0
+            }
+            video[index].currentTime=0
+            video[index].classList.add("on")
+            video[index].play()
+        }, 4000)
+    </script>
+</body>
+</html>

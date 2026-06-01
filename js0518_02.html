@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //생성자 함수
+        //영화 관람 내용
+
+        function Movie(title, time, watched=false){
+            this.ti=title
+            this.tm=time
+            this.wa=watched
+
+            this.info=function(){
+                let dis=''
+                this.wa===false?
+                dis="영화를 아직 안 봄":
+                dis=`${this.ti} 영화는 상영 시간 ${this.tm}분인데 영화를 잘 봣음`
+
+                return dis
+            }
+        }
+        let myMovie=new Movie("왕과 사는 남자", 120, true)
+        document.write(myMovie.info())
+    </script>
+</body>
+</html>

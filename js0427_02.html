@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{
+            font-size: 40px;
+            color: #333;
+            text-align: center;
+        }
+        .outBox{
+            width: 500px;
+            background-color: burlywood;
+            border: 1px solid brown;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items:center ;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+        .inBox{
+            width: 500px;
+            background-color: cadetblue;
+            border: 1px solid  rgb(27, 52, 53) ;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items:center ;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+        span{
+            color: gold;
+            font-weight: bold;
+            font-size: 17px;
+        }
+    </style>
+</head>
+<body>
+    <h2>2만 5천 원 이상의 책</h2>
+    <select id="sel">
+        <option value="10000">만 원 이상</option>
+        <option value="20000">이만 원 이상</option>
+        <option value="30000">삼만 원 이상</option>
+    </select>
+    <button id="btn">확인</button>
+    <div class="outBox"></div>
+    <h2>2만 5천 원 이하의 책</h2>
+    <div class="inBox"></div>
+    <script>
+        let outBox=document.querySelector(".outBox")
+        let inBox=document.querySelector(".inBox")
+        let sel=document.querySelector("#sel") //아이디는 #, 클래스는 .
+        let btn=document.querySelector("#btn")
+        let books=[
+            {title:"html 기초 습득하기", page:350, price:22000},
+            {title:"css 기초 습득하기", page:550, price:27000},
+            {title:"js 기초 습득하기", page:650, price:32000},
+            {title:"jQuery 기초 습득하기", page:250, price:19000}
+        ]
+        btn.onclick=function(){
+            containner.innerHTML=''
+            books.forEach(function(item){
+            if(item.price>=Number(sel.value)){
+                console.log(sel)
+                outBox.innerHTML+=`<div>책 제목:<span> ${item.title}</span>, 페이지 수: ${item.page}</div>`
+            }
+            })
+        }
+        
+        // books.forEach(function(item){
+        //     if(item.price>=Number(sel.value)){
+        //         console.log(sel)
+        //         outBox.innerHTML+=`<div>책 제목:<span> ${item.title}</span>, 페이지 수: ${item.page}</div>`
+        //     }else{
+        //         inBox.innerHTML+=`<div>책 제목: <strong>${item.title}</strong>, 페이지 수: ${item.page}</div>`
+        //     }
+        // })
+    </script>
+</body>
+</html>

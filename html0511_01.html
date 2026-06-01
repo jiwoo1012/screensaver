@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        header{
+            width: 100%;
+            height: 60px;
+            background-color: black;
+            color: white;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 60px;
+            background-color: black;
+            overflow: hidden;
+            position: fixed;
+            left: 0; top: 0;
+            z-index: 10;
+        }
+        nav.on{
+            height: 360px;
+            transition: all 0.3s;
+        }
+        .logo{
+            width: 25%;
+            height: 100%;
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+        }
+        .gnb{
+            display: flex;
+            justify-content: center;
+            width: 75%;
+            height: 100%;
+        }
+        .gnb >li{
+            width: calc(100%/4);
+            height: 60px;
+        }
+        .gnb >li >a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .snb{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: -10px;
+            width: 100%;
+        }
+        .wrap{
+            /* padding-top: 60px; */
+        }
+        section{
+            width: 100%;
+            height: calc(100vh - 60px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 90px;
+            font-weight: bold;
+        }
+        section.on{
+            display: flex;
+        }
+        #art1{background-color: pink;}
+        #art2{background-color: rgb(255, 236, 239);}
+        #jo1{background-color: rgb(252, 124, 145);}
+        #jo2{background-color: rgb(255, 86, 114);}
+        #jo3{background-color: rgb(255, 19, 58);}
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo"><a href="#" onclick="showpage()">logo</a></div>
+            <ul class="gnb"> <!--글로벌 네비 바-->
+                <li>
+                    <a href="#" onclick="showpage(0)">아트</a>
+                    <ul class="snb"><a href="#art1" onclick="showpage(0)">아트1</a></ul> <!--사이드 네비 바-->
+                    <ul class="snb"><a href="#art2" onclick="showpage(1)">아트2</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(2)">조명</a>
+                    <ul class="snb"><a href="#jo1" onclick="showpage(2)">조명1</a></ul>
+                    <ul class="snb"><a href="#jo2" onclick="showpage(3)">조명2</a></ul>
+                    <ul class="snb"><a href="#jo3" onclick="showpage(4)">조명3</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(5)">가구</a>
+                    <ul class="snb"><a href="#" onclick="showpage(5)">가구1</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(6)">가구2</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(7)">가구3</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(8)">가구4</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(9)">라이프</a>
+                    <ul class="snb"><a href="#" onclick="showpage(9)">라이프1</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(10)">라이프2</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(11)">라이프3</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(12)">라이프4</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(13)">라이프5</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(14)">라이프6</a></ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="wrap">
+        <section id="art1" class="on">아트1 페이지입니다.</section>
+        <section id="art2">아트2 페이지입니다.</section>
+        <section id="jo1">조명1 페이지입니다.</section>
+        <section id="jo2">조명2 페이지입니다.</section>
+        <section id="jo3">조명3 페이지입니다.</section>
+    </div>
+
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ자바스크립트 시작ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+     <script>
+        let gnb=document.querySelector(".gnb")
+        let nav=document.querySelector("nav")
+        let ses=document.querySelectorAll(".wrap > section")  //부등호 없어도 가능함. 직계 자손이라는 걸 위에서 알고 있으니까
+
+        gnb.addEventListener("mouseenter", function(){
+            nav.classList.add("on")
+        })
+
+        gnb.addEventListener("mouseleave", function(){
+            nav.classList.remove("on")
+        })
+
+        function showpage(num){
+            ses.forEach(function(item){ //forEach:on이라는 친구를 넘겨 받기 위해
+                item.classList.remove("on") //on이라는 친구를 모두 들고 와 일단 싹 다 없애줌
+            }) 
+            ses[num].classList.add("on") //classList: 한꺼번에 붙여주지는 못한다. 
+        }
+     </script>
+</body>
+</html>

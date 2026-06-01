@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dis{
+            width: 100%;
+            height: 100vh;
+        }
+        ul{
+            width: 500px;
+            height: 500px;
+            background-color: #333;
+        }
+        .liBox{
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="dis"></div>
+    <script>
+        let dis=document.querySelector("#dis")
+
+        let ulBox=document.createElement("ul")
+        let liBox=document.createElement("li")
+
+        liBox.innerHTML="안녕하세요"
+        liBox.classList.add("liBox")
+
+        ulBox.appendChild(liBox) //자식이 됨.
+        dis.appendChild(ulBox)
+    </script>
+</body>
+</html>

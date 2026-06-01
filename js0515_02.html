@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let counter=function(){
+            let count=0
+            return {
+                add:function(){
+                    count++
+                    document.write(count+"<br>")
+                },
+                mis:function(){  //키 값을 함수로 돌려줄 수 있음
+                count--
+                document.write(count+"<br>");
+                }
+            }
+            
+        }
+
+        let mycount=counter()
+        mycount.add()
+        mycount.add()
+        mycount.add()
+        mycount.add()
+        mycount.mis() //보고 조치를 할 때 개발자들이 잘 사용함.
+    </script>
+</body>
+</html>

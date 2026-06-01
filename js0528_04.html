@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="dis"></div>
+    <script>
+        function loadItem(){
+            //new Promise((resolve, reject)=>{
+            //       fetch(data0527_01.json)
+            // }) 
+            // 이렇게 길게 적지 않고 아래와 같이 퉁쳐도 ㅇㅇㅇ
+            return fetch("data0527_01.json")
+
+            .then((res)=>{  
+                //then((v)=>{
+                //   let res=v.json() 
+                //   return res
+                // })    
+                // 원래 이 작업인데 아래와 같이 짧게 적을 수 있음.
+                return res.json()
+            })
+        }
+        loadItem()
+        .then((data)=>{
+            let dis=document.querySelector("#dis")
+            let html=''
+            data.forEach((item)=>{
+                html+=`${item.name}: ${item.price}원 <br>`
+            })
+            dis.innerHTML=html
+        })
+        .catch((e)=>{
+            console.log("error", e)
+        })
+    </script>
+</body>
+</html>

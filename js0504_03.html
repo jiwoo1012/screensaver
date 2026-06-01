@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css를 이용해 곱셈기 만들기</title>
+    <style>
+        input{
+            width: 150px;
+            height: 50px;
+            background-color: rgb(218, 235, 241);
+            border-radius: 10px;
+            text-align: center;
+            line-height: 50px;
+        }
+        button{
+            width: 150;
+            height: 50px;
+            background-color:rgb(21, 141, 185);
+            border-radius: 10px;
+            color: white;
+        }
+        #dis{
+            width: 370px;
+            height: 50px;
+            border: 4px solid  rgb(218, 235, 241);
+            margin-top: 10px;
+            border-radius: 10px;
+            text-align: left;
+            line-height: 50px;
+            padding-left: 10px;
+        }
+        b{
+            color: rgb(21, 141, 185);
+        }
+    </style>
+</head>
+<body>
+    <h2>곱셈기 만들기</h2>
+    <input id="num1" type="number" placeholder="숫자 1을 입력해주세요."/>
+    <input id="num2" type="number" placeholder="숫자 2를 입력해주세요."/>
+    <button id="btn">확인</button>
+    <div id="dis"></div>
+    <script>
+        let btn=document.querySelector('#btn')
+        btn.addEventListener("click", function(){
+            function mul(num1, num2, dis){
+                dis.innerHTML= `두 수의 곱은 <b>${num1*num2}</b>입니다.`
+            }
+            let num1Value=document.querySelector('#num1').value
+            let num2Value=document.querySelector('#num2').value
+            mul(num1Value, num2Value, dis)
+        })
+    </script>
+</body>
+</html>

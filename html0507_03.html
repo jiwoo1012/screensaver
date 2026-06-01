@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto;
+            width: 700px;
+            height: 600px;
+            position: relative;
+        }
+        .bigBox{
+            width: 70%;
+            height: 70%;
+            border: 1px solid #777;
+            border-radius: 10px;
+            position: absolute;
+            right: 30px;
+        }
+        .bigBox img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            opacity: 0;
+            transition: all 0.3s;
+            position: absolute;
+        }
+        .bigBox img.on{
+            opacity: 1;
+        }
+        .smallBox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+            position: absolute;
+            left: 70px;
+            top: 245px;
+            width: 8%;
+            height: 8%;
+        }
+        .smallImg{
+            border: 1px solid #777;
+            border-radius: 9px;
+        }
+        .smallImg img{
+            border-radius: 9px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="bigBox">
+            <img class="on" src="./img/gidtn1.JPG" alt="gidtn1">
+            <img  src="./img/gidtn2.JPG" alt="gidtn2">
+            <img  src="./img/gidtn3.JPG" alt="gidtn3">
+            <img  src="./img/gidtn4.JPG" alt="gidtn4">
+            <img  src="./img/gidtn5.JPG" alt="gidtn5">
+            <img  src="./img/gidtn6.JPG" alt="gidtn6">
+        </div>
+        <div class="smallBox">
+            <div class="smallImg">
+                <img src="./img/gidtn1.JPG" alt="gidtn1">
+            </div>
+            <div class="smallImg">
+                <img src="./img/gidtn2.JPG" alt="gidtn2">
+            </div>
+            <div class="smallImg">
+                <img src="./img/gidtn3.JPG" alt="gidtn3">
+            </div>
+            <div class="smallImg">
+                <img src="./img/gidtn4.JPG" alt="gidtn4">
+            </div>
+            <div class="smallImg">
+                <img src="./img/gidtn5.JPG" alt="gidtn5">
+            </div>
+            <div class="smallImg">
+                <img src="./img/gidtn6.JPG" alt="gidtn6">
+            </div>
+        </div>
+    </div>
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ이제부터 자바스크립트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+     <script>
+        let big=document.querySelectorAll('.bigBox img')
+        let smallImg=document.querySelectorAll('.smallImg img')
+
+        smallImg.forEach(function(item, idx){
+            item.addEventListener("click", function(){
+                big.forEach(function(bigImg){
+                    bigImg.classList.remove("on")
+                })
+                big[idx].classList.add("on")
+            })
+        })
+     </script>
+</body>
+</html>

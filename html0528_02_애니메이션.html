@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            position: absolute;
+
+            animation-name: move;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes move{
+            0%{
+                left: 0; top: 0;
+                opacity: 1;
+                background-color: red;
+            }
+            25%{
+                left: 500px; top: 0;
+                opacity: 0.75;
+                background-color: orange;
+            }
+            50%{
+                left: 500px; top: 500px;
+                opacity: 0.25;
+                background-color: yellow;
+            }
+            100%{
+                left: 0px; top: 500px;
+                opacity: 0.05;
+                background-color: greenyellow;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

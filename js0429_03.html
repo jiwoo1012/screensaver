@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>덧셈, 뺄셈 계산기</title>
+    <style>
+        #dis{
+            width: 500px;
+            height: 50px;
+            border-radius: 20px;
+            border: 2px solid skyblue;
+            text-align: end;
+            line-height: 50px;
+            padding-right: 10px;
+        }
+        .outBox{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 500px;
+            height: 100px;
+            /* background-color: skyblue; */
+        }
+        .outBox div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: skyblue;
+            color: rgb(255, 255, 255);
+        }
+        .outBox .box1{
+            background-color: #00467F;
+        }
+        .outBox .box2{
+            background-color: #076585;
+        }
+        .outBox .box3{
+            background-color: #536976;
+        }
+    </style>
+</head>
+<body>
+    <div id="dis">0</div>
+    <div class="outBox">
+        <div class="box" data-num="1">1</div>
+        <div class="box" data-num="2">2</div>
+        <div class="box" data-num="3">3</div>
+        <div class="box box1" data-num="=">=</div>
+        <div class="box box1" data-num="+">+</div>
+        <div class="box box1" data-num="-">-</div>
+        <div class="box box2" data-num="clear">clear</div>
+        <div class="box box3" data-num="back">back</div>
+    </div>
+    <script>
+        const dis=document.querySelector("#dis")
+        const boxs=document.querySelectorAll(".box")
+        let expr=''
+
+        boxs.forEach((item)=>{
+            item.addEventListener("click", ()=>{
+                let v=item.dataset.num
+
+                if(v==="clear"){
+                    expr=''
+                    dis.innerHTML=0
+                    return
+                }
+                if(v==="back"){
+                    expr=expr.slice(0,-1)
+                    dis.innerHTML=expr ===''?0:expr
+                    return
+                }
+                if(v==="="){
+                    if(expr===''||expr.endsWith("+")||expr.endsWith("-")){
+                        dis.innerHTML='error'
+                        expr=''
+                        return
+                    }
+                    let ans=eval(expr)
+                    dis.innerHTML=Number(ans).toLocaleString()
+                    expr=String(ans)
+                    return
+                }
+
+                expr+=v
+                let parts=expr.split("+")
+                if(parts.length===1){
+                    dis.innerHTML=Number(parts[0]).toLocaleString()
+                }else{
+                    dis.innerHTML=Number(parts[0]).toLocaleString()+"+"+Number(parts[1]).toLocaleString()
+                }
+            })
+        })
+    </script>
+</body>
+</html>

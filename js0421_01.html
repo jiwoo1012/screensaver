@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bmi계산기(정상, 과체중 판별하기)</title>
+</head>
+<body>
+    <h1>BMI 판정하기</h1>
+    <lebel for="cm">키: </lebel>
+    <input id="cm" type="number" placeholder="키를 입력하세요." /><br>
+    <lebel for="kg">몸무게: </lebel>
+    <input id="kg" type="number" placeholder="몸무게를 입력하세요." />
+    <button id="btn">bmi 확인</button>
+    <div id="ans">정상/과체중이 나타납니다.</div>
+
+    <script>
+        let cm=document.getElementById("cm")
+        let kg=document.getElementById("kg")
+        let btn=document.getElementById("btn")
+        let ans=document.getElementById("ans")
+
+        btn.onclick=function(){
+            let bmi=Number(kg.value)/((Number(cm.value)*0.1)*(Number(cm.value)*0.1))
+            console.log(bmi)
+            if((bmi*100)>=23){
+               ans.innerHTML="과체중 또는 비만입니다." 
+            }else{
+                ans.innerHTML="정상체중 또는 저체중입니다."
+            } //if문 종료
+
+        } //btn.onclick 끝나는 자리 괄호 안에 모든 자료 소멸
+    </script>
+</body>
+</html>

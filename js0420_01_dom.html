@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js0420_01_dom.html</title>
+    <style>
+        .outBox{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 900px;
+            flex-wrap: wrap;
+            gap: 10px;
+            /* height: 150px; */
+            border: 1px solid darkblue;
+        }
+        .inBox{
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox" id="outBox">
+
+    </div>
+    <script>
+        let outBox=document.getElementById("outBox")
+        let num=Number(prompt("몇 개의 상자를 만들 건가요?"))
+        for(let i=1;i<=num;i++){
+            outBox.innerHTML=outBox.innerHTML+"<div class='inBox'> box "+i+ "</div>"
+        }
+        
+        // 자바스크립트 안에 쌩자로 뭘 넣어서 만들 수는 없고 , 반드시 부모와 자식 관계 성립이 되어야 함.
+
+    </script>
+</body>
+</html>

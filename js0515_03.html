@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="oneBox">
+        <h2>비밀번호 설정하기</h2>
+        <input type="password" id="lock" placeholder="입력">
+        <button id="ok">설정하기</button>
+    </div>
+    <div class="twoBox">
+        <h2>비밀번호 입력하기</h2>
+        <input type="password" id="open" placeholder="입력">
+        <button id="btn">확인</button>
+    </div>
+    
+    <script>
+        let ok=document.querySelector("#ok")
+        let btn=document.querySelector("#btn")
+
+        let passcheck=function(){
+            let password=''
+            return {
+                setpass:function(pass){  //호출할 때 설정으로 들어가는 친구의 함수
+                    password = pass
+                    alert("비밀번호가 설정되었습니다.")
+                },
+                checkpass:function(inpass){
+                    if(password===inpass){
+                        alert("비밀번호가 확인되었습니다.")
+                    }else{
+                        alert("비밀번호가 틀립니다.")
+                    }
+                }
+            }
+        }
+
+        let checks=passcheck()
+
+        ok.addEventListener("click", function(){
+            let lock=document.querySelector("#lock").value
+            checks.setpass(lock)
+        })
+        btn.addEventListener("click", function(){
+            let open=document.querySelector("#open").value
+            checks.checkpass(open)
+        })
+        
+        // checks.setpass(lock.value)
+        // checks.checkpass(open.value)
+    </script>
+</body>
+</html>

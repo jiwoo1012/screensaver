@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>참가자 명단 만들기</title>
+    <style>
+        button{
+            width: 210px;
+            height: 30px;
+            margin-top: 10px;
+        }
+        table{
+            width: 210px;
+            height: 40px;
+            border: 1px solid #333;
+            border-collapse: collapse;
+            margin-top: 10px;
+
+        }
+        tr,td, th{
+            text-align: center;
+            border: 1px solid #333;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <h2>참가자 명단</h2>
+        <label>이름: </label>
+        <input id="name" type="text"> <br>
+        <label>전공: </label>
+        <input id="major" type="text"> <br>
+        <button onclick="signup()">등록하기</button>
+        <table id="list">
+            <tr>
+                <th>이름</th>
+                <th>전공</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function signup(){
+            let name=document.querySelector('#name').value
+            let major=document.querySelector('#major').value
+            let list=document.querySelector('#list')
+
+            if(name==''||major==''){
+                alert('이름과 전공 둘 다 입력해주세요.')
+                return
+            }
+            
+            list.innerHTML+=`<td>${name}</td> <td>${major}</td>`
+        }
+    </script>
+</body>
+</html>

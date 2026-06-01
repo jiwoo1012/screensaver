@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{
+            text-align: center; /*글자일 때, 가운데로 오게 하는 거*/
+            color: blueviolet;
+            font-size: 25px;
+        }
+        .line{
+            width: 150px;
+            height: 2px;
+            background-color: orangered;
+            margin: 0 auto; /*글자가 아닐 떄, 가운데로 오게 하는 거*/
+            margin-bottom: 30px;
+        }
+        .displayBox{
+            width: 400px;
+            border: 1px solid skyblue;
+            background-color: rgb(212, 243, 255);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+        #ages{
+            border: none;
+            background-color: skyblue;
+            width: 200px;
+            height: 20px;
+        }
+        #ages option{
+            background-color: pink;
+
+        }
+    </style>
+</head>
+<body>
+    <h2>회원 명단</h2>
+    <div class="line"></div>
+    <select id="ages">
+        <option value="20">20세 이상</option>  /*색상과 크기만 바꿀 수 있고, 크게 꾸밀 수 있는 건 아니기 때문에 select 보다는 div를 만들어서 많이들 사용함.*/
+        <option value="30">30세 이상</option>  /* select는 바로 밑에 펼쳐지는 특징이 있어서 밑에 뭐가 있으면 걔네들이 가려짐.*/
+        <option value="40">40세 이상</option>
+    </select>
+    <button id="btn">확인</button>
+    <div class="displayBox"></div>
+
+    <script>
+    let person=[
+        {name:"홍길동", age:20, address:"서울"},
+        {name:"이순신", age:30, address:"전라도"},
+        {name:"강감찬", age:20, address:"충청도"},
+        {name:"또복자", age:50, address:"안산"}
+    ]
+
+    let displayBox=document.querySelector(".displayBox") /*클래스는 . 아이디는 #*/
+    let button=document.querySelector("#btn")
+    let select=document.querySelector("#ages")
+
+    btn.onclick=function(){
+        displayBox.innerHTML=''
+        person.forEach(function(item,idx){
+           if(Number(ages.value)<=item.age){
+                displayBox.innerHTML+=`${idx+1}번 ${item.name} 님 ${item.age}살 <br>`
+           }
+        })
+    }
+
+    </script>
+</body>
+</html>
+ 

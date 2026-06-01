@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outBox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        .num1{
+            border: 3px solid black;
+            border-radius: 3px;
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <div class="num1" data-numbers="10">10</div>
+        <div class="num1" data-numbers="+">+</div>
+        <div class="num1" data-numbers="20">20</div>
+    </div>
+
+    <button id="btn">=</button>
+    <div id="dis"></div>
+    <div id="dis1"></div>
+
+    <script>
+        let nums=document.querySelectorAll(".num1")
+        let dis=document.querySelector("#dis")
+        let btn=document.querySelector("#btn")
+        let dis1=document.querySelector("#dis1")
+
+        nums.forEach(function(el){
+            el.addEventListener("click",function(){
+                dis.innerHTML+=el.dataset.numbers
+            })
+        })
+
+        btn.addEventListener("click",function(){
+            dis1.innerHTML=eval(dis.innerHTML)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        body{
+            width: min(1200px, 95%);
+            margin: 20px auto;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h2{
+            font-size: clamp(47px, 3vw, 50px);
+        }
+        ul{
+            display: flex;
+            justify-content: right;
+            gap: 20px;
+            font-size: clamp(15px, 2vw, 24px);
+        }
+        .wrap{
+            margin: 50px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+        .card{
+            padding: 30px;
+            height: 300px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .card h3{
+            font-size: clamp(28px, 2vw, 30px);
+            margin-bottom: 20px;
+        }
+        .card p{
+            font-size: clamp(15px, 1.5vw, 20px);
+        }
+        .card button{
+            width:calc(100% - 60px);
+            height: clamp(50px, 1vw, 55px);
+            font-size: clamp(12px, 1.5vw, 16px);
+            background-color: #333;
+            color: #fff;
+            border-radius: 30px;
+            margin-top: 20px;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        /*테블릿 버전*/
+        @media(max-width: 900px){
+            .wrap{
+                margin: 50px;
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 20px;
+            }
+            .card h3{
+                font-size: clamp(36px, 2vw, 40px);
+                margin-bottom: 20px;
+            }
+            .card p{
+                font-size: clamp(17px, 1.5vw, 25px);
+            }
+            .card button{
+                font-size: clamp(17px, 1.5vw, 20px);
+                background-color: #2baf6d;
+            }
+        }
+
+        /*모바일 버전*/
+        @media(max-width:600px){
+            nav {
+                flex-direction: column;
+                align-items: flex-start; 
+                gap: 10px;
+            }
+            h2{
+                font-size: clamp(47px, 3vw, 50px);
+            }
+            ul {
+                justify-content: flex-start;
+                font-size: clamp(18px, 1.5vw, 24px);
+            }
+            .wrap{
+                margin: 50px;
+                display: grid;
+                grid-template-columns: repeat(1,1fr);
+                gap: 20px;
+            }
+            .card h3{
+                font-size: clamp(36px, 2vw, 40px);
+                margin-bottom: 20px;
+            }
+            .card p{
+                font-size: clamp(17px, 1.5vw, 25px);
+            }
+            .card button{
+                font-size: clamp(17px, 1.5vw, 20px);
+                background-color: #974bfa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <h2>Responsive</h2>
+            <ul class="sub">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="wrap">
+        <div class="card">
+            <h3>Card 01</h3>
+            <p>화면 크기에 따라 글자 크기와 박스 크기가 자연스럽게 변합니다.</p>
+            <button>View More</button>
+        </div>
+        <div class="card">
+            <h3>Card 02</h3>
+            <p>화면 크기에 따라 글자 크기와 박스 크기가 자연스럽게 변합니다.</p>
+            <button>View More</button>
+        </div>
+        <div class="card">
+            <h3>Card 03</h3>
+            <p>화면 크기에 따라 글자 크기와 박스 크기가 자연스럽게 변합니다.</p>
+            <button>View More</button>
+        </div>
+        <div class="card">
+            <h3>Card 04</h3>
+            <p>화면 크기에 따라 글자 크기와 박스 크기가 자연스럽게 변합니다.</p>
+            <button>View More</button>
+        </div>
+    </div>
+</body>
+</html>

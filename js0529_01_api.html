@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- API는 브라우져가 서버 기능(데이터)을 호출하는 규칙 -->
+    <h2>날씨</h2>
+    <img id="con" alt="날씨 아이콘">
+    <div id="dis">오늘의 온도: </div>
+    <div id="wind_box"></div>
+
+    <script>
+        let dis=document.querySelector("#dis")
+        let con=document.querySelector("#con")
+        let wind_box=document.querySelector("#wind_box")
+
+        const API_KEY='b86112e4d21c738accd50dcbb9d48e18' /*openWeather의 나의 키에서 가져옴*/
+        const cityname='Ansan'
+        // const lat= 37.309772  // 위도
+        // const lon= 126.853581 // 경도
+
+        async function getWeather(){
+            let res= await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${API_KEY}&units=metric&lang=kr`) //res는 respone 약자, &는 그리고 라는 뜻
+            // 각 사이트의 api의 방식이 다른데 그들이 원하는 방식대로 fetch를 넣어줘야 작동됨. ->json 파일로 받아짐.
+            // ?를 기준으로 앞에는 주소, 뒤에는 옵션들
+            let data=await res.json() //->파싱해주세여(json이 자바스크립트가 알 수 있는 객체로 변환하는 과정)
+            dis.innerHTML="오늘의 날씨: "+ data.main.temp + "℃"; //console.log를 열어서 data를 펼쳤을 때 나오는 거라서
+            
+            let icon=data.weather[0].icon;
+            let iconUrl=`http://openweathermap.org/img/wn/${icon}@2x.png`
+            con.setAttribute('src', iconUrl) /*속성을 하나 빠트려서 그걸 하나 넣을게요.라는 명령어*/
+
+            wind_box.innerHTML="오늘의 풍속: "+ data.wind.speed +"m/s"
+
+            console.log(data)
+            console.log(data.wind)
+        }
+        getWeather()
+    </script>
+</body>
+</html>

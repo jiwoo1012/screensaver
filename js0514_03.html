@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let test=function(na){
+            document.write(na+"을 호출했습니다.")
+            return{
+                name: na,
+                age:20,
+                info: function(){
+                    document.write(`${na} 님은 나이가 ${this.age}살입니다`)
+                }
+            }
+        } //: 익명함수(자주 실행하는 친구니가 외워)
+
+        // test("이순신")
+        // let aa = test("홍길동")
+        // console.log("이름은: "+ aa.name,"나이는: "+ aa.age) //이미 aa는 객체가 되어버림. 객체로 출력해야 함
+        // aa.info()
+        //리턴 뒤에 있는 건 값만 보내준다.
+        //리턴은 항상 제일 마지막에 있는 것만 출력되게 함
+
+        //함수를 이용합니다. 강아지 정보를 입력하고 return을 받아서 함수를 호출했을 때, sound는 멍멍이라고 출력하고
+        // run은 "달립니다"라는 글자를 출력하는 문제
+
+        let puppy=function(){
+            return{
+                name: "후추",
+                color: "흰색, 검은색",
+                sound: function(){
+                    document.write("멍멍"+"<br>")
+                },
+                run:function(){
+                    document.write("달립니다."+"<br>")
+                    
+                }
+            }
+        }
+
+        let ro=puppy()
+        document.write(`지금 ${ro.name}가`)
+        ro.sound()
+        ro.run()
+    </script>
+</body>
+</html>

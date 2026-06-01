@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 시간 다루기: 내장 객체 함수 date()
+        getMonth():월 값을 가지고 옴. 0-11 :: 0은 1월, 11은 12월
+        getDate(): 일 값을 가지고 옴. 1-31까지의 숫자
+        getDay(): 요일 값을 가지고 옴. 0-6사이의 숫자: 0은 일요일, 6은 토요일을 뜻함
+        getTime(): 1970년 1월 1일 0시 이후의 시간을 밀리초로 표시 (1000초=1초)
+        getHour(): 시간만 반환
+        getMinutes(): 분만 반환
+        getSeconds(): 초만 반환 -->
+     <script>
+        let today= new Date()
+        document.write(today +"<br>")
+        document.write(today.getFullYear()+"년"+"<br>") //년도만 출력하가
+        document.write(today.getMonth()+1+"월"+"<br>")//월
+        document.write(today.getDate()+"일"+"<br>")//일
+        document.write(today.getDay()+"<br>")//요일
+        document.write(today.getTime()+"<br>")//시간
+        document.write(today.getHour()+"<br>")//시
+
+     </script>
+</body>
+</html>

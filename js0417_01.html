@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js0417_01</title>
+</head>
+<body>
+    <script>
+        let eng=[85,72,61,25,38,94,20]
+        let sum=0;
+        let max=0;
+        let min=eng[0]; /*let min=100;*/
+        
+        for(let i=0;i<eng.length;i++){
+            sum=sum+eng[i] // sum+=end[i]
+            if(max<eng[i]){
+                max=eng[i]
+            }
+            if(min>eng[i])/*(min>eng[i])*/{
+                min=eng[i]
+            }
+        }
+        document.write("우리 반 영어 점수의 합계: ", sum +"<br>")
+        document.write("우리 반 영어 점수의 평균: ", sum/eng.length+"<br>")
+        document.write("우리 반의 영어 최고 점수: ", max+"<br>")
+        document.write("우리 반의 영어 최저 점수: ", min)
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json 활용하기<과일 목록></title>
+</head>
+<body>
+    <h2>과일 목록</h2>
+    <div id="dis"></div>
+
+    <script>
+        async function jsonload(){     //astnc 제이슨 파일을 들고와서 사용할 때 필요함. 자바스크립트가 
+            try{ //시도하는 곳, 실패가 됐을 때 catch로 넘어감, try 성공할 시  catch로 넘어가지 않음!, 전송이 항상 실패할 수 있다는 것에 대한 보완? 대비?
+                let result= await fetch("data0527_01.json")     //fetch: 가지고 와달라는 명령어, await: 파일을 들고 오는 도중에 다음 줄로 넘어가지 말고 기다려라는 뜻.
+                //result는 제이슨 문자열이기 때문에 자바스크립트가 알지 못함.
+                let data= await result.json()  // 자바스크립트 객체로 파싱하는 단계임 (data는 자바스크립트 객체가 됨.) //내가 가지고 온 제이슨이 있기 때문에 fetch로 가져왔기 때문에 이렇게 적음.
+                //시간이 오래 걸리는 애들 앞에는 await를 붙여줌.
+                let html=''
+                data.forEach(function(item){
+                    html+= `${item.name}:${item.price}원 <br>`
+                })
+                let dis=document.querySelector("#dis")
+                dis.innerHTML=html
+            }catch(err){ // 변수 이름을 e라고 해도 되고, 내 맘대로 적어도 상관 없음. catch 옆에 오는 변수는 에러가 발생해서 나오는 변수인데 왜 실패했는지 받아주는 역할임.
+                console.log("파싱에러발생", err) // 검은색 글씨로만 출력됨.
+                //console.error("파싱에러발생", err)  // 에러는 로그와 똑같은 친구인데, 글씨가 빨간색으로 바꿔주는 역할을 갖고 있음.
+            }
+        }
+        jsonload()
+    </script>
+</body>
+</html>

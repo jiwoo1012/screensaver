@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: 900px;
+            padding: 20px;
+            margin: 30px auto;
+            border: 1px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .slider{
+            display: flex;
+            /*transform: translateX(-300px); 가로x,세로y를 움직이게*/
+            /*0x-300, 1x-300, 2x-300, 3x-300, 4x-300 이런 기본적인 규칙이 있더라*/
+            /*사진의 가로 크기가 300이니까 하나씩 옆으로 밀려나가게 -300으로*/
+        }
+        .slide{
+            width: 300px;
+            height: 300px;
+            flex-shrink: 0;  /*0과 1 두 개 밖에 없음, 위드와 하이값을 적용*/
+            transform: scale(0.8); /*1이 정상 크기*/
+            opacity: 0.5; /*투명도*/
+        }
+        .slide.on{
+            transform: scale(1);
+            opacity: 1;
+        }
+        .slide img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        button{
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            color: white;
+            border-radius: 50%;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        button:hover{
+            background-color: #ccc;
+        }
+        button:disabled{
+            background-color: #ccc;
+            border: 1px solid #ccc;
+            color: white;
+            cursor: not-allowed;  /*커서가 올렸을 때 아무것도 작동 안 한다는 표시*/
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="slider" id="slider"></div>
+        <button class="prev" onclick="prevSlider()">&lt;</button>
+        <button class="next" onclick="nextSlider()">&gt;</button>
+    </div>
+
+    <script>
+        class ImgSlider{
+            constructor(imgs){
+                this.imgs=imgs
+                this.index=0
+                this.size=300
+                this.slider=document.querySelector(".slider")
+
+                //버튼 가져오깅
+                this.prevBtn=document.querySelector(".prev")
+                this.nextBtn=document.querySelector(".next")
+            }
+
+            makeSlide(){
+                let html=''
+                this.imgs.forEach(function(item){
+                    html+=`
+                            <div class="slide">
+                                <img src="${item}">
+                            </div>`
+                })
+                this.slider.innerHTML=html
+                this.updateBtn()
+                this.updateOn()
+            }
+            // 이제 버튼을 누르면 사진이 옆으로 넘어가는 효과
+            move(){
+                //transform: translateX(-300px); 스타일에 있던 트랜스폼을 자바스크립트로 가져옴.
+                this.slider.style.transform=`translate(-${this.index*this.size}px)`  //style은 css를 갖고 오겠다는 뜻
+                
+                this.updateBtn()
+                this.updateOn()
+            }
+            next(){
+                //if 조건문: 마지막 이미지이면 실행을 하지 않음
+                if(this.index>=this.imgs.length-1){ //이미지 개수보다 크거나 작냐를 물어봄. 인덱스는 0부터 시작하기 때문에 뒤에 -1를 붙여줌.
+                    return
+                }
+                this.index++ //나를 호출해서 클릭하면 next를 클릭할 때 인덱스가 1 증가 상태에서 트렌스레이트로 움직이도록 구현.
+                this.move()
+            }
+            prev(){
+                //if 조건문: 첫 번째 이미지이면 실행하지 않음
+                if(this.index<=0){
+                    return
+                }
+                this.index-- //얘는 하나씩 작아지도록 구현해줌.
+                this.move()
+            }
+
+            updateBtn(){
+                this.nextBtn.disabled=
+                // true(작동 안 함),false(작동함)
+                this.index===this.imgs.length-1 //...?
+
+                this.prevBtn.disabled=   
+                this.index===0 //인덱스가 0번째일 때(처음일 때), 작동하지마
+            }
+
+            updateOn(){
+                let slides=document.querySelectorAll(".slide") //가상으로 만든 것도 들고 올 수 있음
+
+                slides.forEach(function(item){
+                    item.classList.remove("on")
+                })
+                slides[this.index]?.classList.add("on")  //오류날 때를 대비해 ?를 넣어줌. ?를 기준으로 앞에 있는 애랑 뒤에 있는 애 말귀를 못 알아듣는 경우가 종종 있음. ?를 주면 앞뒤를 안전하게 연결시켜주는 체인 역할임.
+            }
+        }
+
+        let slideImgs=[           
+            "./img/goyun.JPG",
+            "./img/carina.JPG",
+            "./img/carina1.JPG",
+            "./img/goyun.JPG",
+            "./img/carina.JPG"
+        ]
+
+        let mySlider=new ImgSlider(slideImgs)
+        mySlider.makeSlide()
+
+        function prevSlider(){
+            mySlider.prev()
+        }
+        function nextSlider(){
+            mySlider.next()
+        }
+        
+    </script>
+</body>
+</html>

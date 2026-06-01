@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- /정규 표현식/g : 대부분 g를 이용-->
+
+    <script>
+        //정규식을 활용하는 방법:
+        //  1. test():: 정규 표현식의 내용이 맞는지 틀린지 체크 (true, false로 나옴)
+        let a="abcdef"
+        document.write(/ghi/.test(a)+"<br>") //true, false 둘 중 하나
+
+        // 2. 변수.match(/정규식/)
+        // 일치하는 내용을 출력하고, 일치하지 않으면 null이라고 출력됨.
+        let b="html css javaScript"
+        document.write(b.match(/css/g)+"<br>")
+
+        // 3. 변수.replace(/정규식, 바꾸고 싶은 문자열/)
+        // 정규식에 해당하는 내용을 바꾸고 싶은 문자로 변경(치환)
+        let c="h e l l o"
+        let result=c.replace(/ /g, '')
+        document.write(c+ " "+result+"<br>")
+
+        // ^x :: x 문자로 시작
+        let d="http://naver.com"
+        document.write(/^http/g.test(d)+"<br>")  //http로 시작하냐고 묻는 거임. 맞으면 true, 틀리면 false
+        
+        let e="김수박"
+        // if(/^김/g.test(e)==true){
+        //     e="수박"
+        //     document.write(e)
+        // }
+        document.write(/^김..박$/g.test(e))  //김으로 시작하고 박으로 끝나는 이름을 찾습니다. $:: -로 끝나는 거.
+    
+        let f="abcd"
+        document.write(/^a/g.test(f))
+
+        // x$ :: x문자로 끝난다.
+        document.write(/d$/g.test(f))
+
+        // x+ :: x가 하나 이상 반복하는가?
+        document.write(/a+/g.test(d))
+    </script>
+
+</body>
+</html>

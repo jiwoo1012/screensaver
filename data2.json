@@ -1,0 +1,17 @@
+[
+  {
+    "title": "무선 이어폰",
+    "image": "https://picsum.photos/seed/earphone/300/200",
+    "description": "노이즈 캔슬링과 고음질을 지원하는 블루투스 무선 이어폰"
+  },
+  {
+    "title": "스마트 워치",
+    "image": "https://picsum.photos/seed/watch/300/200",
+    "description": "심박수 측정, 운동 트래킹, 메시지 알림이 가능한 최신 스마트워치"
+  },
+  {
+    "title": "게이밍 키보드",
+    "image": "https://picsum.photos/seed/keyboard/300/200",
+    "description": "RGB 백라이트와 기계식 스위치를 장착한 게이밍 전용 키보드"
+  }
+]

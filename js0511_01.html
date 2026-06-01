@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js0511_01</title>
+    <style>
+        .box{
+            color: #ccc;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+        #boxWrap{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <input id="count" type="number" placeholder="상자 개수를 입력하세요.">
+        <button onclick="makeBox()">박스 만들기</button>
+    </div>
+    <div id="boxWrap"></div>
+    <script>
+        let boxWrap=document.querySelector('#boxWrap')
+
+        function makeBox(){
+            //개수만큼 박스 만들기
+            let count=Number(document.querySelector("#count").value)
+            let colors=["green", "blue", "skyblue", "pink,", "gold"]  //개발자들이 자주 사용하는 코드임
+            boxWrap.innerHTML=''
+
+            //boxWrap.innerHTML='<div class=box></div>'
+            for(let i=0;i<count;i++){
+                let boxes=document.createElement("div") //백그라운드를 바꾸려면 변수가 필요함. div를 생성해라
+                //boxes=`<div></div>`
+                boxes.classList.add("box")  //방금 div 만든 거에 클래스 이름 붙여줌
+                boxes.style.backgroundColor=colors[i%colors.length]//자바스크립트는 - 사용하는 걸 지양함. style은 css를 쓸 것이라고 선포하는 것임
+                //i%colors.length : 같은 색으로 '반복'해서 나타나게 하도록, 이건 공식이니까 모르면 걍 외워(개수가 제한되어 있기 때문에 개수만큼의 나머지를 취해서 가져가라고 하면 알아서 생성.)
+                boxes.innerText=`box${i}`
+                boxWrap.appendChild(boxes)//appendChild: boxWrap에 boxes를 자식으로 추가해라.
+
+            }
+        }
+    </script>
+</body>
+</html>

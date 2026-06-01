@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>제품 카드 예제</h2>
+    <div class="wrap" id="wrap"></div>
+
+    <script>
+        async function loaditem(){
+            try{
+                let res=await fetch("data2.json")
+                let data=await res.json()
+                let wrap=document.querySelector("#wrap")
+                let html=''
+
+                data.forEach(function(item){
+                    html+=`
+                            <div class="card">
+                                <img src="${item.image}" alt="${item.title}" />
+                                <div class="textBox">
+                                    <h3>${item.title}</h3>
+                                    <p>${item.description}</p>
+                                </div>
+                            </div>
+                            `
+                })
+                wrap.innerHTML=html
+            }catch(err){
+                console.error("오류났어요",err)
+            }
+        }
+        loaditem()
+    </script>
+</body>
+</html>

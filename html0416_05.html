@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 600px;
+            height: 300px;
+            background-color: rgb(255, 255, 255);
+            transition: all 0.3s;
+            margin: 50px;
+        }
+        .one{
+            width: 100px;
+            height: 50px;
+            background-color: antiquewhite;
+        }
+        .one:hover{
+             transform: scale(2)
+        }
+        .two{
+            width: 100px;
+            height: 50px;
+            background-color: antiquewhite;
+        }
+        .two:hover{
+             transform: rotate(45deg)
+        }
+        .three{
+            width: 100px;
+            height: 50px;
+            background-color: antiquewhite;
+        }
+        .three:hover{
+             transform: translateX(50px)
+        }
+    </style>
+
+</head>
+<body>
+        <div class="box one"></div>
+        <div class="box two"></div>
+        <div class="box three"></div>
+</body>
+</html>

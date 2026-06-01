@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문구 이름을 출력해서(5개) 문구를 클릭하면 문구 이름과 가격이 출력, 총 가격의 합계 출력</title>
+    <style>
+        label{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h2>문구점</h2>
+    <label>
+        <input type="radio" name="shop" value="pencil">
+        연필
+    </label>
+    <label>
+        <input type="radio" name="shop" value="eraser">
+        지우개
+    </label>
+    <label>
+        <input type="radio" name="shop" value="pen">
+        삼색볼펜
+    </label>
+    <label>
+        <input type="radio" name="shop" value="ruler">
+        자
+    </label>
+    <label>
+        <input type="radio" name="shop" value="tape">
+        테이프
+    </label><br>
+    <button id="btn">장바구니</button><br><br><br><br><br>
+
+    <h2>장바구니 목록</h2>
+    <div id="list"></div><br><br><br><br><br><br>
+    
+    <h2>총 합계</h2>
+    <div id="total"></div>
+    <script>
+        let btn=document.querySelector("#btn")
+        let list =document.querySelector("#list")
+        let total=document.querySelector("#total")
+        let shop=document.querySelectorAll("input[name='shop']")
+
+        let item=[
+            {shop:"pencil", price: 700, count:0},
+            {shop:"eraser", price: 500, count:0},
+            {shop:"pen", price: 1300, count:0},
+            {shop:"ruler", price: 500, count:0},
+            {shop:"tape", price: 1500, count:0}
+        ]
+        let cartList = []
+
+        btn.addEventListener("click", function(){
+            shop.forEach(function(cart){
+                if(cart.checked){
+                    item.forEach(function(data){
+                        if(cart.value==data.shop){
+                            data.count++
+                            cartList.push(data)
+                        }
+                    })
+                
+                }
+            })
+            list.innerHTML=""
+            cartList.forEach(function(show){
+                list.innerHTML+=`<div> ${show.shop}- ${show.price}원</div>`
+            })
+        })
+    </script>
+</body>
+</html>

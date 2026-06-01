@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니 담기</title>
+</head>
+<body>
+    <h2>장바구니 담기</h2>
+    <label>상품 명: </label>
+    <input id="product" type="text">
+    <label>가격: </label>
+    <input id="price" type="number">
+    <button id="put">담기</button>
+    <div id="list"></div>
+
+    <script>
+        let product =document.querySelector("#product")
+        let price=document.querySelector("#price")
+        let put=document.querySelector("#put")
+        let list=document.querySelector("#list")
+
+        let cart=[]
+
+        put.addEventListener("click", function(){
+            let name=product.value.trim()
+            let won = Number(price.value)
+
+            if(name&&won){
+                cart.push({name,won})
+                product.value=''
+                price.value=''
+            }
+            list.innerHTML=''
+
+            cart.forEach(function(item, idx){
+                let div=document.createElement("div")
+                div.classList.add("box")
+                div.innerHTML=`${idx+1}. ${item.name} - ${item.won.toLocaleString()}원<br>`
+                list.appendChild(div)
+            })
+
+            let total=0
+            cart.forEach(function(item1){
+                total=total+Number(item1.won)
+            })
+
+            let totalBox=document.createElement("div")
+            totalBox.innerHTML=`<br> 총 합계: ${total.toLocaleString()}원`
+            list.appendChild(totalBox)
+        })
+
+    </script>
+</body>
+</html>

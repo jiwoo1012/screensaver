@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: min(1200px, 95%); /*min 내가 정한 것들 중*/
+            margin: 10px auto;
+            display: grid;
+            gap: 50px;
+        }
+        .box{
+            background-color: #ccc;
+        }
+        .top{
+            height: 70px;
+        }
+        .grid4{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 10px;
+        }
+        .small{
+            height: 50px;
+        }
+        .middle{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 10px;
+        }
+        .leftBox{
+            height: 110px;
+            background-color: pink;
+        }
+        .rightBox{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 110px;
+        }
+        .rightSmall{
+            height: 50px;
+            background-color: #ccc;
+        }
+        .bottom{
+            height: 70px;
+        }
+
+        /*태블릿 버전*/
+        @media(max-width:1200px){
+            .grid4{
+                grid-template-columns: repeat(2,1fr);
+            }
+            .middle{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .leftBox{
+                order: 2;   /*부모(middle)가 flex라고 선포해져 있는 상태에서 order: 순서 정렬*/
+                height: 50px;
+            }
+            .rightBox{
+                order: 1;
+            }
+        }
+
+        /*모바일 버전*/
+        @media(max-width:600px){
+            .grid4{
+                grid-template-columns: repeat(1,1fr);
+            }
+            .leftBox{
+                order: 1;   /*부모(middle)가 flex라고 선포해져 있는 상태에서 order: 순서 정렬*/
+                height: 50px;
+                background-color: orange;
+            }
+            .rightBox{
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box top"></div>
+        <div class="box top"></div>
+        <div class="grid4">
+            <div class="box small"></div>
+            <div class="box small"></div>
+            <div class="box small"></div>
+            <div class="box small"></div>
+        </div>
+        <div class="middle">
+            <div class="leftBox"></div>
+            <div class="rightBox">
+                <div class="box rightSmall"></div>
+                <div class="box rightSmall"></div>
+            </div>
+        </div>
+        <div class="box bottom"></div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>

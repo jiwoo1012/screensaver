@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이폰 17 이미지 슬라이드</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            background-color: #333;
+        }
+        .wrap{
+            width: 1500px;
+            padding: 20px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+        .slider{
+            display: flex;
+        }
+        .slide{
+            width: 500px;
+            height: 600px;
+            flex-shrink: 0;
+        }
+        .slide img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        button{
+            width: 50px;
+            height: 50px;
+            background-color: #666;
+            opacity: 0.5;
+            color: white;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        button:hover{
+            background-color: #666;
+            opacity: 0.2;
+        }
+        button:disabled{
+            background-color: #666;
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="slider" id="slider"></div>
+        <button class="prev" onclick="prevSlider()">&lt;</button>
+        <button class="next" onclick="prevSlider()">&gt;</button>
+    </div>
+
+    <script>
+        class ImgSlider{
+            constructor(imgs){
+                this.imgs=imgs
+                this.index=0
+                this.size=500
+                this.slider=document.querySelector(".slider")
+            
+                //버튼
+                this.prevBtn=document.querySelector(".prev")
+                this.nextBtn=document.querySelector(".next")
+            }
+            makeSlide(){
+                let html=''
+                this.imgs.forEach(function(item){
+                    html+=`<div class="slide">
+                                <img src="${item}">
+                            </div>`
+                })
+                this.slider.innerHTML=html
+                this.updateBtn()
+            }
+            move(){
+                this.slider.style.transform=`translate(-${this.index*this.size}px)`
+                this.updateBtn()
+            }
+            next(){
+                this.index++
+                this.move()
+            }
+            prev(){
+                this.index--
+                this.move()
+            }
+
+            updateBtn(){
+                this.nextBtn.disabled=
+                this.index===this.imgs.length-1
+
+                this.prevBtn.disabled=
+                this.index===0
+            }
+        }
+
+        let slideImgs=[
+            "./img/iphone1.png",
+            "./img/iphone2.png",
+            "./img/iphone3.png",
+            "./img/iphone4.png",
+            "./img/iphone5.png"
+        ]
+        let mySlider=new ImgSlider(slideImgs)
+        mySlider.makeSlide()
+        function prevSlider(){
+            mySlider.prev()
+        }
+        function nextSlider(){
+            mySlider.next()
+        }
+
+    </script>
+</body>
+</html>

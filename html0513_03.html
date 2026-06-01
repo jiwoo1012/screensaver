@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        body{
+            /* overflow: hidden; */
+        }
+        header{
+            width: 100%;
+            height: 70px;
+            background-color: #345951;
+            color: white;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #345951;
+            opacity: 0.8;
+            width: 100%;
+            height: 70px;
+            overflow: hidden;
+            position: fixed;
+            left: 0; top: 0;
+            z-index: 10;
+        }
+        nav.on{
+            height: 400px;
+            transition: all 0.3s;
+        }
+        .logo{
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            height: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+        .gnb{
+            display: flex;
+            justify-content: flex-start;
+            width: 70%;
+            /* height: 100%; */
+        }
+        .gnb>li{
+            width: calc(100%/5);
+            /* height: 70px; */
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            padding-left: 20px;
+            gap: 3px;
+        }
+        .gnb>li>a{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            height: 70px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .snb{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            font-size: 14px;
+        }
+        .wrap{
+            /* padding-top: 70px; */
+        }
+        section{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: calc(100vh - 70px);
+            font-size: 90px;
+            font-weight: bold;
+        }
+        section.on{display: flex;}
+        #seoga1{
+            display: flex;
+            flex-direction: column;
+            height: auto;
+        }
+        .img1{
+            width: 100%;
+            height: 400px;
+            background-image: url('https://www.seogaandcook.com/seogaandcook/images/sub/sub01_01_visual.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: scale(1.5);
+            transition: all 1s;
+        }
+        .img1.on{transform: scale(1);}
+        #seoga1>.img1>h2{
+            text-align: center;
+            font-size: 40px;
+            color: white;
+        }
+        #seoga1>.img1>p{
+            font-size: 15px;
+            color: white;
+            text-align: center;
+        }
+        .content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .content>.textBox{
+            width: 40%;
+            height: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+        }
+        .content>.textBox>h1{
+            font-size: 40px;
+            color: #345951;
+        }
+        .content>.textBox>h2{
+            font-size: 40px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .content>.textBox>p{
+            margin-top: 20px;
+            font-size: 20px;
+            color: #888;
+            font-weight: 500;
+        }
+        .img2{
+            width: 695px;
+            height: 474.5px;
+            object-fit: cover;
+            background-image: url('https://www.seogaandcook.com/seogaandcook/images/sub/sub01_01_bg01.jpg');
+        }
+        #seoga2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            transform: translateY(-200px);
+            opacity: 0.3;
+            transition: all 1s;
+        }
+        #seoga2.on{
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .title{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 300px;
+            padding-top: 70px;
+        }
+        .title>h2{
+            font-size: 50px;
+        }
+        .title>p{
+            padding-top: 40px;
+            font-size: 20px;
+            color: #888;
+        }
+        .box{
+            padding-top: 100px;
+            width: 60%;
+            height: 200px;
+        }
+        .box>h2{
+            font-size: 50px;
+            font-weight: 700;
+        }
+        .box>p{
+            font-size: 50px;
+            font-weight: 400;
+        }
+        .box>.boxes{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding-top: 40px;
+        }
+        .box>.boxes>.one{
+            background-image: url('https://www.seogaandcook.com/seogaandcook/images/sub/sub01_02_img01.jpg');
+            width: calc(100%/4);
+            height: 510px;
+            position: relative;
+        }
+        .box>.boxes>.one>p{
+            width: 100%;
+            font-size: 25px;
+            color: white;
+            background-color: #345951;
+            padding: 20px;
+            text-align: center;
+            font-weight: 400;
+            position: absolute;
+            bottom: 0;
+        }
+        .box>.boxes>.two{
+            background-image: url('https://www.seogaandcook.com/seogaandcook/images/sub/sub01_02_img02.jpg');
+            width: calc(100%/4);
+            height: 510px;
+            position: relative;
+        }
+        .box>.boxes>.two>p{
+            width: 100%;
+            font-size: 25px;
+            color: white;
+            background-color: #345951;
+            padding: 20px;
+            text-align: center;
+            font-weight: 400;
+            position: absolute;
+            bottom: 0;
+        }
+        .box>.boxes>.three{
+            background-image: url('https://www.seogaandcook.com/seogaandcook/images/sub/sub01_02_img03.jpg');
+            width: calc(100%/4);
+            height: 510px;
+            position: relative;
+        }
+        .box>.boxes>.three>p{
+            width: 100%;
+            font-size: 25px;
+            color: white;
+            background-color: #345951;
+            padding: 20px;
+            text-align: center;
+            font-weight: 400;
+            position: absolute;
+            bottom: 0;
+        }
+        .box>.boxes>.four{
+            background-image: url('https://www.seogaandcook.com/seogaandcook/images/sub/sub01_02_img04.jpg');
+            width: calc(100%/4);
+            height: 510px;
+            position: relative;
+        }
+        .box>.boxes>.four>p{
+            width: 100%;
+            font-size: 25px;
+            color: white;
+            background-color: #345951;
+            padding: 20px;
+            text-align: center;
+            font-weight: 400;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="#" onclick="showpage()">SEOGA&COOK</a></div>
+            <ul class="gnb">
+                <li>
+                    <a href="#" onclick="showpage(0)">서가앤쿡</a>
+                    <ul class="snb"><a href="#" onclick="showpage(0)">스토리</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(1)">컨셉</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(2)">메뉴</a>
+                    <ul class="snb"><a href="#" onclick="showpage(2)">세트 메뉴</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(3)">컨셉</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(4)">한정 메뉴</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(5)">NEW 플레이트</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(6)">ORIGINAL 한상</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(7)">스테이크 샐러드</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(8)">파히타</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(9)">필라프/리조또</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(10)">피자</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(11)">사이드</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(12)">음료</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(13)">매장</a>
+                    <ul class="snb"><a href="#" onclick="showpage(13)">매장 검색</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(14)">창업 안내</a>
+                    <ul class="snb"><a href="#" onclick="showpage(14)">브랜드 경쟁력</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(15)">창업 절차 및 비용</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(16)">창업 Q&A</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(17)">창업 상담 신청</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(18)">고객 문의</a>
+                    <ul class="snb"><a href="#" onclick="showpage(18)">유용한 질문(FAQ)</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(19)">고객의 소리</a></ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="wrap">
+        <section id="seoga1" class="on">
+            <div class="img1">
+                <h2>서가앤쿡</h2>
+                <p>서가앤쿡은 신선한 식자재들로 정성껏 요리하여 남녀노소 누구에게나 사랑받고 있습니다.</p>
+            </div>
+            <div class="content">
+                <div class="textBox">
+                    <h1>시작(첫걸음)</h1>
+                    <h2>작은 서가에서<br>캐주얼 패밀리 레스토랑<br>서가앤쿡으로</h2>
+                    <p>서가앤쿡은 2006년 대구 동성로에서 [서가]라는 10평 남짓의 작은 레스토랑에서<br>생맥주와 푸짐한 음식을 판매하는 것을 시작으로 2007년부터 [서가앤쿡]으로<br>브랜드 네임을 런칭하면서 본격적인 레스토랑 사업을 시작하게 되었습니다.<br>캐주얼 패밀리 레스토랑의 문화를 만들어낸 서가앤쿡은 신선한 식자재들로<br>정성껏 요리하여 남녀노소 누구에게나 사랑받고 있습니다.</p>
+                </div>
+                <div class="img2"></div>
+            </div>
+        </section>
+        <!-- 섹션22222222222222222222222 -->
+        <section id="seoga2">
+            <div class="title">
+                <h2>CONCEPT</h2>
+                <p>서가앤쿡은 신선한 식자재들로 정성껏 요리하여 남녀노소 누구에게나 사랑받고 있습니다.</p>
+            </div>
+            <div class="box">
+                <h2>서가앤쿡,</h2>
+                <p>새로운 외식 문화를 만들다.</p>
+                <div class="boxes">
+                    <div class="one"><p>공식을 깨다</p></div>
+                    <div class="two"><p>한식과 양식의 조화</p></div>
+                    <div class="three"><p>정직을 요리하다</p></div>
+                    <div class="four"><p>전문적인 메뉴 개발</p></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ자바스크립트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <script>
+        let gnb=document.querySelector(".gnb")
+        let nav=document.querySelector("nav")
+        let secs=document.querySelectorAll(".wrap>section")
+
+        gnb.addEventListener("mouseenter", function(){
+            nav.classList.add("on")
+        })
+
+        gnb.addEventListener("mouseleave", function(){
+            nav.classList.remove("on")
+        })
+
+        function showpage(num){
+            secs.forEach(function(item){
+                item.classList.remove("on")
+            })
+            secs[num].classList.add("on")
+        }
+// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ트렌스폼 효과 넣기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+        let img1=document.querySelector(".img1")
+        let observer=new IntersectionObserver(function(entries){
+            entries.forEach(function(item){
+                if(item.isIntersecting){
+                    item.target.classList.add("on")
+                }else{
+                    item.target.classList.remove("on")
+
+                }
+            })
+        },{
+            threshold:0.1
+        })
+        observer.observe(img1)
+
+        let seoga2=document.querySelector("#seoga2")
+        let observer1=new IntersectionObserver(function(entry){
+            entry.forEach(function(bbox){
+                if(bbox.isIntersecting){
+                    bbox.target.classList.add("on")
+                }else{
+                    bbox.target.classList.remove("on")
+
+                }
+            })
+        },{
+            threshold:0.1
+        })
+        observer1.observe(seoga2)
+    </script>
+</body>
+</html>

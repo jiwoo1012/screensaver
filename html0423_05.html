@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핸드메이드페어 표 만들기</title>
+    <style>
+        table{
+            border: 1px solid #333;
+            border-collapse: collapse;
+            width:700px;
+        }
+        th{
+            border: 1px solid black;
+            text-align: center;
+            padding: 3.5px;
+            background-color: orangered;
+            color: white;
+        }
+        tr,td{
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+        }
+        .gray{
+            background-color: rgb(211, 211, 211);
+        }
+        .red{
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th colspan="2">구분</th>
+            <th>대상</th>
+            <th>할인율</th>
+            <th>비고</th>
+        </tr>
+        <tr>
+            <td colspan="2" class="gray">조기 신청 할인</td>
+            <td>2026년 8월 7일(금) 이전 신청자</td>
+            <td class="red">20%</td>
+            <td rowspan="3" class="red">최대 할인율 30%</td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="gray">추가 할인</td>
+            <td class="gray">학생</td>
+            <td>학생(*재학/휴학증명서 제출 필수)</td>
+            <td class="red">10%</td>
+        </tr>
+        <tr>
+            <td class="gray">기참가</td>
+            <td>1회 이상 참가자</td>
+            <td class="red">5%</td>
+        </tr>
+    </table>
+</body>
+</html>

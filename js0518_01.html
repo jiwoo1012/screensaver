@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //생성자 함수
+        function Book(title, page, done=false){  //첫 글자가 대문자여야 자바스크립트가 생성자 함수라는 것을 인식함. done=false 초기값을 내가 알아서 설정할 수 있음. 이렇게(읽지 않았음을 표시함)
+            this.ti=title//this는 Book 안에라는 뜻//
+            this.pa=page
+            this.do=done
+            //Book안의 함수에서 생성되는 함수, this라는 명령어 안에 쓰게끔 되어 있음. 
+            this.finish=function(){  //finish라는 이름으로 함수가 만들어짐
+                let dis="" //안에 자체적으로  dis라는 함수 생성
+                this.do==false ? dis="읽는 중":dis="완독"
+                return `${title} 책은 현재 ${dis}이며, 총 ${this.pa}페이지입니다.`
+            }
+        }
+        let myBook=new Book("javascript", 300, false)
+        document.write(myBook.finish())
+
+        // 클래스 함수
+        class Book2{
+            constructor(title, page, done=false){
+                this.ti=title
+                this.pa=page
+                this.do=done
+            }
+            finish=function(){ 
+                let dis=""
+                this.do==false ? dis="읽는 중":dis="완독"
+                return `${title} 책은 현재 ${dis}이며, 총 ${this.pa}페이지입니다.`
+            }
+        }
+        let mybook2=new Book2("javascript", 300, true)
+        document.write(mybook2.finish())
+    </script>
+</body>
+</html>

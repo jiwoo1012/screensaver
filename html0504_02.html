@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .outBox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            gap: 30px;
+        }
+        .imgBox1{
+            background-image: url('./img/pororo.JPG');
+            width: 20%;
+            height: 300px;
+            object-fit: cover;
+            /* background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover; */
+        }
+        .imgBox2{
+            background-image: url('./img/crong.JPG');
+            width: 20%;
+            height: 300px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .imgBox3{
+            background-image: url('./img/roofpy.JPG');
+            width: 20%;
+            height: 305px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .modal_box{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0,0,0,0.7);
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0; left: 0;
+        }
+        .modal_box.on{
+            display: flex;
+        }
+        .modal_contents{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            height: auto;
+            background-color: #fff;
+            position: relative;
+            padding: 15px;
+        }
+        #close{
+            color: #333;
+            font-size: 13px;
+            padding: 7px;
+            border-radius:3px;
+            position: absolute;
+            right: 10px; top: 10px;
+        }
+        .modal_img1{
+            background-image: url('./img/pororo.JPG');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 90%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <div class="imgBox1"></div>
+        <div class="imgBox2"></div>
+        <div class="imgBox3"></div>
+    </div>
+    <div class="modal_box">
+        <div class="modal_contents">
+            <button id="close">&times;</button>
+            <div class="modal_img1"></div>
+            <div class="modal_img2"></div>
+            <div class="modal_img3"></div>
+        </div>
+    </div>
+
+    <script>
+        let imgBox1=document.querySelector('.imgBox1')
+        let modalBox=document.querySelector('.modal_box')
+        let close=document.querySelector('#close')
+
+        imgBox1.addEventListener("click", ()=>{
+            modalBox.classList.add('on')
+        })
+        close.addEventListener("click", ()=>{
+            modalBox.classList.remove('on')
+        })
+        // open.forEach(function(item, idx){
+
+        // })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>상품 목록</h1>
+    <div class="outBox">
+        <h2>상품 선택</h2>
+        <label>
+            <input type="radio" name="items" value="맥북">
+            맥북
+        </label><br>
+        <label>
+            <input type="radio" name="items" value="아이패드">
+            아이패드
+        </label><br>
+        <label>
+            <input type="radio" name="items" value="에어팟">
+            에어팟
+        </label><br>
+        <br>
+        <button onclick="showItems()">상품 추가</button>
+        <div id="dis"></div>
+        <div id="total"></div>
+    </div>
+
+    <script>
+        class Item{
+            constructor(name,price){
+                this.name=name
+                this.price=price
+            }
+            discount(){
+                return this.price*0.9
+            }
+        }
+        let cart=[]  //push로 받을 거라서 배열로 만듦
+
+        function showItems(){
+            let selectItem=document.querySelector("input[name='items']:checked")  //체크가 된 인풋 상자의 친구를 데려와. 
+            let dis=document.querySelector("#dis")
+            let total=document.querySelector("#total")
+
+            if(!selectItem){
+                dis.innerHTML="<br>"+"상품을 선택하세요"
+                return
+            }
+
+            let item
+            if(selectItem.value==="맥북"){
+                item=new Item("맥북", 3000000)
+            } else if(selectItem.value==="아이패드"){
+                item=new Item("아이패드", 800000)
+            }else if(selectItem.value==="에어팟"){
+                item=new Item("에어팟", 360000)
+            }
+            cart.push(item)  //여러 개 쌓는다는 것
+            let display=''
+            let sum=0
+
+            cart.forEach(function(it){
+                display+=`<div>
+                            상품 명: ${it.name}<br>
+                            원가: ${it.price}<br>
+                            할인가: ${it.discount()}<br><br>
+                            </div>`
+                            sum+=it.discount()
+            })
+            dis.innerHTML=display
+            total.innerHTML=`총 금액: ${sum}원`
+        }
+
+    </script>
+</body>
+</html>

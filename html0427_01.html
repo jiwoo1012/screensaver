@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        *{margin: 0; padding: 0;}
+        .topBox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            background-color: black;
+            position: fixed;
+            z-index: 10;/*어떤 애가 와도 내가 제일 위에 있어야 해*//*1이상만 주면 됨. 근데 우리는 10을 기본으로 주자.*/
+        }
+            .logoBox{
+                display: flex;
+                justify-content: start; /*start: 왼쪽에 딱 붙음, end: 오른쪽에 딱 붙음*/
+                align-items: center;
+                width: 25%;
+                height: 100%;
+            }
+                    .logoBox img{
+                        width: 100px;
+                        object-fit: contain;
+                        margin-left: 30px;
+                    }
+            .menuBox{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50%;
+                height: 100%;
+                gap: 20px;
+                color: white;
+            }
+                .menuBox .orange{
+                    color: orangered;
+                }
+            .korBox{
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                width: 25%;
+                height: 100%;
+                color: white;
+                padding-right: 20px;
+            }
+        .mainImgBox{
+                position: relative;
+                width: 100%;
+                height: 250px;
+                background-image: url("./img/img7.JPG");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+        }
+                .textBox{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    height: 50%;
+                    transform: translateY(-50%);
+                }
+                    .textBox .orange{
+                        color: orangered;
+                        font-size: 20px;
+                    }
+                    .textBox .white{
+                        color: white;
+                        font-size: 30px;
+                    }
+                    .subMenuBox{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 75%;
+                        height: 35px;
+                        background-color: rgba(255,255,255,0.6);
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0;
+                        transform: translateX(-50%);
+                    }
+                    .subMenuBox div{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 25%;
+                        height: 100%;
+                    }
+                    .subMenuBox .subMenuFirst{
+                        background-color: orangered;
+                        color: white;
+                    }
+        .ball{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: orangered;
+            color: white;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .Box1{
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+            h3{
+                position: absolute;
+                top:40px;
+                left: 23%;
+                transform: translateX(-50%);
+            }
+            .onlineBox{
+                position: absolute;
+                left: 50%;
+                top: 28%;
+                transform: translateX(-50%);
+                width: 600px;
+                height:70px;
+                background-color: black;
+            }
+            .solid{
+                position: absolute;
+                top: 67px;
+                left: 22.6%;
+                transform: translateX(-50%);
+                border: 1.5px solid orangered;
+                width: 100px;
+                
+            }
+
+            table{
+                position: absolute;
+                width: 800px;
+                height: 50px;
+                bottom: 28px;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 1px solid orangered;
+                border-collapse: collapse;
+            }
+                th{
+                    background-color: orangered;
+                    color: white;
+                    padding: 10px;
+                    font-size: 7px
+                }
+                tr,td{
+                    background-color: white;
+                    border: 1px solid orangered;
+                    padding: 20px;
+                    font-size: 10px;
+                    text-align: center;
+                }
+                p{
+                    position: absolute;
+                    bottom: 5px;
+                    left: 30%;
+                    transform: translateX(-50%);
+                    font-size: 10px;
+                }
+    </style>
+</head>
+<body>
+    <!-- 제일 상단의 블랙 박스 -->
+    <div class="topBox">
+        <div class="logoBox">
+            <img src="./img/img6.png" alt="logo" />
+        </div>
+        <div class="menuBox">
+            <div class="orange">STK</div>
+            <div>전시회 구성</div>
+            <div>참가 업체</div>
+            <div>참관객</div>
+            <div>프로그램</div>
+            <div>미디어센터</div>
+        </div>
+        <div class="korBox">kor</div>
+    </div>
+    <!-- 상단의 블랙 박스 종료 -->
+     <!-- 메인 이미지 박스 시작 -->
+     <div class="mainImgBox">
+        <div class="textBox">
+            <h2 class="orange">STK 2026</h2>
+            <h2 class="white">참가 안내</h2>
+        </div>
+        <div class="subMenuBox">
+            <div class="subMenuFirst">참가 안내</div>
+            <div>온라인 부스</div>
+            <div>스폰서쉽 프로그램</div>
+            <div>홍보 자료</div>
+        </div>
+     </div>
+     <!-- 메인 이미지 박스 종료 -->
+      <div class="ball">ball</div>
+      <!-- 참가 신청 절차 박스 시작 -->
+       <div class="Box1">
+        <h3>참가 신청 절차</h3>
+        <div class="solid"></div>
+        <div class="onlineBox">
+            <div class="online1">온라인 참가 신청</div>
+            <div class="online2">참가 문의 남기기</div>
+        </div>
+        <table>
+            <tr>
+                <th>STEP ①</th>
+                <th>STEP ②</th>
+                <th>STEP ③</th>
+                <th>STEP ④</th>
+                <th>STEP ⑤</th>
+            </tr>
+            <tr>
+                <td>기업 회원 가입/로그인</td>
+                <td>온라인 참가 신청</td>
+                <td>참가 신청서 작성 및 제출<br>(tech@smarttechkorea.com)</td>
+                <td>계약금 20% 납입<br>접수 1주일 내</td>
+                <td>잔금 납입<br>( -2026.04.24)</td>
+            </tr>
+        </table>
+        <p>* 세금 계산서는 행사 종료 후, 총 납부 비용에 대해 일괄 발행됩니다.</p>
+       </div>
+       <!-- 참가 신청 절차 박스 종료 -->
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .outBox{
+            width: 500px;
+        }
+        button{
+            width: 200px;
+        }
+        table{
+            border-collapse: collapse;
+            width:400px;
+        }
+        th,td{
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- 시간 다루기: 내장 객체 함수 date() -->
+    <div class="outBox">
+        <h2>To-do List</h2>
+        <div class="inputBox">
+            <label>날짜</label>
+            <input id="date" type="date">
+        </div>
+        <div class="inputBox">
+            <label>할 일</label>
+            <input id="work" type="text" placeholder="오늘 할 일은 무엇인가요?">
+        </div>
+        <button onclick="add()">추가</button>
+        <table id="list">
+            <tr>
+                <th>날짜</th>
+                <th>할 일</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        let list=document.querySelector('#list')
+        let date=document.querySelector('date')
+        let work=document.querySelector('#work')
+
+        function add(){
+            let 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        header{
+            width: 100%;
+            height: 70px;
+            background-color: #345951;
+            color: white;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(52,89,81,0.7);
+            width: 100%;
+            height: 70px;
+            overflow: hidden;
+            position: fixed;
+            left: 0; top: 0;
+            z-index: 10;
+        }
+        nav.on{
+            height: 400px;
+            transition: all 0.3s;
+        }
+        .logo{
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            height: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 20px;
+        }
+        .gnb{
+            display: flex;
+            justify-content: start;
+            width: 70%;
+            height: 100%;
+        }
+        .gnb>li{
+            width: calc(100%/5);
+            height: 70px;
+            padding-left: 20px;
+        }
+        .gnb>li>a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .snb{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            font-size: 15px;
+            text-align: left;
+        }
+        .wrap{
+            /* padding-top: 70px; */
+        }
+        section{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: calc(100vh - 70px);
+            font-size: 90px;
+            font-weight: bold;
+        }
+        section.on{display: flex;}
+        #seoga1{background-color: #999;}
+        #seoga2{background-color: #777;}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="#" onclick="showpage()">SEOGA&COOK</a></div>
+            <ul class="gnb">
+                <li>
+                    <a href="#" onclick="showpage(0)">서가앤쿡</a>
+                    <ul class="snb"><a href="#" onclick="showpage(0)">스토리</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(1)">컨셉</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(2)">메뉴</a>
+                    <ul class="snb"><a href="#" onclick="showpage(2)">세트 메뉴</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(3)">컨셉</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(4)">한정 메뉴</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(5)">NEW 플레이트</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(6)">ORIGINAL 한상</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(7)">스테이크 샐러드</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(8)">파히타</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(9)">필라프/리조또</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(10)">피자</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(11)">사이드</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(12)">음료</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(13)">매장</a>
+                    <ul class="snb"><a href="#" onclick="showpage(13)">매장 검색</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(14)">창업 안내</a>
+                    <ul class="snb"><a href="#" onclick="showpage(14)">브랜드 경쟁력</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(15)">창업 절차 및 비용</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(16)">창업 Q&A</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(17)">창업 상담 신청</a></ul>
+                </li>
+                <li>
+                    <a href="#" onclick="showpage(18)">고객 문의</a>
+                    <ul class="snb"><a href="#" onclick="showpage(18)">유용한 질문(FAQ)</a></ul>
+                    <ul class="snb"><a href="#" onclick="showpage(19)">고객의 소리</a></ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="wrap">
+        <section id="seoga1" class="on">서가앤쿡 스토리 창입니다.</section>
+        <section id="seoga2">서가앤쿡 컨셉 창입니다.</section>
+    </div>
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ자바스크립트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <script>
+        let gnb=document.querySelector(".gnb")
+        let nav=document.querySelector("nav")
+        let secs=document.querySelectorAll(".wrap>section")
+
+        gnb.addEventListener("mouseenter", function(){
+            nav.classList.add("on")
+        })
+        gnb.addEventListener("mouseleave", function(){
+            nav.classList.remove("on")
+        })
+
+        function showpage(num){
+            secs.forEach(function(item){
+                item.classList.remove("on")
+            })
+            secs[num].classList.add("on")
+        }
+    </script>
+</body>
+</html>

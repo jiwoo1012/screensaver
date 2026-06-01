@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        body{background-color: #333;}
+
+        .wrap{
+            width: 900px;
+            height: 400px;
+            border: 5px solid pink;
+            border-radius: 10px;
+            margin: 50px auto;
+            position: relative; /*wrap이 부모임을 position으로 선포함*/
+        }
+        .text{
+            position: fixed; /*밑에 있는 모든 객체를 무시하고 공중에 떠다니는 친구*/
+            left: 0; top: 0;
+
+            color: pink;
+            font-size: 30px;
+            font-weight: bold;
+
+            pointer-events: none;
+
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="text">안녕하세요</div>  <!--회사에서는 주로 로고, 전하고 싶은 메시지를 마우스 커서 옆에 따라다니도록 함.-->
+    </div>
+
+    <script>
+        let wrap=document.querySelector(".wrap")
+        let text=document.querySelector(".text")
+
+        wrap.addEventListener("mousemove", function(e){
+            text.style.left=e.clientX + "px"
+            text.style.top=e.clientY + "px"
+        })
+
+        wrap.addEventListener("mouseenter", function(){
+            text.style.display="block"
+        })
+        wrap.addEventListener("mouseleave", function(){
+            text.style.display="none"
+        })
+    </script>
+</body>
+</html>

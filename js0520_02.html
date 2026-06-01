@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(250, 221, 177);
+        }
+        .wrap{
+            width: 100%;
+        }
+        h2{
+            text-align: center;
+            font-size: 40px;
+        }
+        .hamBox{
+            display: flex;
+            gap: 30px;
+            width:80%;
+            /* height: 300px; */
+            margin: 10px auto;
+        }
+        .hamLabel{
+            flex: 1;
+            cursor: pointer;
+        }
+        .hamLabel input{
+            display: none;
+        }
+        .hamLabel input:checked+.card{
+            transform: scale(1.05);
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        .card img{
+            width: 100%;
+            height: 250px;
+        }
+        .card p{
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .sideBox{
+            display: flex;
+            gap: 30px;
+            width:80%;
+            /* height: 300px; */
+            margin: 10px auto;
+        }
+        .sideLabel{
+            flex: 1;
+            cursor: pointer;
+        }
+        .sideLabel input{
+            display: none;
+        }
+        .sideLabel input:checked+.cardS{
+            transform: scale(1.05);
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        .cardS img{
+            width: 100%;
+            height: 350px;
+        }
+        .cardS p{
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        button{
+            display: block;
+            margin: 100px auto;
+            width: 80%;
+            height: 60px;
+            border-radius: 10px;
+            background-color: #865b0a;
+            color: white;
+        }
+        .dis{
+            display: block;
+            margin: 100px auto;
+            width: 80%;
+            background-color: #fff;
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .box{
+            padding: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .endBox{
+            background-color: #ffffff;
+            padding: 20px;
+            /* width: 80%; */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>햄버거 선택</h2>
+        <div class="hamBox">
+            <label class="hamLabel">
+                <input type="radio" name="ham" value="더 크리스퍼 세트">
+                <div class="card">
+                    <img src="./img/h1.png" alt="더 크리스퍼 세트">
+                    <p>더 크리스퍼 세트</p>
+                </div>
+            </label>
+            <label class="hamLabel">
+                <input type="radio" name="ham" value="통새우와퍼 세트">
+                <div class="card">
+                    <img src="./img/h2.png" alt="통새우와퍼 세트">
+                    <p>통새우와퍼 세트</p>
+                </div>
+            </label>
+            <label class="hamLabel">
+                <input type="radio" name="ham" value="베이비 버거 라지세트">
+                <div class="card">
+                    <img src="./img/h3.png" alt="베이비 버거 라지세트">
+                    <p>베이비 버거 라지세트</p>
+                </div>
+            </label>
+        </div>
+
+        <h2>사이드 선택</h2>
+        <div class="sideBox">
+            <label class="sideLabel">
+                <input type="radio" name="side" value="21치즈스틱">
+                <div class="cardS">
+                    <img src="./img/s1.png" alt="21치즈스틱">
+                    <p>21치즈스틱(+3,600원)</p>
+                </div>
+            </label>
+            <label class="sideLabel">
+                <input type="radio" name="side" value="크리스퍼 랩">
+                <div class="cardS">
+                    <img src="./img/s2.png" alt="크리스퍼 랩">
+                    <p>크리스퍼 랩(+4,300원)</p>
+                </div>
+            </label>
+            <label class="sideLabel">
+                <input type="radio" name="side" value="코코넛 슈림프 6조각">
+                <div class="cardS">
+                    <img src="./img/s3.png" alt="코코넛 슈림프 6조각">
+                    <p>코코넛 슈림프 6조각(+8,200원)</p>
+                </div>
+            </label>
+        </div>
+    
+        <br><br>
+        <button onclick="order()">주문하기</button>
+        <div class="dis"></div>
+    </div>
+    <script>
+        class Ham{
+            constructor(menu,price, side){
+                this.menu=menu
+                this.price=price
+                this.side=side
+            }
+            s1Price(){ return this.price + 3600 }
+            s2Price(){ return this.price + 4300 }
+            s3Price(){ return this.price + 8200 }
+        }
+        let hamCart=[]
+        function order(){
+            let ham=document.querySelector("input[name='ham']:checked")
+            let side=document.querySelector("input[name='side']:checked")
+            let dis=document.querySelector(".dis")
+
+            let price=0
+
+            if(!ham||!side){
+                dis.innerHTML=`햄버거와 사이드 메뉴 "둘 다" 선택해주세요`
+                return
+            }
+            switch(ham.value){
+                case "더 크리스퍼 세트":
+                    price=13000
+                    break
+                case "통새우와퍼 세트":
+                    price=15000
+                    break
+                case "베이비 버거 라지세트":
+                    price=12000
+                    break
+            }
+
+            let item=new Ham(ham.value, price, side.value)
+            let finalPrice=0
+
+            switch(item.side){
+                case "21치즈스틱":
+                    finalPrice=item.s1Price()
+                    break
+                case "크리스퍼 랩":
+                    finalPrice=item.s2Price()
+                    break
+                case "코코넛 슈림프 6조각":
+                    finalPrice=item.s3Price()
+                    break
+            }
+            hamCart.push({menu:item.menu, price:item.price, side:item.side, final:finalPrice})
+
+            let show = ''
+            let sum = 0
+            hamCart.forEach(function(ha){
+            show += `
+                <div class="box">
+                    햄버거: ${ha.menu}<br>
+                    원가: ${ha.price}원<br>
+                    사이드: ${ha.side}<br>
+                    최종금액: ${ha.final}원
+                    <br>
+                </div>
+            `
+            sum = sum + ha.final
+            })
+            dis.innerHTML = show + `<br><div class="endBox">총 합계: ${sum.toLocaleString()}원</div>`
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제 02_응용 버전1</title>
+    <style>
+        .outBox{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 600px;
+            height: 200px;
+        }
+        .inBox{
+            width: 150px;
+            height: 80px;
+            border-radius: 20px 20px 3px 3px;
+            background-color: skyblue;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            line-height: 80px;
+            transition: all 0.001s ;
+        }
+        .inBox:hover{
+            border-radius: 3px;
+            background-color: rgb(108, 175, 201);
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <div class="inBox">Button 1</div>
+        <div class="inBox">Button 2</div>
+        <div class="inBox">Button 3</div>
+        
+    </div>
+</body>
+</html>

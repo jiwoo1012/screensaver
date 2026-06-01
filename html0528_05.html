@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outBox{
+            width: 1000px;
+            height: 400px;
+            background-color: rgb(184, 164, 52);
+            border-radius: 20px;
+            margin: 150px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        h2{
+            color: white;
+            font-size: 40px;
+            position: absolute;
+            left: 60px;
+            top: 150px;
+        }
+        img{
+            width: 500px;
+            height: 300px;
+            border-radius: 20px;
+            position: absolute;
+            right: 60px; top: 50px;
+
+            animation: ro 1s forwards;
+            
+        }
+        .cir{
+            width: 3100px;
+            height: 3100px;
+            border-radius: 50%;
+            background-color: rgba(255, 237, 134, 0.438);
+            opacity: 90%;
+
+            position: absolute;
+            left: -1550px;
+            bottom: -1600px;
+
+            animation: one 5s infinite;
+            animation-delay: 1s;
+        }
+        @keyframes one{
+            0%{
+                transform: scale(0);
+            }
+            100%{
+                transform: scale(15);
+            }
+            
+        }
+
+        @keyframes ro{
+            0%{
+                transform: rotate(0deg);
+            }
+            50%{
+                transform: rotate(3deg);
+            }
+            100%{
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <h2>CSS ANIMATION</h2>
+        <img src="./img/chu5.jpg" alt="">
+        <div class="cir"></div>
+    </div>
+    
+</body>
+</html>

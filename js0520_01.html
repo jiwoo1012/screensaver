@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 100%;
+        }
+        h2{
+            text-align: center;
+        }
+        .drinkBox{
+            display: flex;
+            gap: 20px;
+            width: 60%;
+            height: 400px;
+            margin: 10px auto;
+        }
+        .drinkLabel{
+            flex: 1;  /*혼자 1비율을 가질 거니까 나머지 친구들은 알아서 크기 조정해라, width를 안 써도 됨. 각각의 width가 1이야. 자식이 4마리면 계산해서 width크기를 써야지? 이런 느낌*/
+            cursor: pointer;
+        }
+        .drinkLabel input{
+            display: none;
+        } 
+        .drinkLabel input:checked +.card{     /*형제를 더하기로 표시*//*클래스 이름을 많이 주면 관리하기가 힘듦*/
+            transform: scale(1.05);
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+        .card{
+            overflow: hidden;
+        }
+        .card img{
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .card p{
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .box{
+            padding: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .endBox{
+            background-color: #ccc;
+            border: 1px solid #333;
+            padding: 20px;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>음료 선택</h2>
+        <div class="drinkBox">
+            <label class="drinkLabel">  <!--단어 두 개를 붙이는 걸 개발자들이 선호한다. 카멜기법: 두번째 단어의 첫 글자는 항상 대문자로 적기-->
+                <input type="radio" name="drink" value="아이스 아메리카노">
+                <div class="card">
+                    <img src="./img/아메리카노.jpg" alt="아이스 아메리카노">
+                    <p>아이스 아메리카노</p>
+                </div>
+            </label>
+            <label class="drinkLabel"> 
+                <input type="radio" name="drink" value="바닐라라테">
+                <div class="card">
+                    <img src="./img/카페라테.jpg" alt="바닐라라테">
+                    <p>바닐라라테</p>
+                </div>
+            </label>
+            <label class="drinkLabel"> 
+                <input type="radio" name="drink" value="복숭아아이스티">
+                <div class="card">
+                    <img src="./img/복숭아아이스티.jpg" alt="복숭아아이스티">
+                    <p>복숭아아이스티</p>
+                </div>
+            </label>
+            
+        </div>
+    </div>
+    <h2>사이즈 선택</h2>
+    <div class="sizeBox">
+        <label>
+            <input type="radio" name="size" value="small">
+            small(+1000원)
+        </label>
+        <label>
+            <input type="radio" name="size" value="midium">
+            midium(+2000원)
+        </label>
+        <label>
+            <input type="radio" name="size" value="large">
+            large(+4000원)
+        </label>
+    </div>
+    <button onclick="orderDrink()">주문하기</button>
+    <div class="dis"></div>
+    <div class="total"></div>
+    <!-- 자자자자자바바바바바스스스크크크크리리리립트트트트 -->
+    <script>
+        class Drink{
+            constructor(menu,price,size){
+                this.menu=menu
+                this.price=price
+                this.size=size
+            }
+
+            smallPrice(){
+                return this.price+1000
+            }
+            midiumPrice(){
+                return this.price+2000
+            }
+            largePrice(){
+                return this.price+4000
+            }
+        }
+        let drinkCart=[]
+        function orderDrink(){
+            let drink=document.querySelector("input[name='drink']:checked")
+            let size=document.querySelector("input[name='size']:checked")
+            let dis=document.querySelector(".dis")
+
+            let price=0
+            
+            if(!drink||!size){
+                dis.innerHTML=`음료 종류와 사이즈 "둘 다" 선택해야 주문이 들어가겠죠? ㅎㅎㅎㅎㅎ`
+                return
+            }
+
+            switch(drink.value){
+                case "아이스 아메리카노":
+                    price=4000
+                    break
+                case "바닐라라테":
+                    price=6000
+                    break
+                case "복숭아아이스티":
+                    price=5000
+                    break
+            }
+            let item=new Drink(drink.value, price, size.value)
+            let finalPrice=0
+            switch(item.size){
+                case "small":
+                    finalPrice=item.smallPrice()
+                    break
+                case "midium":
+                    finalPrice=item.midiumPrice()
+                    break
+                case "large":
+                    finalPrice=item.largePrice()
+                    break
+            }
+            drinkCart.push({menu:item.menu, price:item.price, size:item.size, final:finalPrice})
+
+            let show=''
+            let sum=0
+            drinkCart.forEach(function(dr){
+                show+=`<div class="box">음료명: ${dr.menu}<br>원가: ${dr.price}원<br>사이즈: ${dr.size}<br>최종 금액: ${dr.final}원</div>`
+                sum=sum+dr.final
+            })
+            dis.innerHTML+=show+`<br><div class="endBox">총 합계: ${sum.toLocaleString()}원</div><br>`
+        }
+    </script>
+</body>
+</html>

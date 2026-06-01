@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--영화표 예매, 5개의 영화 중 하나를 선택하면 영화 이름, 할인 적용된 금액, 총 지급액 표시
+        영화 금액: 11,000원
+        조건: 청소년 30% 할인, 국가 유공자 50% 할인, 경로 우대: 20% 할인, 일반: 할인 없음.
+        단, 클래스 이용, 넷 중에 하나 인풋상자로 받기. 5개의 name과 조건4개의 name이 달라야 함.-->
+    <h1>영화표 예매</h1>
+    <div class="outBox">
+        <h2>영화 제목</h2>
+        <label>
+            <input type="radio" name="movie" value="왕과 사는 남자">
+            왕과 사는 남자
+        </label>
+        <label>
+            <input type="radio" name="movie" value="악마는 프라다를 입는다2">
+            악마는 프라다를 입는다2
+        </label>
+        <label>
+            <input type="radio" name="movie" value="프로젝트 헤일메리">
+            프로젝트 헤일메리
+        </label>
+        <label>
+            <input type="radio" name="movie" value="군체">
+            군체
+        </label>
+        <label>
+            <input type="radio" name="movie" value="만약에 우리">
+            만약에 우리
+        </label>
+        <button onclick="pick()">확인</button>
+    </div>
+    <div class="smallBox">
+        <h2>예매</h2>
+        <label>
+            <input type="radio" name="buy" value="청소년">
+            청소년
+        </label>
+        <label>
+            <input type="radio" name="buy" value="국가유공자">
+            국가유공자
+        </label>
+        <label>
+            <input type="radio" name="buy" value="어르신">
+            경로우대
+        </label>
+        <label>
+            <input type="radio" name="buy" value="일반">
+            일반
+        </label>
+        <button onclick="ok()">구매</button>
+    </div><br>
+    <div class="display"></div><br>
+    <div class="total"></div>
+    <script>
+        class Item{
+            constructor(movie,price){
+                this.movie=movie
+                this.price=price
+            }
+        }
+        let cart=[]
+
+        function pick(){
+            let pick=document.querySelector("input[name:'movie']:checked")
+            let person=document.querySelector("input[name:'age']:checked")
+            let dis=document.querySelector("#dis")
+            let total=document.querySelector("#total")
+            
+            if(!pick || !person){
+                dis.innerHTML=`영화와 예매자의 나이를 모두 클릭해주세요.`
+                return
+            }
+            let item
+            if(pick.value==="왕과 사는 남자"){
+                item=new Item("왕과 사는 남자",15000)
+            }else if(pick.value==="악마는 프라다를 입는다2"){
+                item=new Item("악마는 프라다를 입는다2", 150000)
+            }else if(pick.value==="프로젝트 헤일메리"){
+                item=new Item("프로젝트 헤일메리", 150000)
+            }else if(pick.value==="군체"){
+                item=new Item("군체", 150000)
+            }else if(pick.value==="만약에 우리"){
+                item=new Item("만약에 우리", 150000)
+            }
+
+            let price=item.price
+            let discount=0
+
+            if(person.value=="청소년"){
+                discount=0.3
+            }else if(person.value==="국가유공자"){
+                discount=0.5
+            }else if(person.value==="어르신"){
+                discount=0.5
+            }else if(person.value==="국가유공자"){
+                discount=0.5
+            }
+            cart.push(item)
+            let display=''
+            let sum=0
+            
+            cart.forEach(function(it){
+                display+=`<div>영화: ${it.movie}, 원가: ${}</div>`
+            })
+        }
+
+
+    </script>
+</body>
+</html>

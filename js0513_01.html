@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //배열은 함수도 들어갈 수 있음!! 이렇게::
+        // let a={name: "홍길동", age: 20}
+        // a.name
+        // a.age
+
+        //function sound(){}
+        let dog={
+            name:"후추",
+            color:"white",
+            sound: function(){
+                document.write("멍멍"+"<br>")
+            },
+            run: function(){
+                document.write(`후추가 달립니다. <br>`)
+                }
+        }
+        dog.name // 후추
+        dog.color //white
+        document.write(dog.name+"<br>")
+        dog.sound() //멍멍
+        dog.run() //후추가 달립니다.
+    </script>
+</body>
+</html>

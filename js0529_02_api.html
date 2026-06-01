@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wrap{
+            width: 80%;
+            height: calc(100vh - 70px);
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 50px;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .leftBox{
+            width: 120px;
+            height: 90%;
+            background-color: rgba(238, 237, 237, 0.5);
+            box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+            opacity: 1;
+            border-radius: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: column;
+            margin-left: 40px;
+        }
+        .mainBox{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 80%;
+            height: 100%;
+        }
+        #cityName{
+            font-size: 80px;
+            font-weight: 600;
+            margin-bottom: 70px;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        #icon{
+            width: 150px;
+            height: 150px;
+            margin-bottom: 30px;
+        }
+        #dis{
+            font-size: 50px;
+        }
+        #wind{
+            font-size: 25px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="leftBox">
+            <button onclick="getWeather('Seoul')">Seoul</button>
+            <button onclick="getWeather('Busan')">Busan</button>
+            <button onclick="getWeather('Seongnam')">Seongnam</button>
+            <button onclick="getWeather('Gimcheon')">Gimcheon</button>
+        </div>
+        <div class="mainBox">
+            <div id="cityName"></div>
+            <img id="icon" alt="날씨 아이콘">
+            <div id="dis">온도: </div>
+            <div id="wind">풍속: </div>
+        </div>
+    </div>
+    
+    <script>
+        let body = document.querySelector("body")
+        let dis=document.querySelector("#dis")
+        let icon=document.querySelector("#icon")
+        let wind=document.querySelector("#wind")
+        let cityName=document.querySelector("#cityName")
+        let mainBox=document.querySelector(".mainBox")
+
+        const API_KEY='b86112e4d21c738accd50dcbb9d48e18'
+
+        async function getWeather(cityname){
+            mainBox.style.display="flex"
+            //도시 이름
+            cityName.innerHTML=cityname
+
+            //도시사진
+            if(cityname==="Seoul"){
+                body.style.backgroundImage= `url(https://cdn.sanity.io/images/nxpteyfv/goguides/0eb842b90b1bf6ba40c2af039c62640ce2745597-1600x1066.jpg)`
+            }else if(cityname==="Busan"){
+                body.style.backgroundImage= `url())`
+            }else if(cityname==="Seongnam"){
+                body.style.backgroundImage=`url(https://cdn.1gan.co.kr/news/photo/202304/225780_168064_4729.jpg)`
+            }else if(cityname==="Gimcheon"){
+                body.style.backgroundImage=`url(https://cdn.kyongbuk.co.kr/news/photo/202604/4069011_798964_5109.jpg)`
+            }
+            
+            let res=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${API_KEY}&units=metric&lang=kr`)
+            let data=await res.json()
+
+            //온도
+            dis.innerHTML=data.main.temp + "℃";
+
+            //아이콘
+            let icon_i=data.weather[0].icon;
+            let iconUrl=`http://openweathermap.org/img/wn/${icon_i}@2x.png`
+            icon.setAttribute('src',iconUrl)
+
+            //풍속
+            wind.innerHTML=data.wind.speed+ "m/s"
+
+        }
+    </script>
+</body>
+</html>

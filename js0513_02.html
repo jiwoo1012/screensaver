@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let book={
+            name:"난중일기",
+            publisher: "비상",
+            page: "500p",
+            set: function(){
+                document.write(this.name+"/ "+this.page+"/ "+this.publisher+"<br>")
+            },
+            read: function(){
+                document.write(`책을 읽고 있습니다. <br>`)
+            },
+            noread: function(){
+                document.write(`책을 덮었습니다. <br>`)
+            }
+        }
+        document.write(book.name +"<br>")
+        document.write(book.page +"<br>")
+        book.set()
+        book.read()
+        book.noread()
+        book.author='이순신'
+        document.write(book.author+"<br>")
+
+        let person={
+            firstName: "이",
+            lastName: "순신",
+            age: 48,
+            fullName: function(){
+                document.write(this.firstName+this.lastName)  //this: 내가 소속된 곳을 지칭함
+            }
+        }
+        person.fullName()
+</script>
+</body>
+</html>

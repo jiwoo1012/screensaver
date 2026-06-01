@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+
+        .outBox{
+            width: 500px;
+        }
+        .inputBox{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        label{
+            width: 60px;
+        }
+        input{
+            width: 150px;
+        }
+        button{
+            width: 210px;
+            cursor: pointer;
+        }
+        table{
+            width: 270px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th,td{
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+        <h2>참가자 명단</h2>
+        <div class="inputBox">  
+            <label>이름</label>
+            <input type="text" id="name">
+        </div>
+        <div class="inputBox">
+            <label>전공</label>
+            <input type="text" id="major">
+        </div>
+        <button onclick="appenduser()">등록하기</button>
+        <table id="list">
+            <tr>
+                <th>이름</th>
+                <th>전공</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        let list=document.querySelector('#list')
+        let name=document.querySelector('#name')
+        let major=document.querySelector('#major')
+
+        function appenduser(){
+            let names=name.value
+            let majors=major.value
+
+            list.innerHTML+=`<tr>
+                                <td>${names}</td>
+                                <td>${majors}</td>
+                            </tr>`
+            name.value=''
+            major.value=''
+        }
+    </script>
+</body>
+</html>

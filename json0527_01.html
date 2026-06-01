@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json 기본</title>
+</head>
+<body>
+    <!-- Json(): javaScript 객체나 배열로 파싱해주는 함수
+        용량이 많지 않고 객체 형태를 유지해주는, 변환해주는 함수
+        let a={name:"홍길동", age:20} 이것이 객체 형태
+        JSON은 let a={"name":"홍길동", "age":20} 이렇게 숫자 빼고 다 문자열로 적음 -->
+
+        <h2>json 파싱</h2>
+        <div id="dis"></div>
+        
+        <script>
+            //json 문자열: 자바스크립트가 알지 못하는 문자열 상태
+            let jitem=`
+                [
+                    {"name":"사과", "price": 500},  
+                    {"name":"바나나", "price": 1000}
+                ]`
+            //전송을 받을 때 보내는 파일로 만들자. 이런 규칙으로 받아라고 이야기 함. 인터넷과 인터넷 사이, 내 컴퓨터 코드와 html 코드 간의 전송도 포함.
+            // json 문자열을 자바스크립트의 객체로 변환을 시켜야 함.(자바스크립트가 제이슨을 알아보지 못함.)
+            let data=JSON.parse(jitem)
+            //data: javaScript 객체, 우리가 파일을 보내고 받는 규칙들이 있음. 제이슨은 그 중 하나.
+            // data: [{name:"사과", price: 500},
+            //        {name:"바나나", price: 1000}]
+            let dis=document.getElementById("dis") 
+            data.forEach(function(item){
+                dis.innerHTML+=`${item.name}:${item.price}<br>`
+            })
+        </script>
+</body>
+</html>

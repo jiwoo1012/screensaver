@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: min(1200px, 90%);
+            margin: 50px auto;
+
+        }
+        .title{
+            /*clamp(작을 때, 기준, 클 때)*/
+            font-size: clamp(25px, 4vw, 50px); /*25px보다 작아지지는 말아라, 화면이 커지거나 작아지더라도 4퍼센트는 유지, 최대 50px은 넘지 마라 */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .grid{
+            /*부모가 자식을 다스리는 방법 2:: grid*/
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  /*repeat(auto-fit)니가 알아서 몇 개인지 정해라는 뜻, 적정한 걸로 알아서 크기를 바꿔줘, 아무리 작아져도 250px은 되야 한다는 뜻.*/
+            /*grid-template-columns: repeat(4, 1fr);  크기에 따라서 1개인지 2개인지 바뀌어져야 하는데 유동적으로 움직이지는 않음. 반응형에서는 모자란 부분임*/
+            gap: 20px;
+        }
+        .card{
+            /*그리드가 이미 크기를 정해놨기 때문에 여기서 또 width을 줄 수 없음(height는 가능).*/
+            background-color: skyblue;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .card h3{
+            font-size: clamp(20px, 2.5vw, 40px);
+            margin-bottom: 10px;
+        }
+        .card p{
+            font-size: clamp(14px, 1.3vw, 20px);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2 class="title">반응형 아이템</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>카드1</h3>
+                <p>카드 설명 내용</p>
+            </div>
+            <div class="card">
+                <h3>카드2</h3>
+                <p>카드 설명 내용</p>
+            </div>
+            <div class="card">
+                <h3>카드3</h3>
+                <p>카드 설명 내용</p>
+            </div>
+            <div class="card">
+                <h3>카드4</h3>
+                <p>카드 설명 내용</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outBox{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+            /* border: 1px solid black; */
+            flex-wrap: wrap;
+        }
+        .inBox{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            color: black;
+        }
+        .white{
+            background-color: white;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>체스판 만들기</h1>
+    <label for="num">숫자: </label>
+    <input id="num" type="number" placeholder="숫자를 입력하세요" />
+    <button id="btn">확인</button>
+    <div id="here"> here </div>
+    <div class="outBox" id="outBox"></div>
+
+    <script>
+        let num=document.getElementById("num")
+        let btn=document.getElementById("btn")
+        let outBox=document.getElementById("outBox")
+        let here=document.getElementById("here")
+
+        btn.onclick=function(){
+            let num1=Number(num.value)
+            console.log(num)
+            if(num1%2==0){
+                here.innerHTML="홀수를 입력해야 체스판이 만들어집니다."
+            }else{
+                for(let i=1;i<=num1;i++){
+            if(i%2==0){
+                outBox.innerHTML+="<div class='inBox black'>"+i
+            }else{
+                outBox.innerHTML+="<div class='inBox white'>"+i
+            }
+
+            }
+        }
+
+        
+        }
+    </script>
+</body>
+</html>

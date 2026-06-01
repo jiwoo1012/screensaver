@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: min(1200px, 90%);
+            margin: 30px auto;
+            font-size: 16px;
+        }
+
+        .wrap>h2{
+            font-size: clamp(2rem, 4vw, 4rem);
+        }
+
+        .gallery{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            background-color: skyblue;
+            padding:30px;
+            border-radius: 20px;
+        }
+
+        .card {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .card:hover{
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .card img{
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /*태블릿*/
+        @media(max-width: 1024px){    /*media:내가 갖고 있는 미디어의 크기,, 화면이 태블릿 크기만큼 돌아오면 내가 조정하겠다. 900이하의 크기가 되면 내가 명령한 대로.*/
+            .wrap{
+                font-size: 12px;  /*rem을 쓰면 부모를 들고 온다는 뜻. 근데 여기 12px이 부모이기 때문에 2rem이라고 자식에게 적으면 부모 사이즈 x 2rem이 되는 거임.*/
+            }
+            
+            .gallery{
+                grid-template-columns: repeat(2, minmax(250px, 1fr));
+                gap: 10px;
+                padding: 20px;
+                background-color: blue;
+            }
+
+            .card img{
+            height: 200px;
+            }
+        }
+
+        /*모바일 버전*/
+        @media(max-width:600px){
+            .wrap{
+                font-size: 12px;
+            }
+            .gallery{
+                grid-template-columns: repeat(1, minmax(250px, 1fr));
+                gap: 7px;
+                padding: 20px;
+                background-color: rgb(191, 191, 255);
+            }
+            .card img{
+            height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>작품 갤러리</h2>
+        <div class="gallery" id="gallery">
+                       
+        </div>
+    </div>
+
+    <script>
+ 
+
+         async function showGallery(){
+            let gallery = document.querySelector("#gallery")
+                try{
+                    // json가져오기
+                    const res = await fetch("data3.json")
+
+                    // json문자열을 js로 변환(파싱)
+                    const data = await res.json();
+                    console.log(data)
+
+                    let html = ''
+                    data.forEach(function(item){
+                       html += `
+                            <div class="card">
+                                <img src="${item.image}" alt="${item.title}" />
+                                <div class="textbox">
+                                    <h2>${item.title}</h2>
+                                    <p>${item.description}</p>
+                                    <span>작가 : ${item.artist}</span>
+                                </div>
+                            </div>
+                        `
+                    })
+                        
+                    gallery.innerHTML = html
+                }catch(err){
+                    console.error("전송에러, 파싱에러", err)
+                }
+
+          }
+
+          showGallery()
+    </script>
+</body>
+</html>

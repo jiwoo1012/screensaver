@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세 개의 숫자를 받고 3개의 숫자의 합을 구하기</title>
+</head>
+<body>
+    <div class="contain">
+        <input id="num1" type="number" placeholder="숫자1을 입력하세요">
+        <input id="num2" type="number" placeholder="숫자2를 입력하세요">
+        <input id="num3" type="number" placeholder="숫자3을 입력하세요">
+        <button onclick="sum()">합계</button>
+        <div id="dis"></div>
+    </div>
+    <script>
+        function adds(n1,n2,n3){
+            return n1+n2+n3
+        }
+        function sum(){
+            let num1=Number(document.querySelector('#num1').value)
+            let num2=Number(document.querySelector('#num2').value)
+            let num3=Number(document.querySelector('#num3').value)
+            let result= adds(num1, num2, num3)
+            document.querySelector('#dis').innerHTML=`세 숫자의 총 합계: ${result}`
+        }
+    </script>
+</body>
+</html>

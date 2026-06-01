@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        {na:"고구마", pr:5000}
+        class Item{
+            constructor(name,price){
+                this.na=name
+                this.pr=price
+            }
+            discount(){
+                return this.pr*0.9
+            }
+        }
+        //let day=new Date() 자바스크립트가 만든 (내장) 클래스
+        let item=new Item("고구마", 5000)
+        document.write(`${item.na}, ${item.discount()}원`)
+
+        // 이름 나이, 매개변수를 사용하여
+        //당신의 이름은 ***이고, 나이는 ***입니다. 출력
+        //단, 클래스 사용
+
+        class Hi{
+            constructor(name,age){    //constructor 역할:
+                this.na=name
+                this.ag=age
+                this.item=''
+
+            }
+            info(){
+                let abc="호호호"
+                return `당신의 이름은 ${hello.na}이고, 당신의 나이는 ${hello.ag}입니다.``당신의 이름은 ${hello.na}이고, 당신의 나이는 ${hello.ag}입니다.`
+            }
+        }
+        let hello=new Hi("이수호", 26)
+        document.write(hello.info())
+    </script>
+</body>
+</html>

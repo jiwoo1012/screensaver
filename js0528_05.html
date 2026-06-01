@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="dis"></div>
+    <script>
+        function loadItem(){
+            return fetch("data2.json")
+
+            .then((resolve)=>{
+                return resolve.json()
+            })
+        }
+        loadItem()
+        .then((data)=>{
+            let dis=document.querySelector("#dis")
+            let html=''
+            data.forEach((item)=>{
+                html+=`
+                    <img src="${item.image}">
+                    <br> ${item.title}<br>설명: ${item.description}<br>`
+            })
+            dis.innerHTML=html
+        })
+        .catch((e)=>{
+            console.log("error", e)
+        })
+    </script>
+</body>
+</html>

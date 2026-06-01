@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="dis">
+
+    </div>
+    <script>
+        let dis=document.getElementById("dis")
+        let gu=[
+            {name: "옥수수", price: 500},
+            {name: "고구마", price: 1500},
+            {name: "감자", price: 300}
+        ]
+
+        let gudis=''
+        gu.forEach(function(item){
+            gudis += `${item.name}`
+        })
+        aaa.addEventListener("click",function(){
+            gudis += `${item.name}`
+        })
+        dis.innerHTML=gudis (속도가 제일 느림, 안에서 계산을 많이하기 때문)
+        dis.innerText(글자만 안에 들어감. but 태그를 건드려서 글자가 들어가니까 그렇게 빠르지는 않음.)
+        dis.textContent(얘가 속도가 제일 빠름)
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        body{
+             height: 100vh;  /*한 화면을 넘어가지 말라는 뜻 */
+        }
+        .imgBoxes{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+        }
+        .imgBoxes img{
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid rgb(139, 91, 0);
+        }
+        /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ모달박스 처리반ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        .big_imgBoxes{
+            display: none;        /**/
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            position: fixed;
+            left: 0; top: 0;
+        }
+        .big_imgBoxes.on{
+            display: flex;
+        }
+        .big{
+            width: 50%;
+            height: 60%;
+            background-color: #fff;
+            border-radius: 10px;
+            position: relative;
+        }
+        #close{
+            color: #333;
+            font-size: 20px;
+            padding: 5px;
+            border-radius: 7px;
+            position: absolute;
+            right: 7px;
+        }
+        .modal_imgBoxes img{
+            display: none;
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .modal_imgBoxes img.on{
+            display: block;  /*디스플레이를 다시 보여 달라는 뜻*/
+        }
+    </style>
+</head>
+<body>
+    <div class="imgBoxes">
+        
+        <img src="./img/pororo.JPG" alt="뽀로로">
+        <p>[포토] 카리나 ‘아침부터 반가워요’</p>
+        <img src="./img/crong.JPG" alt="크롱">
+        <img src="./img/roofpy.JPG" alt="루피">
+    </div>
+    <div class="big_imgBoxes">
+        <div class="big">
+            <button id="close">&times;</button>
+            <div class="modal_imgBoxes">
+                <img src="./img/pororo.JPG" alt="뽀로로">
+                <img src="./img/crong.JPG" alt="크롱">
+                <img src="./img/roofpy.JPG" alt="루피">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let opens=document.querySelectorAll('.imgBoxes img')
+        let big_imgBoxes=document.querySelector('.big_imgBoxes')
+        let modal_imgBoxes=document.querySelectorAll('.modal_imgBoxes img')
+        let close=document.querySelector('#close')
+
+        opens.forEach((item,idx)=>{
+            item.addEventListener("click", ()=>{
+                modal_imgBoxes.forEach((imgs)=>{
+                    imgs.classList.remove('on')
+                })
+                
+                big_imgBoxes.classList.add('on')
+                modal_imgBoxes[idx].classList.add('on')
+            })
+        })
+
+        close.addEventListener("click",()=>{
+            big_imgBoxes.classList.remove('on')
+        })
+        
+    </script>
+</body>
+</html>

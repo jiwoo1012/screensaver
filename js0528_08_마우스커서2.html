@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        body{
+            background-color: rgb(0, 158, 71);
+        }
+        .wrap{
+            width: 1000px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: rgba(0, 69, 219, 0.836);
+            margin: 70px auto;
+            position: relative;
+        }
+        .text{
+            position: fixed;
+            left: 0; top: 0;
+            transform: translate(-50%, -50%);
+
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+
+            pointer-events: none;
+
+            transition: all 0.905s;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="text">ʚ♥ɞ</div>
+    </div>
+
+    <script>
+        let wrap=document.querySelector(".wrap")
+        let text=document.querySelector(".text")
+
+        wrap.addEventListener("mousemove", function(e){
+            text.style.left= e.clientX + "px"
+            text.style.top= e.clientY + "px"
+        })
+
+        wrap.addEventListener("mouseenter", function(){
+            text.style.display="block"
+        })
+        wrap.addEventListener("mouseleave", function(){
+            text.style.display="none"
+        })
+    </script>
+</body>
+</html>

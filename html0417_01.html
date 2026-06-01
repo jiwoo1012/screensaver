@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            overflow: hidden; 
+            width: 400px;
+            height: 400px;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        .box .img{
+            width: 400px;
+            object-fit: cover;  /*cover 딱 맞춰주고 나머지 남는 공간 없이 contain은 사진 크기를 두고 남는 공간은 빈 공간으로 그냥 두는 것*/
+            transition: all 0.5s;
+        }
+        .box .img:hover{
+            transform: scale(1.2);
+        }
+        .boxImg{
+            width: 300px;
+            height: 300px;
+            background-image: url("https://picsum.photos/id/37/200/300");
+            background-position: center; /*그림 가운데를 중심으로 채워주세요*/
+            background-repeat: no-repeat; /*반복해서 그림을 채우는 거(벽지 무늬)*/
+            background-size: cover; /**/
+        }
+        /* .img{
+            width: 300px ;
+            height: 449px;
+            border: 1px solid black;
+            border-radius: 10px;
+            object-fit: cover;
+        } */
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img class="img" src="https://picsum.photos/id/37/200/300" />
+    </div>
+    <div class="boxImg"> </div>
+</body>
+</html>

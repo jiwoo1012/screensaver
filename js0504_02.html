@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인하기</title>
+</head>
+<body>
+    <h2>로그인</h2>
+    <input id="id" type="text" placeholder="아이디를 입력해주세요."/>
+    <input id="pass" type="password" placeholder="비밀번호를 입력해주세요."/>
+    <button id="btn">입력</button>
+    <div id="dis"></div>
+    <script>
+        let log={id:"abc", pass:"1234"}
+        let btn=document.querySelector('#btn')
+        btn.addEventListener("click", function(){
+            function box(id, pass, dis){
+                if(id==="abc"&&pass==="1234"){
+                    dis.innerHTML="환영합니다."
+                }else{
+                    dis.innerHTML="아이디와 패스워드를 다시 입력해주세요."
+                }
+            }
+            let id=document.querySelector('#id').value
+            let pass=document.querySelector('#pass').value
+            let dis=document.querySelector('#dis')
+            box(id,pass,dis)
+        })
+    </script>
+</body>
+</html>

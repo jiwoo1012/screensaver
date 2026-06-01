@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스 생성하기</title>
+    <style>
+        .dis{
+            display: flex;
+            gap: 10px;
+        }
+        .box{
+            margin: 5px;
+            width: 150px;
+            height: 150px;
+            background-color: #999;
+        }
+    </style>
+</head>
+<body>
+    <input id="num" type="number" placeholder="1에서 5까지 입력">
+    <button onclick="make()">박스 만들기</button>
+    <div class="dis"></div>
+
+    <script>
+        let colors=['#999999', '#FF0000', '#00CC00', '#0000FF', '#FFE600'];
+        function make(){
+            let num=document.querySelector('#num').value
+            let dis=document.querySelector('.dis')
+            dis.innerHTML=''
+
+            if(num==''||num>5){
+                alert('1-5까지의 숫자만 입력하세요.')
+                return
+            }
+
+            for(let i=0;i<num;i++){
+                dis.innerHTML+=`<div class="box" style="background-color:${colors[i]};"></div>`
+            }
+            }
+        
+    </script>
+</body>
+</html>

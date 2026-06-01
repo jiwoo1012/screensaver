@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js0504_01</title>
+</head>
+<body>
+    <input id="na" type="text" placeholder="이름을 입력해주세요."/>   <!--이름하고 숫자가 틀리기 때문에 아이디를 이용해 들고 옴-->
+    <input id="age" type="number" placeholder="나이를 입력해주세요."/>
+    <button onclick="abc()">인사</button>  <!--여기에서 이름을 넘겨주는 건 안 됨. -->
+    <div id="dis">
+        이 공간에 출력이 되게끔
+    </div>
+    <script>
+        function abc(){
+
+            let name=document.querySelector('#na')
+            let nameValue=name.value
+            let age=document.querySelector('#age')
+            let ageValue=Number(age.value)
+            let dis=document.querySelector('#dis')
+
+            if(ageValue>=20){
+                dis.innerHTML=`${nameValue} 님 ${ageValue}살 성년이시군요. 환영합니다.`
+            }else{
+                dis.innerHTML=`${nameValue} 님 ${ageValue}살 미성년자이시군요. 출입을 불허합니다.`
+            }
+        }
+    </script>
+</body>
+</html>

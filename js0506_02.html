@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>사칙연산 생성</h2>
+    <input id="num1" type="number" placeholder="첫 번째 숫자를 입력하세요.">
+    <input id="num2" type="number" placeholder="두 번째 숫자를 입력하세요.">
+    <button onclick="clc('+')">+</button>
+    <button onclick="clc('-')">-</button>
+    <button onclick="clc('*')">x</button>
+    <button onclick="clc('/')">÷</button>
+    <div id="dis"></div>
+
+    <script>
+        let dis=document.querySelector("#dis")
+
+        function clc(op){
+            let num1=document.querySelector("#num1").value
+            let num2=document.querySelector("#num2").value
+            let result=eval((num1)+op+(num2))
+            dis.innerHTML=`${num1} ${op} ${num2}= ${result}`
+        }
+    </script>
+</body>
+</html>

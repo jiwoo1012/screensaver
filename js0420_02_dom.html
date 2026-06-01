@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outBox{
+            width: 500px;
+        }
+        .hello{
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+        <label>패스워드: </label>
+        <input id="password" type="password" placeholder="패스워드를 입력하세요." />
+        <button id="btn">ENTER</button>
+        <div id="display">환영합니다. 또는 패스워드가 틀립니다.를 표시하는 공간</div>
+    <script>
+        let password=document.getElementById("password")
+        let btn=document.getElementById("btn")
+        let display=document.getElementById("display")
+        btn.onclick=function(){
+            if(password.value == "hello"){
+                display.innerHTML="<strong> 환영합니다. </strong>"
+            }else{
+                display.innerHTML="패스워드를 다시 입력해주세요."
+            }
+        }
+    </script>
+
+</body>
+</html>

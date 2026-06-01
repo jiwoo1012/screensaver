@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: min(1500px, 90%);
+            margin: 30px auto;
+        }
+        h1{
+            font-size: clamp(25px, 4vw, 50px);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 20px;
+        }
+        .pic{
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            height: clamp(500px, 10vw, 500px);
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        .pic:hover{
+            transform: translateY(-10px);
+        }
+        .pic img{
+            width: 100%;
+            height: 70%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .pic h2{
+            font-size: clamp(20px, 2vw, 30px);
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+        .pic p{
+            font-size: clamp(14px, 1vw, 20px);
+            margin-top: 7px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>후추 갤러리</h1>
+        <div class="grid">
+            <div class="pic">
+                <img src="./img/chu1.jpg" alt="">
+                <h2>후츄</h2>
+                <p>소파에 누워있는 후츄</p>
+            </div>
+            <div class="pic">
+                <img src="./img/chu2.jpg" alt="">
+                <h2>챱추척챱추</h2>
+                <p>뻬이비후츄후츄</p>
+            </div>
+            <div class="pic">
+                <img src="./img/chu3.jpg" alt="">
+                <h2>먀</h2>
+                <p>누가 꽃이게에~</p>
+            </div>
+            <div class="pic">
+                <img src="./img/chu4.jpg" alt="">
+                <h2>후추침대</h2>
+                <p>나도.....</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

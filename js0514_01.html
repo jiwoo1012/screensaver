@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투표</title>
+    <style>
+        label{
+            display: block; /*<br>이랑 비슷*/
+        }
+    </style>
+</head>
+<body>
+    <h2>좋아하는 언어는?</h2>
+    <input type="text" id="name" placeholder="이름 입력">
+    <div class="outBox">
+        <label> 
+            <input type="radio" name="lang" value="javaScript">
+            javaScript
+        </label>
+        <label>
+            <input type="radio" name="lang" value="HTML">
+            HTML
+        </label>
+        <label>
+            <input type="radio" name="lang" value="CSS"> <!--name이 같으면 같은 것끼리 한 쌍-->
+            css
+        </label>
+        <label>
+            <input type="radio" name="lang" value="react">
+            react
+        </label>
+        <label>
+            <input type="radio" name="lang" value="next">
+            next
+        </label>
+        <button id="btn">투표하기</button>
+
+        <h2>프로그래밍 언어별 투표 수</h2>
+        <div id="dis"></div><br><br><br>
+
+        <h2>총 투표 수</h2>
+        <div id="total"></div><br><br><br>
+        
+        <h2>투표자 명단</h2>
+        <div id="users"></div><br><br><br>
+    </div>
+    <script>
+        let name=document.querySelector("#name")
+        let btn=document.querySelector("#btn")
+        let dis=document.querySelector("#dis")
+        let total=document.querySelector("#total")
+        let users=document.querySelector("#users")
+        let langs=document.querySelectorAll("input[name='lang']")
+
+        let voteData=[
+            {lang:"javaScript", count:0},
+            {lang:"HTML", count:0},
+            {lang:"CSS", count:0},
+            {lang:"react", count:0},
+            {lang:"next", count:0}
+        ]
+        let userList=[]
+
+        btn.addEventListener("click", function(){  //버튼을 클릭하면
+            langs.forEach(function(item){          // 버튼의 5개 중 하나하나 확인, 뭐가 눌러졌는지 알아야 하니까
+                //옵션 단추 체크하기
+                if(item.checked){  //radio만 checked를 사용할 수 있음.
+                    //lang과 value가 같으면 count가 증가(반복)
+                    //item.value는 선택된 value이다.
+                    voteData.forEach(function(data){
+                        if(item.value==data.lang){
+                             data.count++
+                        }
+                    })
+                    //이름 저장
+                    userList.push(name.value)
+                }
+            })
+          
+          
+        //화면 출력
+        dis.innerHTML=''
+        
+        voteData.forEach(function(item){ //forEach를 새로 시작했기 때문에 전에 썼던 item 이름을 또 써도 됨
+            dis.innerHTML+=`<div>
+                                ${item.lang}: ${item.count}표
+                            </div>`
+        })
+
+        //총합
+        let sum=0
+        voteData.forEach(function(){
+            sum+=item.count
+        })
+        total.innerHTML=sum+"표"
+
+        //투표자 명단
+        users.innerHTML=userList
+        })
+    </script>
+</body>
+</html>

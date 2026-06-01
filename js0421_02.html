@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outBox{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 10px;/*자식과 부모 사이 간격*/
+            width: 350px;
+            /* height: 120px; */  /*높이를 없얘면 알아서 맞춰줌*/
+            border: 1px solid black;
+            flex-wrap: wrap; /*끝이 닿이면 다음 줄로 넘어가*/
+            gap: 10px;/*자식들의 띄워쓰기*/
+
+        }
+        .inBox{
+            width: 100px;
+            height: 100px;
+            border-radius: 30px;
+            background-color: rgb(231, 178, 178);
+        }
+        .first{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox" id="outBox">
+
+    </div>
+
+    <script>
+        let outBox=document.getElementById("outBox")
+        console.log(outBox.innerHTML)
+        for(let i=1;i<=5;i++){
+            if(i==1){
+                outBox.innerHTML += "<div class='inBox first'>Box"+ i +"</div>"
+            }else{
+                outBox.innerHTML += "<div class='inBox'>Box"+ i +"</div>"
+            }
+             //outBox.innerHTML=outBox.innerHTML+"<div class='inBox'>Box"+ i +"</div>"  // 계속해서 누적시켜주는 역할
+            
+        }
+    </script>
+</body>
+</html>

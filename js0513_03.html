@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>버그 제보</h2>
+    <input type="text" id="userName" placeholder="이름"/> <!--한글 124자까지 들어감, 한 줄에 옆으로 붙으려는 성질이 있기 때문에 css에서 직접 조정을 해줘야 함--><br>
+    <textarea id="bugTexts" placeholder="버그 신고 내용 입력"></textarea> <br> <!--input하고 비슷한데 글자수를 더 많이 넣을 수 있음-->
+    <button id="bugBtn" >신고</button>
+    <div id="bugList"></div>
+
+    <script>
+        let userName=document.querySelector("#userName")
+        let bugTexts=document.querySelector("#bugTexts")
+        let bugBtn=document.querySelector("#bugBtn")
+        let bugList=document.querySelector("#bugList")
+        // let aaa=[
+        //     {name:"홍길동", age:20},
+        //     {name:"이순신", age:20},
+        //     {name:"강감찬", age:20}
+        // ]
+
+        let reports=[]
+
+        bugBtn.addEventListener("click", function(){
+            let names=userName.value.trim() //trim:자르는 역할, 입력 상자가 있을 때, 자기도 모르게 스페이스바를 누를 경우, 문장 앞에 문장 뒤에 있는 모든 공백을 삭제해주세요.라는 뜻, 문장 중간에 있는 띄어쓰기는 삭제 안 됨
+            let contents=bugTexts.value.trim()
+
+            if(names&&contents){
+                reports.push({names, contents, status: "접수됐습니다."})  //push에 객체로 들어가게 함. //키와 키 값이 똑같은 변수로 이루어졌을 때, 하나만 적어도 가능
+                userName.value=''
+                bugTexts.value=''
+            }
+            bugList.innerHTML=''
+            reports.forEach(function(item){
+                let div=document.createElement("div")  //div가 계속 쌓이기를 원함. 새롭게 만들거라.
+                div.classList.add("box")
+                div.innerHTML=`${item.names} <br> ${item.contents} <br> ${item.status}`
+                bugList.appendChild(div) //안에 자식으로 들어가라는 명령어
+            })
+        })
+    </script>
+</body>
+</html>

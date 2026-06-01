@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal만들기</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style> 
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+        .outBox{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+            /* 포지션 엡솔루트, 탑:50%, 트렌스폼:트렌스레이트Y:50% */
+        }
+        .texts{
+            width: 80%;
+            border: 1px solid #b3b2b2;
+            border-radius: 10px;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        #open{
+            background-color: orangered;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+        /* ㅡㅡㅡㅡㅡㅡㅡ아웃박스 끄트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        .modal_box{
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.7);
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal_box.on{
+            display: flex;
+        }
+        #modal_contents{
+            background-color: #fff;
+            width: 50%;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        #close{
+            background-color: #fff;
+            color: #333;
+            font-size: 13px;
+            border: none;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        #title{
+            font-size: 50px;
+            color: #222;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        #profile{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            /* background-color: red; */
+            margin: 10px auto;
+        }
+        #imgBox{
+            width: 50%;
+            height: 350px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('./img/goyun.JPG');
+        }
+        #rightText{
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+            width: 50%;
+            height: 350px;
+            padding-left: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outBox">
+    <div class="texts">
+        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+    </div>
+    <button id="open">프로필 보기</button>
+    </div>
+    <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ아웃박스 끗ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <div class="modal_box">
+        <div id="modal_contents">
+            <button id="close">&times;</button>  <!--  &times;는 예쁜 닫기 모양(엑스 모양)  -->
+            <h2 id="title">My Profile</h2>
+            <div id="profile">
+                <div id="imgBox"></div>
+                <div id="rightText">
+                    <p>이름: 김지우</p>
+                    <p>주소: 한대앞역(안산)</p>
+                    <p>연락처: 010-1234-5678</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ자바스크립트 시작ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <script>
+        let opens=document.querySelector('#open')         //내장 명령어를 가지고 있기 때문에 자동으로 단어가 안 나옴. 그럴 경우 변수 이름을 바꿔주면 됨.
+        let modalBox=document.querySelector('.modal_box')
+        let close=document.querySelector('#close')
+
+        opens.addEventListener("click", ()=>{
+            modalBox.classList.add("on")
+        })
+
+        close.addEventListener("click", ()=>{
+            modalBox.classList.remove("on")
+        })
+    </script>
+</body>
+</html>

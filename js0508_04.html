@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+           border-collapse: collapse;
+        }
+        tr{
+            
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.write(`<b>주어진 배열:[2,4,6,8,10]</b>`+"<br>") 
+        document.write('<hr>')
+
+        let arr=[2,4,6,8,10]
+
+        function sum(){
+            let add=0
+            for(let i=0;i<arr.length;i++){
+                add+=arr[i]
+            }
+            return add
+        }
+        
+        document.write(`원래 배열 <br>`)
+        document.write(`<table><tr>2</tr><tr>4</tr></table>`)
+    </script>
+</body>
+</html>

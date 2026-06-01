@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습용 계산기</title>
+    <style>
+        #dis{
+            width: 430px;
+            height: 80px;
+            background-color: rgb(242, 251, 255);
+            border-radius: 20px;
+            text-align: end;
+            line-height: 80px;
+            font-size: 30px;
+        }
+        .outBox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 400px;
+            height: 70px;
+            /* background-color: skyblue; */ /*css,js는 다시 살릴 수 있는 특징이 있어서 슬러쉬를 자주 사용함.*/
+        }
+        .outBox div{
+            display: flex;
+            justify-content: center;
+            align-items: center;  /*글자들을 다스리기 위해서*/
+            width: 50px;
+            height: 50px;
+            background-color: rgb(0, 0, 61);
+            color: white;
+            border-radius: 50%;
+        }
+        .outBox .box1{
+            background-color: blue;
+        }
+        .outBox .box2{
+            background-color: skyblue;;
+        }
+    </style>
+</head>
+<body>
+    <div id="dis">0</div>
+    <div class="outBox">
+        <div class="box" data-num="1">1</div>
+        <div class="box" data-num="+">+</div>
+        <div class="box" data-num="2">2</div> 
+        <div class="box" data-num="=">=</div>
+        <div class="box box1" data-num="clear">clear</div>
+        <div class="box box2" data-num="back">back</div>
+        <!-- 공통적으로 한꺼번에 들고오기 위해서 class를 같게 함 -->
+    </div>
+    <script>
+        const boxs=document.querySelectorAll(".box")
+        // 한꺼번에 들고 와서 배열 형태로 나타냄: querySelectorAll
+        const dis=document.querySelector("#dis")
+
+        let expr='' //문자가 들어오는 곳이라고 알려줌
+        boxs.forEach((item)=>{ //6개를 다 물어서 누가 클릭을 했는지 확인하기 위해 forEach를 사용. 6개의 box를 반복하라는 변수를 새로 지었는데 그걸 item이라고 지음
+            item.addEventListener("click",()=>{  //6개를 다 물어서 누가 클릭했는지를 알아냄
+                let v=item.dataset.num
+
+                if(v==="clear"){
+                    expr=''
+                    dis.innerHTML= 0
+                    return //if문의 부모로 돌아감. 즉 click으로 돌아감.
+                }
+                if(v==="back"){
+                    expr=expr.slice(0,-1)
+                    dis.innerHTML=expr ===''?0:expr  //:(콜론)이 그렇지 않다면이라는 뜻 //expr이 혹시 비어있다면, 0을 찍어, 그렇지 않다면 expr을 나타내
+                    return
+                }
+                if(v==="="){
+                    if(expr===''|| expr.endsWit("+")){  //endsWith 맨 뒤에 걸 가리킴.
+                        dis.innerHTML='error'
+                        expr=''
+                        return
+                    }
+                    let ans=eval(expr) 
+                    dis.innerHTML=Number(ans).toLocaleString()
+                    expr=String(expr) //eval은 반드시 글자여야만 성립하기 때문에 다시 문자열로 만들어주는 기능
+                    return
+                }
+                expr+=v  //새롭게 클릭하는 건 v, v가 expr에 계속 쌓임
+                // dis.innerHTML=expr
+                // parts='111+222' split=> [111,222]
+                let parts=expr.split("+")
+                if(parts.length===1){
+                    dis.innerHTML=Number(parts[0]).toLocaleString()
+                }else{
+                    dis.innerHTML=Number(parts[0]).toLocaleString()+"+"+Number(parts[1]).toLocaleString()
+                }
+                return
+            })
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    "title": "숲속의 아침",
+    "description": "햇살이 비치는 평화로운 숲속 풍경입니다.",
+    "artist": "김하늘"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+    "title": "바다의 시간",
+    "description": "푸른 파도와 여유로운 해변의 모습입니다.",
+    "artist": "이바다"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+    "title": "별빛 여행",
+    "description": "별이 가득한 밤하늘과 고요한 풍경입니다.",
+    "artist": "박은하"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",
+    "title": "푸른 언덕",
+    "description": "싱그러운 자연과 넓은 초원이 펼쳐집니다.",
+    "artist": "최초록"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    "title": "호수의 반영",
+    "description": "맑은 호수에 비친 자연의 아름다움입니다.",
+    "artist": "이호수"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    "title": "꽃길",
+    "description": "다양한 꽃들이 가득한 길의 모습입니다.",
+    "artist": "한꽃"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+    "title": "산의 기운",
+    "description": "웅장한 산맥과 자연의 에너지를 담았습니다.",
+    "artist": "정산"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1493558103817-58b2924bce98",
+    "title": "도시의 밤",
+    "description": "화려한 도시 야경을 표현한 작품입니다.",
+    "artist": "강도시"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
+    "title": "겨울 아침",
+    "description": "눈 덮인 겨울 풍경의 차분함을 담았습니다.",
+    "artist": "윤겨울"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
+    "title": "햇살 정원",
+    "description": "따뜻한 햇살과 정원의 조화를 표현했습니다.",
+    "artist": "서정원"
+  }
+]

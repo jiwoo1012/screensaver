@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //slice 잘라내기
+        let hel="hello"
+        document.write(hel.slice(0,2)+"<br>")
+        document.write(hel.slice(0,1)+"<br>")
+        
+        //split 나누기
+        let sam="11+22"
+        let divi=sam.split("+") //배열이 됨. divi=[11,22]
+        //let img="omg1.jpg"
+        // let kk=img.split(".jpg")//확장자를 나눌 때 이렇게 갖다 씀. kk 안에는 img1이라는 이름만 들어감.
+        document.write(divi +"<br>")
+
+        // toLocaleString 숫자를 다루는 함수. 쉼표(,)를 넣어줌
+        let num=123456789
+        let num2="123456"
+        document.write(num.toLocaleString() +"<br>")
+        document.write(Number(num2).toLocaleString()+"<br>") //반드시 뒤에 ()를 넣어서 마무리해야함. 아니면 에러 발생
+        //eval 
+        let num3="11+22+33"
+        sum=eval(num3)
+        document.write(sum)
+    </script>
+</body>
+</html>
