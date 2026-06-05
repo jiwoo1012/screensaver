@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: min(900px, 90%); /*900px은 넘지 말고, 90%를 유지해*/
+            margin: 30px auto;
+        }
+        .wrap h2{
+            font-size: clamp(1.2rem, 4vw, 3rem);
+            margin-bottom: 30px;
+        }
+        .qna{
+            padding: 20px;
+            border: 1px solid #aaa;
+            overflow: hidden;
+        }
+        .question{
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+            cursor: pointer; /*클릭할 때 질문에 대한 답이 나오도록 설정*/
+            padding: 10px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .answer{
+            display: none;
+            font-size: 1.2rem;
+            padding: 10px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+        .icon{
+            transition: all 0.3s;
+        }
+        .question.on .icon{
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <h2>자주 묻는 질문</h2>
+            <div class="qna">
+                <div class="question">
+                    블라블라블라블라 배고프고 집도 가고 싶고 잠도 오고
+                    <span class="icon">▽</span>
+                </div>
+                <div class="answer">
+                    우우ㅜ우우우우
+                </div>
+            </div>
+            <div class="qna">
+                <div class="question">
+                    김천까지 어떻게 가냐
+                    <span class="icon">▽</span>
+                </div>
+                <div class="answer">
+                    하아ㅏㅏ.....한숨만 나온다
+                </div>
+            </div>
+            <div class="qna">
+                <div class="question">
+                    오랑우탄을 지구상에서 내쫓는 방법
+                    <span class="icon">▽</span>
+                </div>
+                <div class="answer">
+                    1.진주로간다. 2. 죽인다. 3. 세계평화
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <script>
+        $(function(){
+            $(".question").on("click", function(){
+                $(this).toggleClass("on")
+                $(this).next().stop().slideToggle()
+            })  //아코디언 이 공식은 그냥 외워라
+        })
+    </script>
+</body>
+</html>

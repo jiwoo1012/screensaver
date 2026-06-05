@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/jquery-4.0.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- <input type="text" id="name">
+    <p>보기: <span id="view"></span></p> -->
+
+    <!-- 더블클릭을 했을 때, 글씨 색이 바뀌는 것을 구현 -->
+    <ul>
+        <li class="item">하나</li>
+        <li class="item">둘</li>
+        <li class="item">셋</li>
+    </ul>
+    
+    <script>
+        // $(function(){
+        //     $("#name").keyup(function(){
+        //         $("#view").text($(this).val())
+        //     })
+        // })
+
+        $(function(){
+            $(".item").dblclick(function(){
+                $(this).css("color", "red")
+            })
+        })
+    </script>
+</body>
+</html>

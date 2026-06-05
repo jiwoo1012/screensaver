@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 시작</title>
+    <script src="./jQuery/jquery-4.0.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- 장점: js보다 쉽다, 문장의 구분이 짧다.
+               애니메이션 등이 부드럽다.
+               다양한 플러그인을 지원한다. 
+
+        jQuery 학습 예정: 아코디언 메뉴, 스크롤 헤더 변경, 이미지슬라이드
+                         이미지 페이드인 페이드아웃, 모달 팝업(광고창 오늘 하루 안 보기), 
+                         필터 메뉴, 호버 서브메뉴 나타나기
+                         플러그 인 사용
+                         
+        1. 기본 구조
+        //원어(축약 버전보다 오류를 조금 줄여준다.)
+        $(document).ready(function(){
+            모든 dom 요소가 준비가 되면(로딩이 되면), 그제서야 jquery가 시작된다.
+        }) 내 html 작성 준비가 됐니?
+         
+        //축소된 버전(원어를 축약)
+        $(function(){
+            
+        })
+        -->
+    <button id="btn">클릭하세요.</button>
+    <p id="dis">원래 문구</p>
+
+    <script>
+        $(function(){
+            $("#btn").click(function(){  //btn 아이디를 들고 와서 클릭할 거야.
+                $("#dis").text("버튼을 클릭했습니다.")
+                //.text() 값을 읽을 수 있는 기능 가능
+                //.text("값을 넣었다.") : 값을 부여하는 기능
+            })
+
+        })
+    </script>
+</body>
+</html>

@@ -11,6 +11,7 @@
             justify-content: center;
             flex-direction: column;
             background-color: #333;
+            overflow: hidden;
         }
         h2{
             font-size: 50PX;
@@ -21,8 +22,8 @@
             align-items: center;
             justify-content: center;
             flex-direction:column;
-            width: 100%;
-            height: 100%;
+            width: 1300px;
+            height: 700px;
         }
         .searchBox{
             display: flex;
@@ -30,7 +31,7 @@
         }
         input{
             font-size: 20px;
-            width: 80%;
+            width: 1100px;
             height: 50px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -39,7 +40,7 @@
         button{
             background-color: #f9e000;
             color: #333;
-            width: 80%;
+            width: 80px;
             height: 55px;
             margin-left: 5px;
             border-radius: 7px;
@@ -48,6 +49,20 @@
         #map{
             border-radius: 20px;
         }
+
+        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif; line-height: 1.5;}
+        .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+        .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+        .info .title {padding: 5px 0 0 10px;height: 30px;background: #82b8ff;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+        .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+        .info .close:hover {cursor: pointer;}
+        .info .body {position: relative;overflow: hidden;}
+        .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+        .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+        .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+        .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden; object-fit: cover;}
+        .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+        .info .link {color: #5085BB;}
     </style>
 </head>
 <body>
@@ -57,7 +72,7 @@
             <input type="text" id="keyword" placeholder="키워드를 검색하세요. (예: 맛집, 카페)">
             <button id="search" onclick="searchPleace()">검색</button>
         </div>
-        <div id="map" style="width:80%; height:60%;"></div>
+        <div id="map" style="width:1000px; height:550px;"></div>
     </div>
     <!-- <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=1340e90a9ded50db2f455050edbe328e"></script> -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1340e90a9ded50db2f455050edbe328e&libraries=services"></script>
@@ -127,7 +142,38 @@
             });
         }
 
-        
+        //고정 마커 추가
+        let fixedMarker = new kakao.maps.Marker({
+            map: map, 
+            position: new kakao.maps.LatLng(37.30969,126.85367)
+        });
+
+        //고정마커 인포윈도우
+        let fixedInfowindow = new kakao.maps.InfoWindow({
+            content: '<div class="wrap">' + 
+                        '    <div class="info">' + 
+                        '        <div class="title">' + 
+                        '            한대앞역' + 
+                        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+                        '        </div>' + 
+                        '        <div class="body">' + 
+                        '            <div class="img">' +
+                        '                <img src="https://img5.yna.co.kr/photo/cms/2018/12/26/20/PCM20181226000120990_P4.jpg" width="73" height="70">' +
+                        '           </div>' + 
+                        '            <div class="desc">' + 
+                        '                <div class="ellipsis">경기도 안산시 상록구 충장로 337</div>' + 
+                        '                <div class="jibun ellipsis">이동 211-5</div>' + 
+                        '                <div><a href="https://map.naver.com/p/search/%ED%95%9C%EB%8C%80%EC%95%9E%EC%97%AD/subway-station/449?placePath=?bk_query=%ED%95%9C%EB%8C%80%EC%95%9E%EC%97%AD&entry=pll&from=nx&fromNxList=true&searchType=place&c=15.00,0,0,0,dh" target="_blank" class="link">한대앞역</a></div>' + 
+                        '            </div>' + 
+                        '        </div>' + 
+                        '    </div>' +    
+                        '</div>'
+        });
+        fixedInfowindow.open(map, fixedMarker);
+
+        function closeOverlay() {
+            fixedInfowindow.close();
+        }
     </script>
 </body>
 </html>

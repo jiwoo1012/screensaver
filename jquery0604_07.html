@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+        .rowItem{
+            display: flex;
+            border: 1px solid #333;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .qty{
+            width: 50px;
+            text-align: end;
+        }
+    </style>
+</head>
+<body>
+    <!-- 종합 예제 2
+         간단 장바구니 만들기: 수량 증감/ 직접 입력/ 총 합계/ 배송 옵션
+         click: +, - 버튼 수량 변경
+         keyup: 수량 입력 시 합계 갱신
+         ketdown: 숫자 이외에 모든 키보드 막기  e.key>=0 && num<=9
+         change: 배송비 옵션 변경이 총 금액에 반영
+         scroll: 스크롤 위치 표시
+         상품의 개수는 3개
+         toLocalString 표시 넣기
+         수량 * 단가: 단가는 원하는 방식으로 넣기
+         전체 합계: 수량*단가 + 배송비까지
+    -->
+    <h2>간단한 장바구니</h2>
+    <div class="form">
+        <input type="text" class="newName" placeholder="상품명(예: 무선 마우스)">
+        <input type="number" class="newPrice" placeholder="상품 가격(숫자만)">
+        <button class="addBtn">장바구니에 추가</button>
+    </div>
+    <div class="box">
+        <div class="rowItem" data-price="19000">
+            <span class="name">무선 마우스</span>
+            <div>
+                <button class="minus">-</button>
+                <input type="number" class="qty" value="1"/>
+                <button class="plus">+</button>
+            </div>
+            <span class="price">15,498</span>
+        </div>
+    </div>
+
+    <p>
+        배송:
+        <select id="deli">
+            <option value="0">무료 배송</option>
+            <option value="3000">빠른 배송(+3000원)</option>
+            <option value="5000">당일 배송(+5000원)</option>
+        </select>
+    </p>
+    <p id="total"><strong>총합계: </strong>0원</p>
+    <div></div>
+
+    <script>
+        $(function(){
+            $(".box").on('click', ".plus", function(){
+                const row=$(this).closest(".rowItem") //내가 클릭한 곳의 부모를 찾아주세요. row는 rowItem 전체를 갖고 잇음.
+                const qt=row.find(".qty");
+                qt.val(Math.max(0, Number(qt.val())))  /*둘 중의 큰 값을 뽑아냄*/
+                calcRow(row)
+                // calcTotal()
+            })
+
+            $(".box").on('click', ".minus", function(){
+                const row=$(this).closest(".rowItem") //내가 클릭한 곳의 부모를 찾아주세요. row는 rowItem 전체를 갖고 잇음.
+                const qt=row.find(".qty");
+                qt.val(Math.max(0, Number(qt.val())-1))  /*둘 중의 큰 값을 뽑아냄*/
+                calcRow(row)
+                // calcTotal()
+            })
+
+            function calcRow(row){
+                const price=Number(row.data("price"))
+                const qty=Math.max(0,Number(row.find(".qty").val()+1))
+                // $(".sub").text(price*qty)
+                row.find(".sub").text((price*qty).toLocaleString)
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        .item{
+            font-size: 17px;
+            font-weight: 800;
+            color: #333;
+        }
+        .middle{
+            color: green;
+        }
+        .high{
+            color: red;
+        }
+        .low{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- jQuery 기초 명령을 활용한 todo list 만들기 -->
+     <h2>TODO LIST</h2>
+     <div class="row">
+        <input type="text" id="todo" placeholder="할 일을 입력하세요."/>
+        <select id="step">
+            <option value="middle">우선 순위 보통</option>
+            <option value="high">우선 순위 높음</option>
+            <option value="low">우선 순위 낮음</option>
+        </select>
+        <button id="add">추가</button>
+     </div>
+     <p style="margin-bottom: 30px;">미리보기 <span class="preview"></span></p>
+     <div class="list" style="height: 200px; overflow: auto; border: 1px solid #333; border-radius: 10px;">할 일 목록이 추가되는 자리</div>
+     <div class="sc">스크롤이 표시되는 자리</div>
+    <script>
+        $(document).ready(function(){
+            const todo=$("#todo"), step=$("#step"), list=$(".list")
+            
+            //할 일 추가
+            function addItem(){
+                let txt=todo.val().trim()
+                if(!txt) return
+                let st=step.val()    // middle, high, low 중 하나
+                list.append(`<div class="item ${st}">${txt}</div> `)
+                todo.val('')
+            }
+
+            //버튼 클릭 시
+            $("#add").on("click",function(){
+                addItem()
+            })
+
+            //(todo.keydown(function(){})이렇게도 사용할 수 있지만
+            //이렇게 적는 게 오류날 가능성이 적음
+            todo.on("keydown", function(e){
+                if(e.key==="Enter"){
+                    e.preventDefault() //니가 갖고 있는 이벤트 중, 자동으로 설정한 이벤트를 실행하지 않게 하는 것
+
+                    addItem()
+                }
+            })
+            todo.on("keyup", function(){
+                $(".preview").text($(this).val())
+            })
+
+            step.on("change", function(){
+                let val=$(this).val()  //middle, high, low 중 하나가 들어갈 것임
+                let color=''
+                if(val==='high'){
+                    color="red"
+                }else if(val=='middle'){
+                    color='green'
+                }else if(val==="low"){
+                    color ='blue'
+                }
+                $(".preview").css("color", color)
+            })
+
+            list.on("dblclick", ".item", function(){
+                $(this).remove()
+            })
+
+            //스크롤
+            list.on("scroll", function(){
+                $(".sc").text(`스크롤: ${$(this).scrollTop()}px`)
+            })
+        })
+    </script>
+</body>
+</html>

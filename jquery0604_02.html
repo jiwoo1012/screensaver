@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 기본 알기</title>
+    <script src="./jQuery/jquery-4.0.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- 클릭했을 때 색이 변하는 거 구현하기 -->
+    <ul>
+        <li class="item">하나</li>
+        <li class="item">둘</li>
+        <li class="item">셋</li>
+    </ul>
+
+    <script>
+        $(function(){
+            $(".item").click(function(){
+                $(this).css("color", "red")
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jQuery/jquery-4.0.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- input에 값을 받고 버튼을 눌렀을 때, li에 값이 추가되도록 구현하기 -->
+    <input type="text" id="name">
+    <button id="add">항목 추가</button>
+    <ul class="list">
+        <li class="item">하나</li>
+    </ul>
+
+    <script>
+        $(function(){
+            $("#add").click(function(){
+                let txt=$("#name").val()
+                if(txt.trim() !==''){
+                    $(".list").append(`<li class="item">${txt}</li>`)
+                    $("#name").val('')
+                }
+            })
+        })
+    </script>
+</body>
+</html>

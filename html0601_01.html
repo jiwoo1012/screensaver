@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동영상 슬라이드, 반응형, 애니메이션</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./html0601_01.css">
+    
+</head>
+<body>
+    
+    <nav class="nav">
+        <div class="logo">VIDEO</div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu">
+            <a href="#">HOME</a>
+            <a href="#">ABOUT</a>
+            <a href="#">GALLERY</a>
+            <a href="#">CONTACT</a>
+        </div>
+    </nav>
+
+    <div class="wrap">
+        <div class="slider">
+            <div class="slide">
+            <!-- 첫 번째 동영상 -->
+                <video autoplay muted loop playsinline>
+                    <source src="./mp4/car3.mp4" type="video/mp4"> <!-- 시스템 성능을 위해 video의 src을 안 쓰고 이렇게 source를 사용-->
+                    <source src="./mp4/car3.mov" type="video/mov"> <!--여러가지 영상을 미리 제공함으로써 만약에 재생이 안 됐을 경우를 대비할 수 있음.-->
+                </video>
+                <div class="textBox">
+                    <h2>First Video</h2>
+                    <p>첫 번째 동영상 내용입니다.</p>
+                </div>
+            </div>
+
+        <!-- 두 번째 동영상 -->
+            <div class="slide">
+                <video autoplay muted loop playsinline>
+                    <source src="./mp4/car2.mp4" type="video/mp4"> <!-- 시스템 성능을 위해 video의 src을 안 쓰고 이렇게 source를 사용-->
+                    <source src="./mp4/car2.mov" type="video/mov"> <!--여러가지 영상을 미리 제공함으로써 만약에 재생이 안 됐을 경우를 대비할 수 있음.-->
+                </video>
+                <div class="textBox">
+                    <h2>Second Video</h2>
+                    <p>두 번째 동영상 내용입니다.</p>
+                </div>
+            </div>
+
+        <!-- 세 번째 동영상 -->
+            <div class="slide">
+                <video autoplay muted loop playsinline>
+                    <source src="./mp4/car4.mp4" type="video/mp4"> <!-- 시스템 성능을 위해 video의 src을 안 쓰고 이렇게 source를 사용-->
+                    <source src="./mp4/car4.mov" type="video/mov"> <!--여러가지 영상을 미리 제공함으로써 만약에 재생이 안 됐을 경우를 대비할 수 있음.-->
+                </video>
+                <div class="textBox">
+                    <h2>Third Video</h2>
+                    <p>세 번째 동영상 내용입니다.</p>
+                </div>
+            </div>
+
+        <!-- 복사 첫 번째 동영상 -->
+            <div class="slide"></div>
+                <video autoplay muted loop playsinline>
+                    <source src="./mp4/car3.mp4" type="video/mp4"> <!-- 시스템 성능을 위해 video의 src을 안 쓰고 이렇게 source를 사용-->
+                    <source src="./mp4/car3.mov" type="video/mov"> <!--여러가지 영상을 미리 제공함으로써 만약에 재생이 안 됐을 경우를 대비할 수 있음.-->
+                </video>
+                <div class="textBox">
+                    <h2>First Video</h2>
+                    <p>첫 번째 동영상 내용입니다.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="./html0601_01.js"></script>
+</body>
+</html>

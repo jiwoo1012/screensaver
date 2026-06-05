@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        header{
+            width: 100%;
+            height: 70px;
+            background-color: #222;
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 40px;
+
+            position: relative;
+        }
+        .logo{
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .hamBtn{
+            width: 40px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            display: none;
+        }
+        .hamBtn span{
+            width: 100%;
+            height: 4px;
+            background-color: white;   
+            transition: all 0.3s;
+        }
+
+        .nav{
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav a{
+            color: white;
+            font-size: 20px;
+        }
+
+        @media(max-width:768px){
+            .hamBtn{
+                display: flex;
+            }
+            .nav{
+                position: absolute;
+                display: none;
+                width: 100%;
+                gap: 0;
+
+                left:0;
+                top: 70px;
+
+                background-color: #222;
+            }
+            .nav.on{
+                display: flex;
+                flex-direction: column;
+            }
+            .nav a{
+                display: block;
+                padding: 20px;
+                border-bottom: 1px solid #999;
+            }
+
+            /* .hamBtn.on{
+                display: block;
+            } */
+
+            .hamBtn.on span:nth-child(1){
+                transform: translate(-10px, 12px) rotate(45deg);
+            }
+            .hamBtn.on span:nth-child(2){
+                opacity: 0;
+            }
+            .hamBtn.on span:nth-child(3){
+                transform:translate(-10px, -12px) rotate(-45deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">logo</div>
+
+        <button class="hamBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+    
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Gallery</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+
+    <script>
+        $(function(){
+            $(".hamBtn").on("click", function(){
+                $(".nav").toggleClass("on")  //toggle: 붙였다 뗐다, 제거도 알아서 해줌
+                $(".hamBtn").toggleClass("on")
+            })
+        })
+    </script>
+</body>
+</html>

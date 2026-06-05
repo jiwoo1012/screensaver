@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        header{
+            width: 100%;
+            height: 80px;
+            background-color: #fff;
+            color: darkblue;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 100px;
+            position: fixed;
+            z-index: 100;
+        }
+        .logo{
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+        }
+        .hamBtn{
+            width: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            display: none;
+        }
+        .hamBtn span{
+            width: 100%;
+            height: 3px;
+            background-color: #333;   
+            transition: all 0.3s;
+        }
+        .nav{
+            width: 50%;
+            align-items: center;
+            justify-content: end;
+            display: flex;
+            gap: 50px;
+            white-space: nowrap;
+        }
+        .nav a{
+            color: #333;
+            font-size: clamp(5px, 4vw, 15px);
+            font-weight: 500;
+            padding: 6px 10px;
+        }
+        .nav a:hover{
+            color: white;
+            border-radius: 10px;
+            background-color: rgb(1, 1, 78);
+            
+        }
+        /* 네비바 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        .contain{
+            margin-top: 80px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 400px;
+            position: relative;
+            background-color:#1a1a2e;
+        }
+        .contain h1{
+            position: absolute;
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color:white;
+        }
+        /* 사진 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        .process{
+            padding: 60px 0;
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        .process h2{    
+            font-size: 35px;
+            font-weight: 650;
+            color: #050549;
+            margin-bottom: 8px;
+        }
+        .process p{
+            font-size: 19px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .category {
+            margin-bottom: 50px;
+        }
+        .category h3 {
+            font-size: 23px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+        }
+        .category h3 span {
+            color: #4a90d9;
+        }
+
+        /* 카드 리스트 시작 */
+        .cardList {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+        .card {
+            background: #f4f4f6;
+            border-radius: 10px;
+            padding: 20px 16px;
+        }
+        .card.last {
+            background: #1a1a2e;
+            color: white;
+        }
+        .card .num {
+            display: block;
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+        .card.last .num {
+            color: #aab;
+        }
+        .card .step {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        .card.last .step {
+            color: white;
+        }
+        .process .notice {
+            font-size: 15px;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        /* 채용 절차 끝ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        /* 기타사항ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        .etc {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+        }
+        .etc h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .etc ul {
+            list-style: disc;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .etc ul li {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+        /* 자주 묻는 질문 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        .gray{
+            background-color: #f2f2f2;
+            padding: 80px 100px;
+        }
+        .gray h2{
+            font-size: 35px;
+            font-weight: 700;
+            color: #050549;
+            margin-bottom: 8px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gray p{
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .qnaBox{
+            flex-shrink: 0;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 100px;
+        }
+        .qnaTitle{
+            flex-shrink: 0;
+            background: #1a1a2e;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .qnaGroup{
+            flex: 0.8;
+        }
+        .qna {
+            border-bottom: 1px solid #ddd;
+        }
+        .question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 0;
+            font-size: 23px;
+            font-weight: 700;
+            color: #1a1a2e;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .qna.on .question span {
+            transform: rotate(180deg);
+        }
+        .question span {
+            font-size: 18px;
+            color: #888;
+            transition: transform 0.3s;
+            margin-right: 15px;
+        }
+        .answer {
+            display: none;
+            padding: 0 0 20px;
+            font-size: 14px;
+            color: #555;
+            line-height: 2;
+        }
+        .answer.on {
+            display: block;
+        }
+        /* 질문 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        .blue{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 200px;
+            background-color: rgb(8, 8, 49);
+        }
+        .blueBtn{
+            color: rgb(8, 8, 49);
+            padding: 20px 30px;
+            background-color: white;
+            border-radius: 35px;
+            font-size: 18px;
+            font-weight: bold;
+
+        }
+        /* 푸터 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        footer{
+            height: 200px;
+        }
+        footer h2{
+            font-size: 15px;
+        }
+
+        footer p{
+            font-size: 13px;
+        }
+        /* 모바일 버전 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        @media(max-width:768px){
+            header {
+                padding: 0 20px;
+            }
+
+            .hamBtn{
+                display: flex;
+            }
+            .nav{
+                position: fixed;
+                display: none;
+                width: 100%;
+                gap: 0;
+                width: 100%;
+                height:calc(100vh - 80px);
+                left:0;
+                top: 80px;
+                padding-top: 20px;
+                background-color: #fff;
+                text-align: start;
+                z-index: 9;
+                justify-content: start;
+                align-items: start;
+            }
+            .nav.on{
+                display: flex;
+                flex-direction: column;
+            }
+            .nav a{
+                display: block;
+                padding: 20px;
+                text-align: start;
+                
+            }
+
+            .hamBtn.on span:nth-child(1){
+                transform: translateY(6px) rotate(45deg);
+            }
+            .hamBtn.on span:nth-child(2){
+                opacity: 0;
+            }
+            .hamBtn.on span:nth-child(3){
+                transform:translateY(-6px) rotate(-45deg);
+            }
+
+            /* 카드 부분 */
+            .process{
+                padding: 0 20px;
+            }
+            .cardList {
+                grid-template-columns: 1fr;
+                
+            }
+            .card {
+                padding: 16px 20px;
+            }
+            .h2{
+                font-size: 22px;
+            }
+            /* 기타, 자주 묻는 질문 영역 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+            .etc {
+                padding: 0 20px;
+            }
+            .gray{
+                padding: 40px 20px;
+            }
+            .qnaBox {
+                padding: 60px 20px;
+                flex-direction: column;
+            }
+            .qnaGroup {
+                width: 100%;
+                flex-direction: column;
+                gap: 24px;
+                align-items: center;
+            }
+            .question{
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">GenstarMate</div>
+
+         <button class="hamBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav">
+            <a href="#">회사 홈페이지</a>
+            <a href="#">회사 소개</a>
+            <a href="#">인사제도</a>
+            <a href="#">채용 절차</a>
+            <a href="#">채용 중인 공고</a>
+        </nav>
+    </header>
+    <div class="contain">
+        <img src="" alt="">
+        <h1>채용절차</h1>
+    </div>
+
+    <div class="process">
+        <h2>채용 절차</h2>
+        <p>채용 프로세스를 단계별로 안내해드립니다.</p>
+
+        <!-- 신입 사원 채용 -->
+        <div class="category">
+            <h3><span>+</span> 신입 사원(전환형 인턴) 채용</h3>
+            <div class="cardList">
+                <div class="card">
+                    <span class="num">01</span>
+                    <p class="step">서류 전형</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">02</span>
+                    <p class="step">인적성 검사</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">03</span>
+                    <p class="step">실무 면접</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">04</span>
+                    <p class="step">인턴십 (4개월)</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">05</span>
+                    <p class="step">임원 면접</p>
+                </div>
+            
+                <div class="card last">
+                    <span class="num">06</span>
+                    <p class="step">최종 합격</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 경력 사원 -->
+         <div class="category">
+            <h3><span>+</span> 경력 사원  채용</h3>
+            <div class="cardList">
+                <div class="card">
+                    <span class="num">01</span>
+                    <p class="step">서류 전형</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">02</span>
+                    <p class="step">인적성 검사</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">03</span>
+                    <p class="step">실무 면접</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">04</span>
+                    <p class="step">임원 면접</p>
+                </div>
+            
+                <div class="card">
+                    <span class="num">05</span>
+                    <p class="step">처우 협의</p>
+                </div>
+            
+                <div class="card last">
+                    <span class="num">06</span>
+                    <p class="step">최종 합격</p>
+                </div>
+            </div>
+            <p class="notice">* 서류 전형 또는 면접 전형 과정 간 경력 및 평판 조회(Reference Check)가 실시될 수 있습니다.</p>
+        </div>
+    </div>
+
+    <div class="etc">
+        <h3>※ 기타사항</h3>
+            <ul>
+                <li>위 영입 절차는 기본 프로세스로, 경우에 따라 추가 절차가 진행될 수 있습니다.</li>
+                <li>세부사항(대상 및 자격기준 등)은 공고별로 상이할 수 있으니 지원하시는 공고의 내용을 반드시 확인하시기 바랍니다.</li>
+                <li>지원서에 기재된 학력 및 경력사항 등 기재사항이 허위임이 판명될 경우 합격이 취소될 수 있습니다.</li>
+                <li>장애인 및 국가유공자 등 취업보호대상자는 관계 법령에 따라 우대합니다.</li>
+            </ul>
+    </div>
+
+    <!-- 자주 묻는 질문 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <div class="gray">
+        <h2>자주 묻는 질문</h2>
+        <p>우리 기업 채용의 모든 것을 알려드려요.</p>
+
+        <div class="qnaBox">
+            <div class="qnaTitle">
+                <span>채용 과정</span>
+            </div>
+            <div class="qnaGroup">
+                <div class="qna">
+                    <div class="question">
+                        Q. 관계사 등 회사별로 중복 지원이 가능한가요?
+                        <span class="icon">▾</span>
+                    </div>
+                    <div class="answer">
+                        A. 전환형 인턴으로 모집하는 공채 신입사원은 젠스타메이트 및 관계사가 통합해서 채용을 진행하고 있습니다.<br>
+                                회사 구분 없이 본인이 희망하는 직무를 작성하고, 지원하면 됩니다.
+                    </div>
+                </div>
+
+                <div class="qna">
+                    <div class="question">
+                        Q. 과거에 지원한 적이 있는데 재지원 가능한가요?
+                        <span class="icon">▾</span>
+                    </div>
+                    <div class="answer">
+                        A. 특별한 결격사유가 없다면 재지원 가능합니다.
+                    </div>
+                </div>
+
+                <div class="qna">
+                    <div class="question">
+                        Q. 현재, 재직 중인데 면접 일정 조율이 가능할까요?
+                        <span class="icon">▾</span>
+                    </div>
+                    <div class="answer">
+                        A. 면접 일정은 회사의 상황과 면접관의 스케줄을 고려하여 충분히 조율 가능합니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="qnaBox">
+            <div class="qnaTitle">
+                <span>지원서 작성</span>
+            </div>
+            <div class="qnaGroup">
+                <div class="qna">
+                    <div class="question">
+                        Q. 입사 지원은 우편이나 방문 제출도 가능한가요?
+                        <span class="icon">▾</span>
+                    </div>
+                    <div class="answer">
+                        A. 입사 지원은 온라인 지원만 가능합니다.<br>
+                            채용 부문에 따라 채용 홈페이지를 통한 입사 지원, 이메일 제출, 채용 포털 사이트 등을 통해 지원서를 접수받고 있습니다.
+                    </div>
+                </div>
+
+                <div class="qna">
+                    <div class="question">
+                        Q. 지원서 수정 및 삭제가 가능한가요?
+                        <span class="icon">▾</span>
+                    </div>
+                    <div class="answer">
+                        A. 제출하신 입사 지원서의 수정 및 삭제는 최종 제출을 하신 후에는 수정이 불가능합니다.
+                    </div>
+                </div>
+
+                <div class="qna">
+                    <div class="question">
+                        Q. 입사 지원 후 서류 전형 합격자에게는 통보가 되나요?
+                        <span class="icon">▾</span>
+                    </div>
+                    <div class="answer">
+                        A. 입사 지원서에 작성하신 핸드폰과 이메일로 개별 통보합니다.<br>
+                            본인의 실수로 오기재하는 경우에는 연락을 받지 못할 수 있으니, 반드시 정확하게 입력해주세요.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 채용 공고 버튼 -->
+    <div class="blue">
+        <button class="blueBtn">채용 공고 보러가기 ⟶</button>
+    </div>
+
+    <!-- 마지막 -->
+     <footer>
+        <h2>(주)젠스타메이트</h2>
+        <p>사업자등록번호 107-87-7240</p>
+        <p>02-2003-8000 | hr@genstarmate.com</p>
+        <br>
+        <p>개인정보 처리방침      서비스 이용 약관</p>
+     </footer>
+
+    <script>
+        $(function(){
+            $(".hamBtn").on("click", function(){
+                $(".nav").toggleClass("on")  //toggle: 붙였다 뗐다, 제거도 알아서 해줌
+                $(".hamBtn").toggleClass("on")
+            })
+
+             $(".question").on("click", function(){
+                $(this).toggleClass("on")
+                $(this).next().stop().slideToggle()
+            }) 
+        })
+    </script>
+</body>
+</html>
