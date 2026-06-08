@@ -1,0 +1,172 @@
+/* --------메인 섹션구현-------- */
+.contents{
+    width: 100%;
+}
+
+.container  {
+    width: calc(100% - 80px);
+    padding-top: 90px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.pageMenu{
+    display: flex;
+    color: #666;
+    position: absolute;
+    top: 117px;
+    right: 0;
+    padding: 0 30px;
+    z-index: 10;
+
+    li{
+        padding: 0 20px;
+        height: 15px;
+        line-height: 15px;
+    }
+
+    .line{
+        border-right: 1px solid #999;
+    }
+}
+
+section{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 140px 0 130px;
+    background-color: #fff;
+}
+
+.title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin: 0 0 86px;
+
+    h2{
+        font-size: 60px;
+        font-weight: 600;
+        color: #222;
+    }
+
+    p{
+        font-size: 23px;
+        font-weight: 600;
+        color: #555;
+        margin:  0 0 12px 17px;
+    }
+}
+
+.eventBox{
+    width: 94%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.eventImg{
+    width: 100%;
+    display: flex;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.eventImg2{
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    align-items: flex-end;
+    position: relative;
+    top: -80px;
+}
+
+.eventImg li{
+    flex: 1;
+    width: 100%;
+    
+}
+
+.eventImg2 li{
+    flex: 1;
+    width: 100%;
+    
+}
+
+.eventImgText{
+    width: 100%;
+}
+
+.eventImgText img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+/* 1,5번 큰 카드 */
+.eventImg li:nth-child(1) img,
+.eventImg2 li:nth-child(2) img{
+    aspect-ratio: 1 / 1.35;
+}
+
+/* 2,4번 작은 카드 */
+.eventImg li:nth-child(2) img,
+.eventImg2 li:nth-child(1) img{
+    aspect-ratio: 1 / 1;
+}
+
+/* 3,6번 중간 카드 */
+.eventImg li:nth-child(3) img,
+.eventImg2 li:nth-child(3) img{
+    aspect-ratio: 1 / 1.15;
+}
+
+.eventImg li img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.snsTitle{
+    margin-top: 20px;
+    min-height: 80px;
+}
+
+.snsTitle .greenbox{
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 14px;
+    color: #fff;
+    margin-right: 5px;
+    border-radius: 5px;
+    background: #103837;
+    margin-bottom: 15px;
+
+}
+
+.snsTitle .greenbox.ing{
+    background: #467f5a;
+}
+
+.snsTitle > p:nth-child(2){
+    height: 30px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #222;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.snsTitle > p:nth-child(3){
+    display: block;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-weight: 400;
+    color: #666;
+}
+

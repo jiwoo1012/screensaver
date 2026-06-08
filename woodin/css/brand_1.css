@@ -1,0 +1,212 @@
+.fir{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    min-height: calc(100vh - 90px);
+}
+.fir >img{
+    width: 98%;
+    height: calc(100vh - 90px);
+    border-radius: 10px;
+}
+.fir>p{
+    position: absolute;
+    color: white;
+    font-size: 80px;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+}
+.two{
+    background-color: #f3f3f3;
+    width: 100%;
+}
+.two>.sec{
+    width: 95%;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 70px auto;
+    min-height: 3700px;
+}
+.two>.sec>.title{
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+.two>.sec>.box{
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    position: relative;
+}
+.two>.sec>.box>img{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+.two>.sec>.box>p{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 34px;
+    font-weight: 200;
+}
+.two>.sec>.box>p>b{
+    font-size: 20px;
+}
+
+/* 첫 번째 연혁 시작ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.sec>.history1{
+    margin-top: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.history1>img{
+    width: 38%;
+    border-radius: 10px;
+}
+.history_dot{
+    border-right: 1px solid #333;
+    padding-right: 12px;
+    margin-right: 12px;
+}
+.history1>.history_text1{
+    width: 38%;
+}
+.history1>.history_text1>h3{
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+.history1>.history_text1>p{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* 두 번째 연혁 시작ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.sec>.history2{
+    margin-top: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.history2>img{
+    width: 38%;
+    border-radius: 10px;
+}
+.history_dot{
+    border-right: 1px solid #333;
+    padding-right: 12px;
+    margin-right: 12px;
+}
+.history2>.history_text2{
+    width: 38%;
+    text-align: right;
+}
+.history2>.history_text2>h3{
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+.history2>.history_text2>p{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* 세 번째 연혁 시작ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.sec>.history3{
+    margin-top: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.history3>img{
+    width: 38%;
+    border-radius: 10px;
+}
+.history_dot{
+    border-right: 1px solid #333;
+    padding-right: 12px;
+    margin-right: 12px;
+}
+.history3>.history_text3{
+    width: 38%;
+    text-align: right;
+}
+.history3>.history_text3>h3{
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+.history3>.history_text3>p{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* 네 번째 연혁 시자그ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.sec>.history4{
+    margin-top: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.history4>img{
+    width: 38%;
+    border-radius: 10px;
+}
+.history_dot{
+    border-right: 1px solid #333;
+    padding-right: 12px;
+    margin-right: 12px;
+}
+.history4>.history_text4{
+    width: 38%;
+    text-align: right;
+}
+.history4>.history_text4>h3{
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+.history4>.history_text4>p{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* 마지막 푸터ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 200px;
+    background-color: #333;
+    color: white;
+    gap: 20px;
+    font-weight: 200;
+}
+footer>.logoBox{
+    width: 5%;
+    height: 90px;
+    background-image: url('../img/common/logo2.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 10px auto;
+    margin-left: 20px;
+}
+footer>.tjs2{
+    width: 1px;
+    height: 100px;
+    background-color: #fff;
+    margin-left: 50px;
+    margin-right: 50px;
+}

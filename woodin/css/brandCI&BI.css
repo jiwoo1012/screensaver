@@ -1,0 +1,167 @@
+.container{
+    width: calc(100% - 80px);
+    padding-top: 90px;
+    margin: 0 auto;
+    position: relative;
+}
+.b2_one{
+    margin-top: -10px;
+    width: 100%;
+}
+.b2_fir{
+    width: 100%;
+    
+}
+.b2_fir>img{
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+    position: relative;
+}
+.b2_fir>p{
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    color: white;
+}
+.b2_two{
+    width: 100%;
+    position: relative;
+    padding-top: 1px;
+    flex: 1;
+}
+.b2_two > .b2_sec {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 50px auto;
+    padding: 150px 200px;
+    gap: 60px;
+}
+
+.aaa, .bbb {
+    display: flex;
+    align-items: start;
+    width: 100%;
+    gap: 60px;
+}
+
+.b2_sec > .aaa > h2, .bbb > h2 {
+    font-size: 50px;
+    min-width: 60px;
+}
+
+.b2_sec > .aaa > .tjs_b2{
+    width: 0.5px;
+    height: 550px;
+    background-color: #999;
+    flex-shrink: 0;
+}
+.bbb > .tjs01_b2{
+    width: 0.5px;
+    height: 1950px;
+    background-color: #999;
+    flex-shrink: 0;
+}
+.b2_sec > .aaa > .brand, .bbb > .brand01 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    padding-bottom: 250px;
+}
+
+.b2_sec > .aaa > .brand > p > b,
+.bbb > .brand01 > p > b {
+    font-size: 30px;
+    font-weight: 600;
+    padding-right: 10px;
+}
+
+.b2_sec > .aaa > .brand > p,
+.bbb > .brand01 > p {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 1px 10px;
+}
+.b2_sec > .aaa > .brand > .gray,
+.bbb > .brand01 > .grayBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    height: 300px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    margin-bottom: 75px;
+}
+.b2_sec > .aaa > .brand > .wood {
+    font-size: 19px;
+    font-weight: 500;
+    color: #000;
+}
+.b2_sec > .aaa > .brand > .wood1 {
+    font-size: 17px;
+    color: #555;
+    margin-top: 16px;
+}
+.bbb > .brand01 > .logoBox{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 65%;
+    height: auto ;
+    gap: 20px;
+    padding: 100px 0;
+    width: 100%;
+}
+
+.bbb > .brand01 > .logoBox img{
+    margin: 0 auto;
+    object-fit: cover;
+}
+.bbb > .brand01 >.colorBox {
+    align-items: flex-start ;
+    height: auto ;
+    padding: 60px ;
+    gap: 100px ;
+}
+.bbb > .brand01 .colorRow {
+    display: flex;
+    gap: 40px;
+}
+.bbb > .brand01 .colorItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+}
+.colorTitle{
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.bbb > .brand01 .colorItem > .sstitle{
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.bbb > .brand01 .colorItem > .col{
+    font-weight: 100;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.bbb > .brand01>.signBox{
+    padding: 200px;
+    gap: 100px;
+}
+.bbb > .brand01>.signBox>.sign1>p{
+    padding-bottom: 20px;
+    font-size: 20px;
+}

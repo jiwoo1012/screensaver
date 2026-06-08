@@ -1,0 +1,63 @@
+header{
+    width: 100%;
+    height: 90px;
+    background-color: #F3F3F3;
+}
+nav{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 90px;
+    position: fixed;
+    left: 0; top: 0;
+    z-index: 1;
+    transition: all 0.3s;
+    background-color: #F3F3F3;
+}
+nav.on{
+    height: 400px;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 90px;
+    background-image: url('https://www.wood.co.kr/images/common/logo.png');
+    background-repeat: no-repeat;
+    background-size: 150px 31px;
+    background-position: center;
+    position: sticky;
+    top: 0;
+}
+.gnb{
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+    background-color: #F3F3F3;
+    color: #333;
+}
+.gnb>li{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: calc(100%/4);
+    font-size: 25px;
+    font-weight: 600;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+.snb{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 40px;
+}
+.home{
+    background-color: #F3F3F3;
+    width: 100%;
+    height: 100vh;
+
+}

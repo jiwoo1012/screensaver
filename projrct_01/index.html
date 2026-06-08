@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNCHI | Premium Korean Niche Perfume</title>
+  <meta name="description" content="한국적 운치를 담은 프리미엄 니치 향수 브랜드 운치의 공식 쇼핑몰">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand-mark" href="#brand" aria-label="UNCHI home">
+      <span class="brand-symbol"><img src="../image/logo.png" alt="logo"></span>
+      <span>UNCHI</span>
+    </a>
+    <nav class="gnb" aria-label="주요 메뉴">
+      <button class="nav-link is-active" data-target="brand">Brand Story</button>
+      <button class="nav-link" data-target="shop">Shop</button>
+      <button class="nav-link" data-target="widget">Widget</button>
+      <button class="nav-link" data-target="showroom">Showroom</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="brand" class="panel brand-panel is-active" aria-labelledby="brand-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Premium Korean Niche Perfume</p>
+          <h1 id="brand-title">UNCHI</h1>
+          <p class="hero-text">어둠 속에 스며든 한국의 세 가지 운치.<br> 먹, 기와, 산사의 기억을 우아하게 얹었습니다.</p>
+          <a class="primary-action" href="#shop" data-target="shop">시그니처 보기</a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="bottle">
+            <!-- <span class="bottle-cap"></span>
+            <span class="bottle-label">UNCHI</span>
+          </div>
+          <div class="ink-stone"></div> -->
+        </div>
+      </div>
+
+      <div class="story-scroll" aria-label="시그니처 라인업 스토리">
+        <article class="story-card" data-depth="0.12">
+          <span class="story-index">01</span>
+          <h2>묵향</h2>
+          <p>새벽 서재의 침묵<br> 오래된 고서와 먹이 빚어내는 차분하고 지적인 향</p>
+        </article>
+        <article class="story-card" data-depth="0.2">
+          <span class="story-index">02</span>
+          <h2>와우</h2>
+          <p>비 개인 기와 아래<br> 이끼 낀 서까래와 흙내음이 남긴 서정적인 잔향</p>
+        </article>
+        <article class="story-card" data-depth="0.28">
+          <span class="story-index">03</span>
+          <h2>고사</h2>
+          <p>산사의 새벽안개와 향유<br> 차가운 공기를 뚫고 번지는 신비로운 기운</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="shop" class="panel" aria-labelledby="shop-title">
+      <div class="section-head">
+        <p class="eyebrow">Signature Trilogy</p>
+        <h2 id="shop-title">세 가지 정서, 세 개의 향</h2>
+      </div>
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="widget" class="panel" aria-labelledby="widget-title">
+      <div class="section-head">
+        <p class="eyebrow">Daily Sense</p>
+        <h2 id="widget-title">오늘의 운치</h2>
+      </div>
+      <div class="widget-board">
+        <div class="time-widget">
+          <span class="widget-label">Seoul Time</span>
+          <strong id="clock">00:00:00</strong>
+          <p id="today">오늘</p>
+        </div>
+        <div class="weather-widget">
+          <span class="widget-label">Weather</span>
+          <strong id="weatherMood">맑음 22°C</strong>
+          <p id="weatherNote">잔잔한 우디 노트가 어울리는 날입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="showroom" class="panel" aria-labelledby="showroom-title">
+      <div class="section-head">
+        <p class="eyebrow">Offline Showroom</p>
+        <h2 id="showroom-title">서울의 조용한 향실</h2>
+      </div>
+      <div class="showroom-layout">
+        <div class="map-shell">
+          <div id="map"></div>
+        </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>UNCHI</span>
+    <span>Premium Korean Niche Perfume</span>
+  </footer>
+  
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1340e90a9ded50db2f455050edbe328e"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/scroll.js"></script>
+  <script src="./js/weather.js"></script>
+  <script src="./js/map.js"></script>
+</body>
+</html>
