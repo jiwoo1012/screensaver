@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: 100%;
+            
+        }
+        header{
+            width: 100%;
+            height: 70px;
+            color: #fff;
+            display: flex;
+            position: fixed;
+            left: 0; top: 0;
+            z-index: 100;
+
+            transition: all 0.4s;
+            background-color: transparent;
+        }
+        header.on{
+            height: 70px;
+            background-color: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+        }
+        .logo{
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            font-size: 50px;
+            border-bottom: 1px solid #ccc;
+        }
+        .nav{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            color: #333;
+            font-size: 17px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+        }
+        /* 헤더 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        article{
+            width: 100%;
+            height: calc(100vh - 450px);
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+        }
+        article h1{
+            font-size: 70px;
+        }
+        article p{
+            font-size: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btnBox{
+            width: 20%;
+            position: absolute;
+            bottom: 10px; left: 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .btnBox button{
+            color: #999;
+            font-weight: 400;
+            font-size: 20px;
+        }
+        .btnBox button:hover{
+            color: #333;
+            font-weight: 600;
+        }
+        /* 버튼 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        main{
+            width: 100%;
+            height: 1000px;
+        }
+        section{
+            display: none;
+        }
+        section.on{
+            display: flex;
+        }
+        /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        #sec1{
+            justify-content: center;
+            align-items: center;
+        }
+        #sec1 .item{
+            width: 33.3333%;
+            height: 700px;
+            border-left: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+            
+        }
+        #sec1 .item .textBox{
+            position: absolute;
+            bottom: 15px; left: 20px;
+        }
+        #sec1 .item.one1 {
+            background-image: url('https://fmkcos.co.kr/web/product/big/202603/741e0d3955ed4d45b7dfaaba52960748.png');
+            background-size: cover;
+            background-position: center;
+        }
+        #sec1 .item.one1:hover {
+            background-image: url('https://fmkcos.com/web/product/tiny/202603/a8f955ad46f39a026bfa104543174f2c.png');
+        }
+        #sec1 .item.one2 {
+            background-image: url('https://fmkcos.co.kr/web/product/big/202603/741e0d3955ed4d45b7dfaaba52960748.png');
+            background-size: cover;
+            background-position: center;
+        }
+        #sec1 .item.one2:hover{
+            width: 33.3333%;
+            background-image: url('https://fmkcos.com/web/product/tiny/202604/54becd80f9ee97f84cecbca70eea0979.png');
+        }
+         /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        #sec2{
+            justify-content: center;
+            align-items: center;
+        }
+        #sec2 .item{
+            width: 33.3333%;
+            height: 700px;
+            border-left: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        #sec2 .item .textBox{
+            position: absolute;
+            bottom: 15px; left: 20px;
+        }
+
+        #sec2 .item.two1 {
+            background-image: url('https://fmkcos.co.kr/web/product/big/202603/85bf315d73684522275f0b1f204c478f.png');
+            background-size: cover;
+            background-position: center;
+        }
+        #sec2 .item.two1:hover {
+            background-image: url('https://fmkcos.co.kr/web/product/tiny/202603/9280f8a941e1f4d139ed66d82099aa65.png');
+        }
+        #sec2 .item.two2 {
+            background-image: url('https://fmkcos.co.kr/web/product/big/202603/85bf315d73684522275f0b1f204c478f.png');
+            background-size: cover;
+            background-position: center;
+        }
+        #sec2 .item.two2:hover{
+            width: 33.3333%;
+            background-image: url('https://fmkcos.co.kr/web/product/tiny/202604/16e772e9770a48f8444667ade0256b54.png');
+        }
+         /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+        #sec3{
+            justify-content: start;
+            align-items: center;
+        }
+        #sec3 .item{
+            width: 33.3333%;
+            height: 700px;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        #sec3 .item .textBox{
+            position: absolute;
+            bottom: 15px; left: 20px;
+        }
+        #sec3 .item.thr2 {
+            background-image: url('https://fmkcos.co.kr/web/product/extra/big/202603/fc7ce275901cc10c13d9e62c02620bc2.png');
+            background-size: cover;
+            background-position: center;
+        }
+        #sec3 .item.thr2:hover {
+            background-image: url('https://fmkcos.co.kr/web/product/tiny/202604/30f3870754cd4726a3ab939480b6be06.png');
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header id="header">
+            <h1 class="logo">fmk</h1>
+            <ul class="nav">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Event</a></li>
+                <li><a href="#">Community</a></li>
+            </ul>
+        </header>
+
+        <article>
+            <h1>Products List</h1>
+            <p>Care that performs beyond routine.<br>Precise and result-driven. Professional, made personal.</p>
+            <div class="btnBox">
+                <button>ReJuvenating</button>
+                <button>Brightening</button>
+                <button>Set</button>
+            </div>
+        </article>
+
+        <main class="contents">
+            <section class="on" id="sec1">
+                <div class="item">
+                    <img src="https://fmkcos.co.kr/web/upload/appfiles/AIFBrluHGdhkEsW6ewuLoA/6a3a5333cba10df9ef60f08982ab033b.png" alt="">
+                </div>
+                <div class="item one1">
+                    <!-- <img src="https://fmkcos.co.kr/web/product/big/202603/741e0d3955ed4d45b7dfaaba52960748.png" alt=""> -->
+                    <div class="textBox">
+                        <h2>[1+1] fmk Rejuvenating PDRN Kit</h2>
+                        <p>[4주 집중]탄력이 진하게 차오르는 PDRN 부스팅 케어</p>
+                        <span>49,400원</span>
+                    </div>
+                </div>
+                <div class="item one2">
+                    <!-- <img src="https://fmkcos.co.kr/web/product/big/202603/741e0d3955ed4d45b7dfaaba52960748.png" alt=""> -->
+                    <div class="textBox">
+                        <h2>fmk Rejuvenating PDRN Kit</h2>
+                        <p>탄력이 진하게 차오르는 PDRN 부스팅 케어</p>
+                        <p>24,700원</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec2">
+                <div class="item">
+                    <img src="https://fmkcos.co.kr/web/upload/appfiles/AIFBrluHGdhkEsW6ewuLoA/43904fa415d56eb579c06d5e9ceaff0a.png" alt="">
+                </div>
+                <div class="item two1">
+                    <!-- <img src="https://fmkcos.co.kr/web/product/big/202603/85bf315d73684522275f0b1f204c478f.png" alt=""> -->
+                    <div class="textBox">
+                        <h2>[1+1] fmk Brightening Vit+ Kit</h2>
+                        <p>[4주 집중]얼굴 빛을 빠르게 밝혀주는 투명광채 브라이트닝 케어</p>
+                        <span>49,400원</span>
+                    </div>
+                </div>
+                <div class="item two2">
+                    <!-- <img src="https://fmkcos.co.kr/web/product/big/202603/85bf315d73684522275f0b1f204c478f.png" alt=""> -->
+                    <div class="textBox">
+                        <h2>ffmk Brightening Vit+ Kit</h2>
+                        <p>얼굴 빛을 빠르게 밝혀주는 투명광채 브라이트닝 케어어</p>
+                        <p>24,700원</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec3">
+                <div class="item thr1">
+                    <img src="https://fmkcos.co.kr/web/upload/appfiles/AIFBrluHGdhkEsW6ewuLoA/9fbd138d120537ebd48f7e70518ead78.png" alt="">
+                </div>
+                <div class="item thr2">
+                    <!-- <img src="https://fmkcos.co.kr/web/product/extra/big/202603/fc7ce275901cc10c13d9e62c02620bc2.png" alt=""> -->
+                    <div class="textBox">
+                        <h2>[듀얼 스타터] fmk Rejuvenating PDRN Kit + Brightening Vit+ Kit</h2>
+                        <p>고보습+탄력+에너지부스팅으로 듀얼 케어</p>
+                        <span>49,400원</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- <footer>
+            <h1>fmk</h1>
+        </footer> -->
+    </div>
+    
+
+    <!-- 제이쿼리 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+     <script>
+        $(window).on("scroll", function(){
+            let scrTop=$(window).scrollTop()
+
+
+            if(scrTop>10){
+                $("header").addClass("on")
+            }else{
+                $("header").removeClass("on")
+            }
+        })
+
+        $("article button").on("click", function(){
+            let idx=$(this).index()
+            $("article button").removeClass("on")
+            $(this).addClass("on")
+
+            $("section").removeClass("on")
+            $("section").eq(idx).addClass("on")
+        })
+     </script>
+</body>
+</html>

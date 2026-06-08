@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="500" height="400"></canvas>
+    <script>
+        let canvas=document.querySelector("canvas")
+        let ctx=canvas.getContext("2d") //그릴 수 있는 준비, 그림을 그릴 도구를 가져옴
+        ctx.fillStyle="black"
+        ctx.fillRect(0,0,canvas.width, canvas.height)
+
+        //캔버스에 이미지 표시하기
+        // let img=new Image();
+        // img.onload=function(){
+        //     ctx.drawImage(img,0,0,canvas.width, canvas.height )
+        // }
+        // img.src="./img/carina.JPG"
+        
+
+        //원 부분만 이미지 나오도록
+        //ctx.beginPath()
+        // ctx.arc(150,150,100,0,Math.PI*2)
+        // ctx.clip() // 클맆
+
+        //글씨 클립
+        // ctx.beginPath()
+        // ctx.font="bold 60px san-serif "
+        // ctx.fillText("good", 100, 100) //글자를 제일제일 먼저 그림
+
+        //     //원 그리기? 도형을 그리는데 그려진 도형 안에서만 글씨를 보여줄 거야를 선포
+        // ctx.beginPath()
+        // ctx.globalCompositeOperation="source-in" //새로 그리는 도형(글자)이 이미 그려진 영역 안에서만 보인다는 명령
+        // let img=new Image()
+        // img.onload=function(){
+        //     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+        // }
+        // img.src="./img/carina.JPG"
+
+        //drawImg(img, sx, sy, sw, sh, dx, dy, dw, dh) 방식 1
+        //drawImg(img, dx, dy, dw, dh) 방식 2
+        //sx, sy : 원래 이미지에서 자를 영역을 지정(가로 세로 위치 지정)
+        //sw, sh : 원래 이미지에서 잘라낼 너비와 높이
+        //dx, dy : 캔버스에서 왼쪽 위 모서리 위치부터 얼마나 떨어져서 이미지를 표시할지
+        //dw, dh : 이미지 크기 -> 캔버스 크기: canvas.width, canvas.height
+
+
+
+
+        //선 그리기 (moveTo와 lineTo가 한 쌍을 이루는 것만 기억하자)
+        ctx.beginPath()
+        ctx.strokeStyle="red"
+        ctx.fillStyle="red"
+        ctx.moveTo(100,100)
+        ctx.lineTo(200,250)
+        ctx.lineTo(300,100)
+        ctx.closePath() //나머지를 채워줌
+        ctx.fill()
+        ctx.stroke()
+    </script>
+</body>
+</html>

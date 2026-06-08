@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 캔버스
+        : html 태그의 일종, 그림을 그릴 수 있는 빈 공간을 만드는 태그
+        : js로 그림을 그려야 함.
+        : 자주 사용하는 효과-> 물방울 효과, 눈 내리는 효과, 차트 그리기, 게임 구현(벽돌게임: 구글에 접속하면 코드가 오픈되어 있음, 들고와서 수정하는 거 할 거임.) 등
+        : 그림판 만들기, 화면 보고기(물방울들이 반사), 벽돌 게임
+        : getContext() 메서드-> 그림 그릴 도구를 가져오는 명령어
+        : 도형 그리기, 이미지 클리핑, 그라데이션, 나만의 드로잉 앱 만들기, 화면보호기(물방울 움직이기)
+            , 벽돌 게임 순서로 만들 거임 -->
+
+        <canvas width="500" height="400"></canvas> <!--style이 아닌 canvas에서 크기를 지정할 경우 px을 적지 않음-->
+
+        <script>
+            let canvas=document.querySelector("canvas")
+            let ctx=canvas.getContext("2d") //그릴 수 있는 준비, 그림을 그릴 도구를 가져옴
+            ctx.fillStyle="black"
+            ctx.fillRect(0,0,canvas.width, canvas.height)
+            
+            //글씨 적어보기
+            ctx.font="italic 60px san-serif" //먼저 적어야 적용이 됨!
+            ctx.strokeStyle="orange"
+            ctx.strokeText("javaScript", 150, 100)
+
+            ctx.font="bold 60px Arial" //먼저 적어야 적용이 됨!
+            
+            ctx.fillStyle="orange"
+            ctx.strokeStyle="red"
+            ctx.fillText("javaScript", 150, 200)
+            
+            //사각형 그리기
+            ctx.fillStyle="pink"
+            ctx.fillRect(150, 300, 100, 50) //fillRect(x축, y축, width, height): 사각형 그리는 거
+
+            ctx.clearRect(150, 310, 50, 30)//안에 걸 비움, 흰색으로 칠해지는 게 아니라 투명으로 나옴.
+            ctx.beginPath()//새롭게 경로 방식을 만듦, 색상 등을 다시 정함.
+            ctx.lineWidth=4
+            ctx.strokeRect(300, 300, 100, 50)
+
+            //모서리가 둥근 사각형 그리기
+            ctx.beginPath() //항상 이걸 먼저 해주고 코드 입력하는 게 좋음
+            ctx.fillStyle="skyblue"
+            ctx.roundRect(100, 100, 150, 50, 15) // 맨 마지막에 오는 애가 모서리의 둥긂을 정함
+            ctx.fill() //이 명령을 넣어야 roundRect가 눈으로 보여짐 
+
+            //과제- 빨간색 테두리가 있는 둥근 사각형 만들기
+            ctx.beginPath()
+            ctx.strokeStyle="green"
+            ctx.roundRect(300, 100, 150, 50, 15)
+            ctx.fillStyle="yellowgreen"
+            ctx.roundRect(300, 100, 150, 50, 15)
+            ctx.fill()
+            ctx.stroke()
+
+            //원 그리기
+            ctx.beginPath()
+            ctx.strokeStyle="pink"
+            ctx.lineWidth=4
+            //ctx.arc(100,100,50,Math.PI,Math.PI*2) //반원 그리기
+            // ctx.arc(100,100,50,0,Math.PI*2) 원 그리기
+            ctx.arc(200,100,150,0,Math.PI)
+            // (x축, y축, 반지름(원의 크기), 출발 각도: 0, 종료 각도: Math.PI)
+            ctx.stroke() 
+
+            //와이파이 아이콘 그리기
+            ctx.beginPath()
+            ctx.strokeStyle="white"
+            ctx.lineWidth=10
+            ctx.lineCap="round"
+            let cx=100
+            let cy=150//좌표가 변하지 않게 미리 고정하고 시작
+            let start=Math.PI*1.25
+            let end=Math.PI*1.75
+
+            //와이파이 작은 호 만들기
+            ctx.beginPath()
+            ctx.arc(cx, cy, 50, start, end)
+            ctx.stroke()
+
+            ctx.beginPath()
+            ctx.arc(cx, cy, 30, start, end)
+            ctx.stroke()
+
+            //와이파이 큰 호 만들기
+            ctx.beginPath()
+            ctx.arc(cx, cy, 70, start, end)
+            ctx.stroke()
+
+            //와이파이 작은 원 만들기
+            ctx.beginPath()
+            ctx.fillStyle="white"
+            ctx.arc(cx, cy, 10, 0, Math.PI*2) //원 만드는 공식이니까 이건 외워
+            ctx.fill()
+    </script>
+</body>
+</html>
