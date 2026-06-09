@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img fadeIn, fadeOut</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .wrap{
+            width: 800px;
+            height: 400px;
+            overflow: hidden;
+            margin: 50px auto;
+            position: relative;
+        }
+        .slide{
+            
+            display: none;width: 100%;
+            height: 100%;
+            position: absolute; /*absolute만 있으면 자식인지 부모인지 모르기 때문에 relative 필수!*/
+            left: 0; top: 0;
+        }
+        .slide img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slide:first-child{ /*강제적으로 첫 번째 사진만 나타나게 함*/
+            display: block;
+        }
+        /*
+            first-child: 진~~짜 첫 번째
+            first-of-type: 같은 태그의 첫 번째
+
+            nth-child(2): 모든 태그 포함 두 번째
+            nth-of-type(2): 같은 태그의 두 번째
+
+        */
+        .arrow{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color:rgba(255,255,255,0.6);
+            border: none;
+            font-size: 20px;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .prev{left:30px;}
+        .next{right: 30px;}
+
+        .dotWrap{
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+            z-index: 10;
+        }
+        .dot{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.5;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .dot.on{
+            opacity: 1;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="slide">
+            <img src="./img/pororo.JPG" alt="pororo">
+        </div>
+        <div class="slide">
+            <img src="./img/crong.JPG" alt="crong">
+        </div>
+        <div class="slide">
+            <img src="./img/roofpy.JPG" alt="roofpy">
+        </div>
+
+        <!-- 좌우 버튼 -->
+         <button class="arrow prev">&lt;</button>
+         <button class="arrow next">&gt;</button>
+
+         <!-- 도트 -->
+          <div class="dotWrap">
+            <div class="dot on"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+    </div>
+
+
+    <!-- 제이쿼리 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <script>
+        const sliders=$(".slide")
+        const dots=$(".dot")
+
+        let index=0
+
+        //공통적으로 쓰이는 슬라이드 이동 함수
+        function moveSlide(){
+            sliders.stop(true,true).fadeOut(1000)
+            //stop(): 현재 진행 중인 애니 멈춤
+            //stop(true): 현재 대기 중인 애니 삭제
+            //stop(true,true): 대기 중인 애니 삭제, 현재 진행 중인 애니 삭제
+
+            sliders.eq(index).stop(true,true).fadeIn(1000)
+
+            dots.removeClass("on")
+            dots.ep(index).addClass("on")
+        }
+
+        setInterval(function(){
+            index++
+            if(index >= sliders.length){
+                index=0
+            }
+            moveSlide()
+        },3000)
+
+        //다음 버튼 클릭
+        $(".next").on("click", function(){
+            index++
+            if(index >= sliders.length){
+                index=0
+            }
+            moveSlide()
+        })
+
+        //이전 버튼 클릭
+        $(".prev").on("click", function(){
+            index--
+            if(index < 0){
+                index=sliders.length-1 // sliders.length: 총 3개
+                //2번째 -> 1번째 -> 0번째 -> 2번째
+            }
+            moveSlide()
+        })
+        dots.on("click", function(){
+            index=$(this).index()
+            moveSlide()
+        })
+        
+    </script>
+</body>
+</html>
