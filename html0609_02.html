@@ -143,6 +143,7 @@
         const nemoes=$(".nemo")
 
         let index=0
+        let slideInterval;
 
         function moveSlide(){
             sliders.stop(true,true).fadeOut(1000)
@@ -152,35 +153,44 @@
             nemoes.removeClass("on")
             nemoes.eq(index).addClass("on")
         }
-        setInterval(function(){
-            index++
-            if(index>=sliders.length){
-                index=0
-            }
-            moveSlide()
-        },3000)
+
+        function autoSlide(){
+            slideInterval= setInterval(function(){
+                index++
+                if(index>=sliders.length){
+                    index=0
+                }
+                moveSlide()
+            },3000)
+        }
 
         //다음 버튼
         $(".next").on("click", function(){
+            clearInterval(slideInterval)
             index++
             if(index>=sliders.length){
                 index=0
             }
             moveSlide()
+            autoSlide()
         })
 
         //이전 버튼
         $(".prev").on("click", function(){
+            clearInterval(slideInterval)
             index--
             if(index<0){
                 index=sliders.length-1
             }
             moveSlide()
+            autoSlide()
         })
 
         nemoes.on("click", function(){
+            clearInterval(slideInterval)
             index=$(this).index()
             moveSlide()
+            autoSlide()
         })
     </script>
 </body>
