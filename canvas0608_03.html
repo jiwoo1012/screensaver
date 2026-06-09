@@ -6,21 +6,76 @@
     <title>Document</title>
 </head>
 <body>
-    <canvas width="500" height="400"></canvas>
+    <!-- gradient
+        :  -->
+    <canvas width="800" height="600"></canvas>
     <script>
         let canvas=document.querySelector("canvas")
         let ctx=canvas.getContext("2d") 
+
         ctx.fillStyle="white"
 
+        // 정삼각형 그리기
+        // ctx.beginPath()
+        // ctx.strokeStyle="red"
+        // ctx.lineWidth=4
+        // ctx.moveTo(150,100) //첫 번째 포인트
+        // ctx.lineTo(300,400) // 두 번째 포인트
+        // ctx.lineTo(0,400) // 세 번째 포인트
+        // ctx.closePath()
+        // ctx.fill()
+        // ctx.stroke()
+
+        //gridient
+        //createLinearGradient(x0, y0, x1, y1)
+        //위에서 아래로 그라디언트
+        // let lineG=ctx.createLinearGradient(0,0,0,200)
+        // lineG.addColorStop(0, "skyblue") // 숫자는 번지는 정도, 뒤에는 색상명 입력
+        // lineG.addColorStop(0.4, "white")
+        // lineG.addColorStop(1, "blue")
+        // ctx.fillStyle=lineG
+        // ctx.fillRect(0,0,100,200) //번지는 효과가 최대 200, 그래서 도형의 h값도 200으로 주는 게 제일 이쁨
+
+        //왼쪽에서 오른쪽으로 그라디언트
+        // let lineL=ctx.createLinearGradient(0,0,200,0) //그라디언트 방향 정하기
+        // lineL.addColorStop(0,"pink")
+        // lineL.addColorStop(0.4,"gold")
+        // lineL.addColorStop(1,"skyblue")
+        // ctx.fillStyle=lineL
+        // ctx.fillRect(0,0,200,100)
+
+        //원형 그라디언트
+        // ctx.beginPath()
+        //createRadialGradient(x1, y1, r1, x2, y2, r2): 1은 작은 원, 2는 큰 원
+        //작은 원에서 큰 원으로 번지는 효과(그라디언트 효과)
+        // let raG=ctx.createRadialGradient(70,60, 10, 80,90,100)
+        // raG.addColorStop(0,"white")
+        // raG.addColorStop(0.5,"gold")
+        // raG.addColorStop(1,"orange")
+
+        // ctx.shadowBlur=20
+        // ctx.shadowOffsetX=10
+        // ctx.shadowOffsetY=18
+        // ctx.shadowColor="rgba(0,0,0,0.2)"
+
+        // ctx.fillStyle=raG
+        // ctx.arc(100,100,100,0,Math.PI*2)
+        // ctx.fill()
+
+        //원형 과제
         ctx.beginPath()
-        ctx.strokeStyle="red"
-        ctx.fillStyle="red"
-        ctx.moveTo(300,100)
-        ctx.lineTo(250,)
-        ctx.lineTo(100,100)
-        ctx.closePath()
+        let cir=ctx.createRadialGradient(70,60,10,80,90,100)
+        cir.addColorStop(0,"white")
+        cir.addColorStop(0.5,"yellowgreen")
+        cir.addColorStop(1,"green")
+        ctx.shadowBlur=100
+        ctx.shadowOffsetX=10
+        ctx.shadowOffsetY=18
+        ctx.shadowColor="skyblue"
+
+        ctx.fillStyle=cir
+        ctx.arc(100,100,100,0,Math.PI*2)
         ctx.fill()
-        ctx.stroke()
     </script>
 </body>
 </html>

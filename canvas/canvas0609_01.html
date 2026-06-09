@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drawing APP</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        body{
+            overflow: hidden;
+        }
+        #container{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #toolbar{
+            width: 98%;
+            height: 70px;
+            margin-top: 5px;
+            border-radius: 30px 0 30px 0;
+            background-color: #70a379;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        }
+        #toolbar div input{
+            color: #333;
+            text-align: center;
+            border-radius: 5px;
+            border: none;
+        }
+        #toolbar div *{
+            color: white;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        #toolbar #left{
+            margin-left: 50px;
+        }
+        #toolbar button{
+            border: none;
+            background-color: #24552d;
+            padding: 5px 20px;
+            border-radius: 10px 3px 10px 3px;
+            color: white;
+            font-weight: bold;
+            margin-right: 50px;
+        }
+        #toolbar button:hover{
+            background-color: #1a3d21;
+            transform: scale(1.05);
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="toolbar">
+            <div id="left">
+                <label for="strokeColor">Color</label>
+                <input type="color" id="strokeColor" value="#000"/>
+
+                <label for="lwidth">Stroke width</label>
+                <input type="number" id="lwidth" value="2" min="1" max="50"/><!--타입이 숫자일 때, 최소 최댓값을 정할 수 있음-->  
+            
+                <label for="bgc">BackGround</label>
+                <input type="color" id="bgc" value="#fff">
+            </div>
+
+            <div id="right">
+                <button id="reset">clear</button>
+                <button id="downfile">download</button>
+            </div>
+            
+        
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        const canvas=document.getElementById("canvas")
+        const toolbar=document.getElementById("toolbar")
+
+        canvas.width=window.innerWidth //innerWidth: 캔버스 객체가 가진 width가 있는데 window가 가진 화면 전체에 넣어줘라는 뜻. css의 width의 100%와 동일한 내용임
+        canvas.height=window.innerHeight - toolbar.offsetHeight;
+
+        //캔버스의 위치, 기준을 정해주는 작업(초기값 설정)
+        let canvasOffsetX=canvas.offsetLeft
+        let canvasOffsetY=canvas.offsetTop
+        let isDrawing= false //(마우스에서 손을 안 떼고 선을 그릴 때, 마우스에서 손을 떼면 선이 안 그려지게)
+
+        let startX
+        let startY
+
+        let lineWidth=2
+        const ctx=canvas.getContext("2d")
+
+        
+        toolbar.addEventListener("change", function(e){
+            //선 색상, 선 굵기 변경 event
+            if(e.target.id==="strokeColor"){
+                ctx.strokeStyle=e.target.value //선 색상의 값을 넣어줌, 선 색상 변경하기
+            }
+
+            if(e.target.id==="lwidth"){
+                lineWidth=e.target.value //선 굵기의 값을 바꿔서 넣어주세요, 선 굵기 변경하기 
+            }
+
+            //배경색 변경 event
+            if(e.target.id==="bgc"){
+                canvas.style.backgroundColor = e.target.value
+                document.body.style.backgroundColor = e.target.value 
+            }
+        })
+
+
+        //마우스를 움직이면서 선 그리기
+        canvas.addEventListener("mousedown", function(e){
+            isDrawing= true //그림 그릴 준비가 됐따 마우스를 눌렀을 때 인식
+            startX=e.clientX
+            startY=e.clientY
+        })
+
+        canvas.addEventListener("mousemove", function(e){
+            if(!isDrawing) return // 마우스를 이동할 때, 그림이 그려지면 안 됨.
+            ctx.lineWidth=lineWidth
+            ctx.lineCap='round'
+            ctx.lineTo(e.clientX, e.clientY - canvasOffsetY) //첫 스타트와 마지막, 근데 clientY가 화면 전체를 말하고 있음
+            ctx.stroke() // 그림 그리는 걸 실행
+        })
+
+        canvas.addEventListener("mouseup", function(){
+            isDrawing=false
+            ctx.beginPath()
+        })
+
+        
+        toolbar.addEventListener("click", function(e){
+            //지우개 구현하기
+            if(e.target.id==="reset"){
+                ctx.clearRect(0,0,canvas.width, canvas.height)
+            }
+
+            //캔버스에 그린 그림 다운로드 버튼
+            // <a href="#">홈으로</a>
+            // <a href="img/abcd.jpg" download>다운</a>
+            if(e.target.id==="downfile"){
+                let link=document.createElement("a") //a태그 만들어 달라고
+                link.download="drawing.png" //다운로드 될 파일 이름을 정해줬음.
+                link.href=canvas.toDataURL("image/png") //캔버스에 뭘 그렸든 간에 내가 png 형식으로 들고 올게 "image/jpg"도 사용 가능
+                link.click()//클릭해 달라고 다시 명령을 줘야 함.
+            }
+        })
+
+        
+
+    </script>
+</body>
+</html>
