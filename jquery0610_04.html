@@ -37,7 +37,7 @@
 
                 speedX: -3+Math.random()*10,
                 speedY: -3+Math.random()*10,
-                color:`hsla(${Math.random()*360}, 50%, 80%, 0.6)`
+                color:`hsla(${Math.random()*360}, 50%, 80%, 0.4)`
             })
         }
 
@@ -92,8 +92,8 @@
 
                 gradient.addColorStop(0,"rgba(255,255,255,0.9)")
                 gradient.addColorStop(0.2,c.color)
-                gradient.addColorStop(0.7,"rgba(255,255,255,0.2)")
-                gradient.addColorStop(1,"rgba(255,255,255,0.05)")
+                gradient.addColorStop(0.7,"rgba(255,255,255,0.1)")
+                gradient.addColorStop(1,"rgba(255,255,255,0.1)")
 
                 ctx.fillStyle = gradient
                 ctx.fill()
