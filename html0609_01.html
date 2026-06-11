@@ -108,6 +108,7 @@
         const dots=$(".dot")
 
         let index=0
+        let slideInterval
 
         //공통적으로 쓰이는 슬라이드 이동 함수
         function moveSlide(){
@@ -121,36 +122,44 @@
             dots.removeClass("on")
             dots.ep(index).addClass("on")
         }
-
-        setInterval(function(){
-            index++
-            if(index >= sliders.length){
-                index=0
-            }
-            moveSlide()
-        },3000)
+        function autoSlide(){
+            slideInterval= setInterval(function(){
+                index++
+                if(index >= sliders.length){
+                    index=0
+                }
+                moveSlide()
+            },3000)
+        }
+        
 
         //다음 버튼 클릭
         $(".next").on("click", function(){
+            clearInterval(slideInterval) // 멈추는 역할 밖에 안 함.
             index++
             if(index >= sliders.length){
                 index=0
             }
             moveSlide()
+            autoSlide()
         })
 
         //이전 버튼 클릭
         $(".prev").on("click", function(){
+            clearInterval(slideInterval) 
             index--
             if(index < 0){
                 index=sliders.length-1 // sliders.length: 총 3개
                 //2번째 -> 1번째 -> 0번째 -> 2번째
             }
             moveSlide()
+            autoSlide()
         })
         dots.on("click", function(){
+            clearInterval(slideInterval) 
             index=$(this).index()
             moveSlide()
+            autoSlide()
         })
         
     </script>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 그림판</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        #wrap{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #toolbar{
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            background-color: #333;
+        }
+        #toolbar div{
+            display: flex;
+            align-items: center;
+            
+        }
+        button{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="toolbar">
+            <div>
+                <!--0-9 자연수, a는 10, b는 11, c는 12, d는 13, e는 14, f는 15 : 이게 16진수임-->
+                <label for="color">Color</label>
+                <input type="color" id="color" value="#000000"/>
+
+                <label for="size">stroke Width</label>
+                <input type="number" id="size" value="4" min="1" max="50"/>
+            </div>
+            <div>
+                <label for="bg">background</label>
+                <input type="color" id="bg" value="#ffffff"/>
+
+                <button id="clear">Clear</button>
+                <button id="down">DownLoad</button>
+            </div>
+        </div>
+        <canvas></canvas>
+    </div>
+    <script>
+        const canvas=document.querySelector("canvas")
+        const toolbar=document.querySelector("#toolbar")
+
+        canvas.width=window.innerWidth
+        canvas.height=window.innerHeight
+
+        const ctx=canvas.getContext("2d")
+
+        let isDrawing=false
+
+        // canvas 그리기 기본 설정
+        ctx.strokeStyle="#000"
+        ctx.lineCap="round"
+        ctx.lineWidth=4
+        ctx.lineJoin="round" //선이 만난 점이 둥글게
+
+        // 값의 변경 설정
+        toolbar.addEventListener("change", function(e){
+            if(e.target.id==="color"){
+                ctx.strokeStyle=e.target.value
+            }
+            if(e.target.id==="size"){
+                ctx.lineWidth=e.target.value
+            }
+            if(e.target.id==="bg"){
+                ctx.style.backgroundcolor=e.target.value
+            }
+        })
+
+        toolbar.addEventListener("click", function(e){
+            //클릭 기능 설정
+            if(e.target.id==="clear"){
+                ctx.clearRect(0,0,canvas.width, canvas.height)
+            }
+            if(e.target.id==="down"){
+                let link=document.createElement("a") //a태그만 다운 가능하게 만듦
+                link.download="draw.png"
+
+                link.href=canvas.toDataURL("image/png") //캔버스가 갖고 있는 걸 그림파일로 전환 시켜줌, webP(파일 용량이 제일 적은 친구, 화질 낫뱉)
+                link.click()
+            }   
+
+            //그림 그리기 기능 설정
+            //마우스로 그리기:  mousedown, mousemove, mouseup 
+            canvas.addEventListener("mousedown", function(e){
+                isDrawing=true
+                ctx.beginPath()
+                ctx.moveTo(e.offsetX, e.offsetY)
+            })
+            canvas.addEventListener("mousemove", function(e){
+                if(!isDrawing)return
+                ctx.lineTo(e.offsetX, e.offsetY)
+
+                ctx.stroke()
+            })
+            canvas.addEventListener("mouseup", function(e){
+                isDrawing=false
+                ctx.closePath()
+            })
+        })
+
+    </script>
+
+</body>
+</html>

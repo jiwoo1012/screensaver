@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+
+    <script>
+        const canvas=document.querySelector("canvas")
+        const ctx=canvas.getContext("2d")
+
+        canvas.width=window.innerWidth
+        canvas.height=window.innerHeight
+
+        //원 10개 담을 배열
+        let circles=[]
+
+        for(let i=0;i<10;i++){
+            circles.push({
+                //키:키 값     //예->name:"홍길동", age:20
+                x: Math.random()*canvas.width,
+                y: Math.random()*canvas.height,
+                r: Math.random()*30,
+
+                speedX: -3+ Math.random()*8,
+                speedY: -3+ Math.random()*8,
+                color: `hsl(${Math.random()*360}, 80%, 60%)`
+                //hsl(색상(0-360), 채도(%), 밝기(%))
+            })
+        }
+
+        function ani(){
+            ctx.clearRect(0,0,canvas.width, canvas.height)
+            for(let i=0;i<circles.length;i++){
+                let circle=circles[i]
+                //좌표 변경
+                circle.x += circle.speedX
+                circle.y += circle.speedY
+
+                //오른쪽, 왼쪽 벽에 충돌되는지 따져보기
+                if(circle.x+ circle.r>canvas.width || circle.x-circle.r <0){
+                    circle.speedX=circle.speedX*-1
+                }
+
+                //위, 아래 벽 충돌
+                if(circle.y+ circle.r>canvas.height || circle.y-circle.r <0){
+                    circle.speedY=circle.speedY*-1
+                }
+
+                //원 그리기
+                ctx.beginPath()
+                ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI*2)
+                ctx.fillStyle=circle.color
+                ctx.fill()
+            }
+            requestAnimationFrame(ani)
+        }
+        ani()
+        
+        //브라우저 크기 변경 대응
+        window.addEventListener("resize", function(){
+            canvas.width=window.innerWidth
+            canvas.height=window.innerHeight
+        })
+    </script>
+</body>
+</html>

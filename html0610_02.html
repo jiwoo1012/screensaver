@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        #wrap{
+            width:95vw;
+        }
+        header{
+            width: 100%;
+            display: flex;
+        }
+        .logo{
+            width: 20%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo img{
+            width: 130px;
+            height: 70px;
+        }
+        .gnb{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 700px;
+            height: 80px;
+            margin-left: 250px;
+        }
+        .gnb>li>a{
+            font-weight: bold;
+        }
+
+        .slider{
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+        .slide{
+            flex-shrink: 0;
+            width:95vw;
+            height: 835px;
+            padding-left: 90px;
+        }
+        .slide video{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        button{
+            width: 50px;
+            height: 50px;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: #ccc;
+            color: white;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            cursor: pointer;
+        }
+        .prev{
+            left: 20px;
+        }
+        .next{
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <header>
+            <h1 class="logo">
+                <img src="data:image/png;base64,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" alt="기아">
+            </h1>
+            <ul class="gnb">
+                <li><a href="#">Brand</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Vehicle</a></li>
+                <li><a href="#">Innovation</a></li>
+                <li><a href="#">Newsroom</a></li>
+            </ul>
+        </header>
+
+        <article>
+            <div class="slider">
+                <div class="slide">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://worldwide.kia.com/asset/video/main-hero-1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://worldwide.kia.com/asset/video/main-hero-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="slide">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://worldwide.kia.com/asset/video/main-hero-3.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </article>
+    </div>
+
+    <script>
+        $(function(){
+            const slider=$(".slider")
+            let sw=$(".slide").outerWidth()
+            let sl=$(".slide").length
+            let index=1
+            let slideInterval;
+
+            slider.append($(".slide").eq(0).clone())
+            slider.prepend($(".slide").eq(sl-1).clone())
+
+            function moveSlide(){
+                slider.stop(true,true).animate({
+                    marginLeft:-sw*index
+                },500, function(){
+                    if(index>sl+1){
+                        index=1
+                        slider.css("marginLeft", -sw*index)
+                    }
+                    if(index === 0){
+                        index=sl
+                        slider.css("marginLeft",-sw*index)
+                    }
+
+                })
+
+            }
+
+            function autoPlay(){
+                slideInterval=setInterval(function(){
+                    index++
+                    moveSlide()
+                },6000)
+            }
+
+
+            //button
+            $(".next").on("click", function(){
+                clearInterval(slideInterval)
+                index++
+                moveSlide()
+                autoPlay()
+            })
+
+            $(".prev").on("click", function(){
+                clearInterval(slideInterval)
+                index--
+                moveSlide()
+                autoPlay()
+            })
+            autoPlay()
+        })
+    </script>
+</body>
+</html>

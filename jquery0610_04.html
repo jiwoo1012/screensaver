@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas{
+            width: 100%;
+            height: 100vh;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+
+    <script>
+        const canvas=document.querySelector("canvas")
+        const ctx=canvas.getContext("2d")
+
+        canvas.width=window.innerWidth
+        canvas.height=window.innerHeight
+
+        //원 10개 담을 배열
+        let circle=[]
+        
+        for(let i=0;i<10;i++){
+            circle.push({
+                x: Math.random()*canvas.width,
+                y: Math.random()*canvas.height,
+                r: 50+ Math.random()*100,
+
+                speedX: -3+Math.random()*10,
+                speedY: -3+Math.random()*10,
+                color:`hsla(${Math.random()*360}, 50%, 80%, 0.6)`
+            })
+        }
+
+        function ani(){
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            for(let i=0;i<circle.length;i++){
+                let c=circle[i]
+
+                c.x+=c.speedX
+                c.y+=c.speedY
+
+                // if(c.x+c.r>canvas.width || c.x-c.r< 0){
+                //     c.speedX = c.speedX * -1
+                // }
+                // if(c.y+c.r>canvas.height || c.y-c.r<0){
+                //     c.speedY=c.speedY*-1
+                // }
+                if(c.x+c.r>canvas.width){
+                    c.x=canvas.width-c.r
+                    c.speedX*=-1
+                }
+                if(c.x-c.r<0){
+                    c.x=c.r
+                    c.speedX*=-1
+                }
+                if(c.y + c.r > canvas.height){
+                    c.y = canvas.height - c.r
+                    c.speedY *= -1
+                }
+
+                if(c.y - c.r < 0){
+                    c.y = c.r
+                    c.speedY *= -1
+                }
+
+                // ctx.beginPath()
+                // ctx.arc(c.x,c.y,c.r,0,Math.PI * 2)
+                // ctx.fillStyle = c.color
+                // ctx.fill()
+
+                ctx.beginPath()
+                ctx.arc(c.x,c.y,c.r,0,Math.PI * 2)
+
+                let gradient = ctx.createRadialGradient(
+                    c.x - c.r * 0.3,
+                    c.y - c.r * 0.3,
+                    c.r * 0.1,
+                    c.x,
+                    c.y,
+                    c.r
+                )
+
+                gradient.addColorStop(0, "rgba(255,255,255,0.9)")
+                gradient.addColorStop(0.2, c.color)
+                gradient.addColorStop(0.7, "rgba(255,255,255,0.2)")
+                gradient.addColorStop(1, "rgba(255,255,255,0.05)")
+
+                ctx.fillStyle = gradient
+                ctx.fill()
+
+                // 비눗방울 빛 반사
+                ctx.beginPath()
+                ctx.arc(
+                    c.x - c.r * 0.3,
+                    c.y - c.r * 0.3,
+                    c.r * 0.15,
+                    0,
+                    Math.PI * 2
+                )
+                ctx.fillStyle = "rgba(255,255,255,0.4)"
+                ctx.fill()
+            }
+            requestAnimationFrame(ani)
+        }
+        ani()
+
+        window.addEventListener("resize", function(){
+            canvas.width=window.innerWidth
+            canvas.height=window.innerHeight
+
+            for(let c of circle){
+                if(c.x>canvas.width) c.x=canvas.width-c.r
+                if(c.y>canvas.height) c.y=canvas.height-c.r
+            }
+        })
+    </script>
+</body>
+</html>
