@@ -29,11 +29,11 @@
         //원 10개 담을 배열
         let circle=[]
         
-        for(let i=0;i<10;i++){
+        for(let i=0;i<15;i++){
             circle.push({
                 x: Math.random()*canvas.width,
                 y: Math.random()*canvas.height,
-                r: 50+ Math.random()*100,
+                r: 80+ Math.random()*130,
 
                 speedX: -3+Math.random()*10,
                 speedY: -3+Math.random()*10,
@@ -74,26 +74,26 @@
                 }
 
                 // ctx.beginPath()
-                // ctx.arc(c.x,c.y,c.r,0,Math.PI * 2)
-                // ctx.fillStyle = c.color
+                // ctx.arc(c.x,c.y,c.r,0,Math.PI*2)
+                // ctx.fillStyle=c.color
                 // ctx.fill()
 
                 ctx.beginPath()
                 ctx.arc(c.x,c.y,c.r,0,Math.PI * 2)
 
                 let gradient = ctx.createRadialGradient(
-                    c.x - c.r * 0.3,
-                    c.y - c.r * 0.3,
-                    c.r * 0.1,
+                    c.x-c.r*0.3,
+                    c.y-c.r*0.3,
+                    c.r*0.1,
                     c.x,
                     c.y,
                     c.r
                 )
 
-                gradient.addColorStop(0, "rgba(255,255,255,0.9)")
-                gradient.addColorStop(0.2, c.color)
-                gradient.addColorStop(0.7, "rgba(255,255,255,0.2)")
-                gradient.addColorStop(1, "rgba(255,255,255,0.05)")
+                gradient.addColorStop(0,"rgba(255,255,255,0.9)")
+                gradient.addColorStop(0.2,c.color)
+                gradient.addColorStop(0.7,"rgba(255,255,255,0.2)")
+                gradient.addColorStop(1,"rgba(255,255,255,0.05)")
 
                 ctx.fillStyle = gradient
                 ctx.fill()
@@ -101,19 +101,20 @@
                 // 비눗방울 빛 반사
                 ctx.beginPath()
                 ctx.arc(
-                    c.x - c.r * 0.3,
-                    c.y - c.r * 0.3,
-                    c.r * 0.15,
+                    c.x-c.r*0.3,
+                    c.y-c.r*0.3,
+                    c.r*0.15,
                     0,
-                    Math.PI * 2
+                    Math.PI*2
                 )
-                ctx.fillStyle = "rgba(255,255,255,0.4)"
+                ctx.fillStyle="rgba(255,255,255,0.4)"
                 ctx.fill()
             }
             requestAnimationFrame(ani)
         }
         ani()
 
+        //브라우저 창 크기 조절
         window.addEventListener("resize", function(){
             canvas.width=window.innerWidth
             canvas.height=window.innerHeight
